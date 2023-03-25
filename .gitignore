@@ -1,2 +1,3 @@
 dist
 aiorocket.egg-info
+aiorocket/__pycache__
