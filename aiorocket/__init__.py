@@ -41,8 +41,8 @@ class Rocket:
                 raise RocketAPIError(r['message'])
             return r['data']['id']
 
-    async def withdrawl(self, **params):
-        async with aiohttp.request('POST', f'{self.BASE_URL}/app/transfer', json=params, headers=self._headers) as r:
+    async def withdraw(self, **params):
+        async with aiohttp.request('POST', f'{self.BASE_URL}/app/withdrawal', json=params, headers=self._headers) as r:
             r = await r.json()
             if not r['success']:
                 raise RocketAPIError(r['message'])
