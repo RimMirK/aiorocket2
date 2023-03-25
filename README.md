@@ -62,7 +62,7 @@ await api.withdraw(
 
 Пример:
 ```python
-api.create_cheque({
+await api.create_cheque({
     chequePerUser=0.005,
     usersNumber=100,
     refProgram=50,
