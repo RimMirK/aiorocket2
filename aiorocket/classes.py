@@ -1,7 +1,10 @@
 import aiohttp
 
-class RocketAPIError(BaseException):
-    pass
+class RocketAPIError(Exception):
+    def __init__(self, data):
+        self.message = data['message']
+        self.errors = data.get('errors') or []
+        super().__init__(self.message)
 
 class Cheque:
     def __init__(self, id: int, currency: str, total: int, users: int, password: str, description: str, noitifications: bool, captcha: bool, telegramResources: list, refPercents: int, state: str, link: str, activations: int, refRewards: int, disabledLangs: list, forPremium: bool, forNewUsers: bool, linkedWallet: bool):
