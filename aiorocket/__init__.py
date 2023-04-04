@@ -60,7 +60,7 @@ class Rocket:
         async with aiohttp.request('GET', f'{self.BASE_URL}/multi-cheques', params={'limit': limit, 'offset': offset}, headers=self._headers) as r:
             r = await r.json()
             if not r['success']:
-                raise RocketAPIError(r['message'])
+                raise RocketAPIError(r)
             r = r['data']
         result = []
         for cheque in r['results']:
@@ -71,7 +71,7 @@ class Rocket:
         async with aiohttp.request('GET', f'{self.BASE_URL}/multi-cheques/{id}', headers=self._headers) as r:
             r = await r.json()
             if not r['success']:
-                raise RocketAPIError(r['message'])
+                raise RocketAPIError(r)
             cheque = r['data']
         return Cheque.fromjson(cheque)
 
@@ -79,20 +79,20 @@ class Rocket:
         async with aiohttp.request('PUT', f'{self.BASE_URL}/multi-cheques/{id}', headers=self._headers) as r:
             r = await r.json()
             if not r['success']:
-                raise RocketAPIError(r['message'])
+                raise RocketAPIError(r)
             return Cheque.fromjson(r)
 
     async def delete_cheque(self, id: int) -> None:
         async with aiohttp.request('DELETE', f'{self.BASE_URL}/multi-cheques/{id}', headers=self._headers) as r:
             r = await r.json()
             if not r['success']:
-                raise RocketAPIError(r['message'])
+                raise RocketAPIError(r)
 
     async def create_invoice(self, **params) -> Invoice:
         async with aiohttp.request('POST', f'{self.BASE_URL}/tg-invoices', json=params, headers=self._headers) as r:
             r = await r.json()
             if not r['success']:
-                raise RocketAPIError(r['message'])
+                raise RocketAPIError(r)
             r = r['data']
         return Invoice.fromjson(r)
 
@@ -100,7 +100,7 @@ class Rocket:
         async with aiohttp.request('GET', f'{self.BASE_URL}/tg-invoices', params={'limit': limit, 'offset': offset}, headers=self._headers) as r:
             r = await r.json()
             if not r['success']:
-                raise RocketAPIError(r['message'])
+                raise RocketAPIError(r)
             r = r['data']
         result = []
         for invoice in r['results']:
@@ -111,7 +111,7 @@ class Rocket:
         async with aiohttp.request('GET', f'{self.BASE_URL}/tg-invoices/{id}', headers=self._headers) as r:
             r = await r.json()
             if not r['success']:
-                raise RocketAPIError(r['message'])
+                raise RocketAPIError(r)
             invoice = r['data']
         return Invoice.fromjson(invoice)
 
@@ -119,13 +119,13 @@ class Rocket:
         async with aiohttp.request('DELETE', f'{self.BASE_URL}/tg-invoices/{id}', headers=self._headers) as r:
             r = await r.json()
             if not r['success']:
-                raise RocketAPIError(r['message'])
+                raise RocketAPIError(r)
 
     async def available_currencies(self) -> list:
         async with aiohttp.request('GET', f'{self.BASE_URL}/currencies/available') as r:
             r = await r.json()
             if not r['success']:
-                raise RocketAPIError(r['message'])
+                raise RocketAPIError(r)
         results = []
         for currency in r['data']['results']:
             results.append(Currency(
