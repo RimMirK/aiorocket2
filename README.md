@@ -107,10 +107,10 @@ await api.delete_cheque(1234)
 ```python
 await api.createInvoice(
     amount=1.23,
-    description="best thing in the world, 1 item",
-    hiddenMessage="thank you",
+    description="покупка лучшой вещи в мире",
+    hiddenMessage="спасибо",
     callbackUrl="https://t.me/ton_rocket",
-    payload="some custom payload I want to see in webhook or when I request invoice",
+    payload="полезна нагрузку, которую я хочу видеть в webhook или когда я запрашиваю счет-фактуру",
     expiredIn=10
 )
 ```
@@ -145,4 +145,21 @@ await api.delete_invoice(1234)
 Пример:
 ```python
 await api.available_currencies()
+```
+
+## ⚠ Обработка ошибок
+
+```python
+try:
+    api.get_invoice(1234) # вызов метода
+except aiorocket.classes.RocketAPIError as err:
+    print(err.errors)
+```
+
+Результат:
+```json
+{
+    "property": "somePropertyName",
+    "error": "somePropertyName should be less than X"
+}
 ```
