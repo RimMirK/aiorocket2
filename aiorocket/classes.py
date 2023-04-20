@@ -7,7 +7,7 @@ class RocketAPIError(Exception):
         super().__init__(self.message)
 
 class Cheque:
-    def __init__(self, id: int, currency: str, total: int, users: int, password: str, description: str, noitifications: bool, captcha: bool, telegramResources: list, refPercents: int, state: str, link: str, activations: int, refRewards: int, disabledLangs: list, forPremium: bool, forNewUsers: bool, linkedWallet: bool):
+    def __init__(self, api, id: int, currency: str, total: int, users: int, password: str, description: str, noitifications: bool, captcha: bool, telegramResources: list, refPercents: int, state: str, link: str, activations: int, refRewards: int, disabledLangs: list, forPremium: bool, forNewUsers: bool, linkedWallet: bool):
         self.id = id
         self.currency = currency
         self.total = total
@@ -25,12 +25,13 @@ class Cheque:
         self.forPremium = forPremium
         self.forNewUsers = forNewUsers
         self.linkedWallet = linkedWallet
-
         self.perUser = self.total / self.users
+        self.api = api
 
     @classmethod
-    def fromjson(cls, cheque):
+    def fromjson(cls, cheque, api):
         return cls(
+            api,
             cheque.get('id'),
             cheque.get('currency'),
             cheque.get('total'),
@@ -50,9 +51,11 @@ class Cheque:
             cheque.get('forNewUsersOnly'),
             cheque.get('linkedWallet')
         )
+    async def delete(self):
+        await self.api.delete_cheque(self.id)
 
 class Invoice:
-    def __init__(self, id: int, amount: int, totalPayments: int, paymentsLeft: int, description: str, hiddenMessage: str, payload: str, callbackUrl: str, currency: str, created: str, paid: str, status: str, expiredIn: int, link: str, payments: list):
+    def __init__(self, api, id: int, amount: int, totalPayments: int, paymentsLeft: int, description: str, hiddenMessage: str, payload: str, callbackUrl: str, currency: str, created: str, paid: str, status: str, expiredIn: int, link: str, payments: list):
         self.id = id
         self.amount = amount
         self.totalPayments = totalPayments
@@ -67,10 +70,12 @@ class Invoice:
         self.expiredIn = expiredIn
         self.link = link
         self.payments = payments
+        self.api = api
 
     @classmethod
-    def fromjson(cls, invoice):
+    def fromjson(cls, invoice, api):
         return cls(
+            api,
             invoice.get('id'),
             invoice.get('amount'),
             invoice.get('totalActivations'),
@@ -87,6 +92,8 @@ class Invoice:
             invoice.get('link'),
             invoice.get('payments')
         )
+    async def delete(self):
+        await self.api.delete_invoice(self.id)
 
 class Currency:
     def __init__(self, currency: str, ticker: str, minTransfer: float, minCheque: float, minInvoice: float, minWithdraw: float, withdrawFee: float):

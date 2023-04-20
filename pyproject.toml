@@ -1,6 +1,6 @@
 [project]
 name = "aiorocket"
-version = "1.3.1-b2"
+version = "1.3.1"
 description = "Async Python SDK for TON Rocket"
 license = {file = "LICENSE"}
 requires-python = ">=3.7"
@@ -20,3 +20,6 @@ classifiers = [
 [project.urls]
 homepage = "https://github.com/Sovenok-Hacker/aiorocket"
 repository = "https://github.com/Sovenok-Hacker/aiorocket.git"
+MainnetBot = "https://t.me/tonRocketBot"
+TestnetBot = "https://t.me/ton_rocket_test_bot"
+Creator = "https://t.me/Duo_sova"

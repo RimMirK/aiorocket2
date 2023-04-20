@@ -1,7 +1,5 @@
 # SDK для работы с TON Rocket
 
-## Это ещё бета-версия, просьба сообщать о любых проблемах
-
 ## 🔐 Авторизация
 
 Как получить токен написано [тут](https://pay.ton-rocket.com/api/).
@@ -17,7 +15,7 @@ Testnet:
 
 ```python
 import aiorocket
-api = aiorocket.Rocket('токен', True)
+api = aiorocket.Rocket('токен', testnet=True)
 ```
 
 ## 🚀 Методы
@@ -36,10 +34,10 @@ await api.info()
 Пример:
 ```python
 await api.send(
-    tgUserId=87209764,
+    tgUserId=1448705322,
     currency="TONCOIN",
-    amount=1.23,
-    description="Hello, Owls!"
+    amount=0.123,
+    description="Всем совятам привет!"
 )
 ```
 
@@ -52,8 +50,8 @@ await api.send(
 await api.withdraw(
     address="EQAJkw0RC9s_FAEmKr4GftJsNbA0IK0o4cfEH3bNoSbKJHAy",
     currency="TONCOIN",
-    amount=1.23,
-    comment="Hello, Owls!"
+    amount=0.123,
+    comment="Всем совятам привет!"
 )
 ```
 
@@ -62,12 +60,12 @@ await api.withdraw(
 
 Пример:
 ```python
-await api.create_cheque({
+cheque = await api.create_cheque({
     chequePerUser=0.005,
     usersNumber=100,
     refProgram=50,
-    password="pwd",
-    description="This cheque is the best",
+    password="пароль :D",
+    description="Чек для вас",
     sendNotifications=True,
     enableCaptcha=True,
     telegramResourcesIds=[
@@ -84,7 +82,7 @@ await api.create_cheque({
 await api.get_cheques()
 ```
 
-### Получение чека
+### Получение чека по ID
 Все параметры как в [документации](https://pay.ton-rocket.com/api/#/multi-cheques/ChequesController_getCheque)
 
 Пример:
@@ -98,6 +96,8 @@ await api.get_cheque(1234)
 Пример:
 ```python
 await api.delete_cheque(1234)
+# ИЛИ ТАК
+await cheque.delete() # в стиле ООП
 ```
 
 ### Создание счёта
@@ -105,12 +105,12 @@ await api.delete_cheque(1234)
 
 Пример:
 ```python
-await api.createInvoice(
+invoice = await api.createInvoice(
     amount=1.23,
     description="покупка лучшой вещи в мире",
     hiddenMessage="спасибо",
     callbackUrl="https://t.me/ton_rocket",
-    payload="полезна нагрузку, которую я хочу видеть в webhook или когда я запрашиваю счет-фактуру",
+    payload="some payload",
     expiredIn=10
 )
 ```
@@ -137,6 +137,8 @@ await api.get_invoice(1234)
 Пример:
 ```python
 await api.delete_invoice(1234)
+# ИЛИ ТАК
+await invoice.delete() # в стиле ООП
 ```
 
 ### Доступные валюты
