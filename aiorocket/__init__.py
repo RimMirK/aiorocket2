@@ -42,10 +42,10 @@ class Rocket:
             return r['data']
 
     async def send(self, **params) -> int:
-        return await self._post_request('app/transfer', params)['id']
+        return (await self._post_request('app/transfer', params))['id']
 
     async def withdraw(self, **params) -> int:
-        return await self._post_request('app/withdrawal', params)['id']
+        return (await self._post_request('app/withdrawal', params))['id']
 
     async def create_cheque(self, **params) -> Cheque:
         return Cheque.fromjson(await self._post_request('multi-cheques', params), self)
