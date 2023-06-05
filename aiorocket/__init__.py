@@ -1,6 +1,5 @@
 import aiohttp, asyncio
 from .classes import *
-from async_property import async_property
 
 BASEURL_MAINNET = 'https://pay.ton-rocket.com'
 BASEURL_TESTNET = 'https://dev-pay.ton-rocket.com'
