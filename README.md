@@ -1,8 +1,11 @@
-# SDK для работы с TON Rocket
+# SDK для работы с [xRocket](https://t.me/xrocket?start=i_sovenokhacker)
+
+Официальная документация: [тут](https://pay.ton-rocket.com/api/)
+Она вам явно пригодится, поскольку все параметры взяты от туда.
 
 ## 🔐 Авторизация
 
-Как получить токен написано [тут](https://pay.ton-rocket.com/api/).
+Получите токен в боте [xRocket](https://t.me/xrocket?start=i_sovenokhacker).
 
 Mainnet:
 
@@ -34,7 +37,7 @@ await api.info()
 Пример:
 ```python
 await api.send(
-    tgUserId=1448705322,
+    tgUserId=1448705322, # да, мой реальный ID ;)
     currency="TONCOIN",
     amount=0.123,
     description="Всем совятам привет!"
@@ -48,7 +51,7 @@ await api.send(
 Пример:
 ```python
 await api.withdraw(
-    address="EQAJkw0RC9s_FAEmKr4GftJsNbA0IK0o4cfEH3bNoSbKJHAy",
+    address="EQAJkw0RC9s_FAEmKr4GftJsNbA0IK0o4cfEH3bNoSbKJHAy", # адрес тоже мой
     currency="TONCOIN",
     amount=0.123,
     comment="Всем совятам привет!"
@@ -64,8 +67,8 @@ cheque = await api.create_cheque({
     chequePerUser=0.005,
     usersNumber=100,
     refProgram=50,
-    password="пароль :D",
-    description="Чек для вас",
+    password="пароль :)",
+    description="Чек для вас и только для вас (нет)",
     sendNotifications=True,
     enableCaptcha=True,
     telegramResourcesIds=[
@@ -96,8 +99,7 @@ await api.get_cheque(1234)
 Пример:
 ```python
 await api.delete_cheque(1234)
-# ИЛИ ТАК
-await cheque.delete() # в стиле ООП
+await cheque.delete() # или так, в стиле ООП
 ```
 
 ### Создание счёта
@@ -109,7 +111,7 @@ invoice = await api.createInvoice(
     amount=1.23,
     description="покупка лучшой вещи в мире",
     hiddenMessage="спасибо",
-    callbackUrl="https://t.me/ton_rocket",
+    callbackUrl="https://t.me/xrocket?start=i_sovenokhacker",
     payload="some payload",
     expiredIn=10
 )
@@ -137,8 +139,7 @@ await api.get_invoice(1234)
 Пример:
 ```python
 await api.delete_invoice(1234)
-# ИЛИ ТАК
-await invoice.delete() # в стиле ООП
+await invoice.delete() # или так, в стиле ООП
 ```
 
 ### Доступные валюты

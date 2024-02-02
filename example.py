@@ -8,7 +8,7 @@ async def main():
         amount=0.123,
         description="покупка лучшой вещи в мире",
         hiddenMessage="спасибо",
-        callbackUrl="https://t.me/Duo_sova",
+        callbackUrl="https://t.me/Duo_sova", # опять мой реальный ТГ
         payload="some payload",
         expiredIn=60
     )
