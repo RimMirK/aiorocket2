@@ -1,4 +1,4 @@
-import aiohttp, asyncio
+import aiohttp, asyncio, time
 from .classes import *
 
 BASEURL_MAINNET = 'https://pay.ton-rocket.com'
@@ -41,9 +41,13 @@ class Rocket:
             return r['data']
 
     async def send(self, **params) -> int:
+        if not params.get('transferId'):
+            params['transferId'] = str(time.time())
         return (await self._post_request('app/transfer', params))['id']
 
     async def withdraw(self, **params) -> int:
+        if not params.get('withdrawalId'):
+            params['withdrawalId'] = str(time.time())
         return (await self._post_request('app/withdrawal', params))['id']
 
     async def create_cheque(self, **params) -> Cheque:
