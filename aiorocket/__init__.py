@@ -1,8 +1,8 @@
 import aiohttp, asyncio, time
 from .classes import *
 
-BASEURL_MAINNET = 'https://pay.ton-rocket.com'
-BASEURL_TESTNET = 'https://dev-pay.ton-rocket.com'
+BASEURL_MAINNET = 'https://pay.xrocket.tg'
+BASEURL_TESTNET = 'https://pay.st.xrocket.tg'
 
 class Rocket:
     def __init__(self, api_key: str, testnet=False):
