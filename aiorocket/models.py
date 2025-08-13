@@ -5,6 +5,16 @@ from typing import Any, Dict, List, Mapping, Optional
 
 from .enums import *
 
+__all__ = [
+    'Info',
+    'Balance',
+    'Transfer',
+    "Withdrawal",
+    "Cheque",
+    "Invoice",
+    "Currency"
+]
+
 @dataclass(slots=True)
 class Info:
     """
@@ -77,8 +87,8 @@ class Transfer:
 
 @dataclass(slots=True)
 class Withdrawal:
-    network: str
-    """Network code. Should be one of: `TON`, `BSC`, `ETH`, `BTC`, `TRX`, `SOL`"""
+    network: Network
+    """Network code."""
     address: str
     """Withdrawal address"""
     currency: str
@@ -102,7 +112,7 @@ class Withdrawal:
         Build Withdrawal from API JSON object.
         """
         return cls(
-            network=j.get('network'),
+            network=Network(j.get('network') or "UNKNOWN"),
             currency=j.get('currency'),
             amount=j.get('amount', 0),
             withdrawal_id=j.get('withdrawalId'),
@@ -166,7 +176,6 @@ class Cheque:
             linked_wallet=j.get("linkedWallet", False),
         )
 
-
 @dataclass(slots=True)
 class Invoice:
     """
@@ -210,7 +219,6 @@ class Invoice:
             link=j.get("link", ""),
             payments=list(j.get("payments", []) or []),
         )
-
 
 @dataclass(slots=True)
 class Currency:

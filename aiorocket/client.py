@@ -16,6 +16,7 @@ from .constants import (
 from .exceptions import xRocketAPIError
 from .models import *
 from .utils import backoff_sleep, make_idempotency_id
+from .enums import *
 
 
 class _ApiResponse(TypedDict, total=False):
@@ -242,7 +243,7 @@ class xRocketClient:
     async def create_withdrawal(
         self,
         *,
-        network: str,
+        network: Network,
         address: str,
         currency: str,
         amount: float,
@@ -253,7 +254,7 @@ class xRocketClient:
         Make withdrawal of funds to external wallet
         
         Args:
-            network (str): Network code. Should be one of: `TON`, `BSC`, `ETH`, `BTC`, `TRX`, `SOL`.
+            network (Network): Network code.
             address (str): Withdrawal address. E.g. `EQB1cmpxb3R-YLA3HLDV01Rx6OHpMQA_7MOglhqL2CwJx_dz`
             currency (str): Currency code
             amount (float): Withdrawal amount. 9 decimal places, others cut off
@@ -278,12 +279,32 @@ class xRocketClient:
     async def get_withdrawal(
         self, withdrawal_id: str
     ) -> Withdrawal:
+        """
+        Returns withdrawal info
+        
+        Args:
+            withdrawal_id (str): Unique withdrawal ID in your system.
+            
+        Returns:
+            Withdrawal:
+        """
+        
         r = await self._request("GET", f"app/withdrawal/status/{withdrawal_id}")
         return Withdrawal.from_api(r['data'])
     
     async def get_withdrawal_status(
         self, withdrawal_id: str
     ) -> WithdrawalStatus:
+        """
+        Returns withdrawal status
+        
+        Args:
+            withdrawal_id (str): Unique withdrawal ID in your system.
+            
+        Returns:
+            WithdrawalStatus:
+        """
+        
         return await self.get_withdrawal(withdrawal_id=withdrawal_id).status
 
 
