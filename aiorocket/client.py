@@ -15,7 +15,7 @@ from .constants import (
 )
 from .exceptions import xRocketAPIError
 from .models import *
-from .utils import backoff_sleep, make_idempotency_id
+from .utils import *
 from .enums import *
 
 
@@ -23,7 +23,7 @@ class _ApiResponse(TypedDict, total=False):
     success: bool
     message: str
     errors: list
-    data: Any
+    data: Dict | List | Any
     version: str
 
 
@@ -208,9 +208,8 @@ class xRocketClient:
 
     async def send_transfer(
         self,
-        *,
         tg_user_id: int,
-        currency: Optional[str] = "TONCOIN",
+        currency: str,
         amount: float,
         transfer_id: str,
         description: Optional[str] = None,
@@ -220,7 +219,7 @@ class xRocketClient:
 
         Args:
             tg_user_id (int): Telegram user ID. If we dont have this user in DB, we will fail transaction with error: 400 - User not found
-            currency (str): Currency of transfer, info /currencies/available
+            currency (str): Currency of transfer, info `xRocketClient.get_available_currencies()`
             amount (float): Transfer amount. 9 decimal places, others cut off
             transfer_id (str): Unique transfer ID in your system to prevent double spends
             description (str): Transfer description
@@ -242,7 +241,6 @@ class xRocketClient:
 
     async def create_withdrawal(
         self,
-        *,
         network: Network,
         address: str,
         currency: str,
@@ -309,7 +307,7 @@ class xRocketClient:
 
     async def get_withdrawal_fees(
         self, currency: Optional[str] = None
-    ) -> WithdrawalStatus:
+    ) -> List[WithdrawalCoin]:
         """
         Returns withdrawal fees
         
@@ -319,80 +317,63 @@ class xRocketClient:
         Returns:
             WithdrawalStatus:
         """
-        
-        return await self.get_withdrawal(withdrawal_id=withdrawal_id).status
+        r = await self._request('GET', 'app/withdrawal/fees', params={'currency': currency} if currency else None)
+        return [WithdrawalCoin.from_api(data) for data in r['data']]
 
-
-    async def create_cheque(
+    async def create_multi_cheque(
         self,
-        *,
         currency: str,
-        total: int,
-        users: int,
-        description: Optional[str] = None,
-        password: Optional[str] = None,
-        send_notifications: Optional[bool] = None,
-        captcha_enabled: Optional[bool] = None,
-        tg_resources: Optional[List[str]] = None,
-        ref_program_percents: Optional[int] = None,
-        disabled_languages: Optional[List[str]] = None,
-        for_premium: Optional[bool] = None,
-        for_new_users_only: Optional[bool] = None,
-        linked_wallet: Optional[bool] = None,
-        extra: Optional[Dict[str, Any]] = None,
+        cheque_per_user: float,
+        users_number: int,
+        ref_program: int,
+        password: str = None,
+        description: str = None,
+        send_notifications: bool = True,
+        enable_captcha: bool = True,
+        telegram_resources_ids: List[int|str] = None,
+        for_premium: bool = False,
+        linked_wallet: bool = False,
+        disabled_languages: List[str] = None,
+        enabled_countries: List[Country] = None
     ) -> Cheque:
         """
-        Create a multi-cheque that can be claimed by multiple users.
+        Create multi-cheque
 
         Args:
-            currency: Currency code.
-            total: Total amount across all users.
-            users: Number of users who can claim.
-            description: Optional public description.
-            password: Optional password to protect the cheque.
-            send_notifications: Whether to notify via Telegram channels.
-            captcha_enabled: Whether to protect by captcha.
-            tg_resources: Telegram resources for promotion.
-            ref_program_percents: Referral program percent.
-            disabled_languages: List of disabled interface languages.
-            for_premium: Only for Telegram Premium users.
-            for_new_users_only: Only for new xRocket users.
-            linked_wallet: Link to a wallet (if supported).
-            extra: Optional additional official fields.
+            currency (str): Currency of transfer, info `xRocketClient.get_available_currencies()`
+            cheque_per_user (float): Cheque amount for one user. 9 decimal places, others cut off
+            users_number (int): Number of users to save multicheque. 0 decimal places. Minimum 1
+            ref_program (int): Referral program percentage (%). 0 decimal places. Minimum 0. Maximum 100
+            password: (str): Optional. Password for cheque. Max lenght 100
+            description (str): Optional. Description for cheque. Max lenght 1000
+            send_notifications (bool): Optional. Send notifications about activations. Default True
+            enable_captcha (bool): Optional. Enable captcha. Default True
+            telegram_resources_ids (List of int or str): IDs of telegram resources (groups, channels, private groups)
+            for_premium (bool): Optional. Only users with Telegram Premium can activate this cheque. Default False
+            linked_wallet (bool): Optional. Only users with linked wallet can activate this cheque. Default False
+            disabled_languages (List of str): Optional. Disable languages
+            enabled_countries (List of Country): Optional. Enabled countries
 
         Returns:
-            Cheque model.
+            Cheque: 
         """
-        payload: Dict[str, Any] = {
+        payload = {
             "currency": currency,
-            "total": total,
-            "users": users,
+            "chequePerUser": cheque_per_user,
+            "usersNumber": users_number,
+            "refProgram": ref_program,
+            "password": password,
+            "description": description,
+            "sendNotifications": send_notifications,
+            "enableCaptcha": enable_captcha,
+            "telegramResourcesIds": telegram_resources_ids,
+            "forPremium": for_premium,
+            "linkedWallet": linked_wallet,
+            "disabledLanguages": disabled_languages,
+            "enabledCountries": [country.value for country in (enabled_countries or [])]
         }
-        if description is not None:
-            payload["description"] = description
-        if password is not None:
-            payload["password"] = password
-        if send_notifications is not None:
-            payload["sendNotifications"] = send_notifications
-        if captcha_enabled is not None:
-            payload["captchaEnabled"] = captcha_enabled
-        if tg_resources is not None:
-            payload["tgResources"] = tg_resources
-        if ref_program_percents is not None:
-            payload["refProgramPercents"] = ref_program_percents
-        if disabled_languages is not None:
-            payload["disabledLanguages"] = disabled_languages
-        if for_premium is not None:
-            payload["forPremium"] = for_premium
-        if for_new_users_only is not None:
-            payload["forNewUsersOnly"] = for_new_users_only
-        if linked_wallet is not None:
-            payload["linkedWallet"] = linked_wallet
-        if extra:
-            payload.update(extra)
-
-        r = await self._request("POST", "multi-cheques", json=payload)
-        return Cheque.from_api(r["data"])
+        r = await self._request("POST", "multi-cheque", json=payload)
+        return Cheque.from_api(r['data'])
 
     async def get_cheque(self, cheque_id: int) -> Cheque:
         """
@@ -561,7 +542,7 @@ class xRocketClient:
     # Public API: Currencies
     # =========================
 
-    async def available_currencies(self) -> List[Currency]:
+    async def get_available_currencies(self) -> List[Currency]:
         """
         Get the list of available currencies and their operational constraints.
 

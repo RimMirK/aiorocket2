@@ -1,9 +1,13 @@
 import asyncio
 import time
-from typing import Optional
 
+__all__ = [
+    "generate_idempotency_id",
+    "gii",
+    "backoff_sleep"
+]
 
-def make_idempotency_id() -> str:
+def generate_idempotency_id() -> str:
     """
     Generate a simple idempotency identifier based on the current timestamp.
 
@@ -11,6 +15,7 @@ def make_idempotency_id() -> str:
     """
     return str(time.time())
 
+gii = generate_idempotency_id
 
 async def backoff_sleep(attempt: int, base: float) -> None:
     """

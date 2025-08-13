@@ -5,15 +5,15 @@ from typing import Any, Dict, List, Mapping, Optional
 
 from .enums import *
 
-__all__ = [
-    'Info',
-    'Balance',
-    'Transfer',
-    "Withdrawal",
-    "Cheque",
-    "Invoice",
-    "Currency"
-]
+# __all__ = [
+#     'Info',
+#     'Balance',
+#     'Transfer',
+#     "Withdrawal",
+#     "Cheque",
+#     "Invoice",
+#     "Currency",
+# ]
 
 @dataclass(slots=True)
 class Info:
@@ -53,7 +53,7 @@ class Balance:
         """
         return cls(
             currency=j.get('currency'),
-            Balance=j.get('balance', 0.0)
+            balance=j.get('balance', 0.0)
         )
 
 @dataclass(slots=True)
@@ -113,6 +113,7 @@ class Withdrawal:
         """
         return cls(
             network=Network(j.get('network') or "UNKNOWN"),
+            address=j.get('address'),
             currency=j.get('currency'),
             amount=j.get('amount', 0),
             withdrawal_id=j.get('withdrawalId'),
@@ -126,7 +127,7 @@ class Withdrawal:
 class WithdrawalCoin:
     code: str
     """Crypto code"""
-    min_withdraw: float
+    min_withdrawal: float
     """Minimal amount for withdrawals"""
     fees: List["WithdrawalCoinFees"]
     
@@ -140,7 +141,8 @@ class WithdrawalCoin:
             min_withdrawal=j.get('minWithdrawal'),
             fees=[WithdrawalCoinFees.from_api(fee) for fee in j.get("fees", [])]
         )
-    
+
+@dataclass(slots=True)
 class WithdrawalCoinFees:
     network_code: Network
     """Network code for withdraw"""
@@ -149,7 +151,16 @@ class WithdrawalCoinFees:
     currency: str
     """Withdraw fee currency"""
     
-    def from_api(...) -> ...: # TODO
+    @classmethod
+    def from_api(cls, j: Mapping[str, Any]) -> "WithdrawalCoinFees":
+        """
+        Build WithdrawalCoinFees from API JSON object.
+        """
+        return cls(
+            network_code=Network(j.get('networkCode') or 'UNKNOWN'),
+            fee=j.get('feeWithdraw', {}).get("fee"),
+            currency=j.get('feeWithdraw', {}).get('currency')
+        )
 
 @dataclass(slots=True)
 class Cheque:
@@ -157,27 +168,44 @@ class Cheque:
     Represents a multi-cheque entity returned by the xRocket Pay API.
     """
     id: int
+    """Cheque ID"""
     currency: str
     total: int
+    """Total amount of cheque (this amount is charged from balance)"""
+    per_user: int
+    """Amount of cheque per user"""
     users: int
-    password: Optional[str]
-    description: Optional[str]
-    notifications: bool
-    captcha: bool
-    telegram_resources: List[str]
-    ref_percents: int
-    state: str
+    """Number of users that can activate your cheque"""
+    password: str
+    """Cheque password"""
+    description: str
+    """Cheque description"""
+    send_notifications: bool
+    """send notifications about cheque activation to application cheque webhook or not"""
+    ref_program_percents: int
+    """percentage of cheque that rewarded for referral program"""
+    ref_reward_per_user: float
+    """amount of referral user reward"""
+    captcha_enabled: bool
+    """enable / disable cheque captcha"""
+    state: ChequeState
     link: str
-    activations: int
-    ref_rewards: int
-    disabled_langs: List[str]
+    disabled_languages: List[str]
+    """Disable languages"""
+    enabled_countries: List[Country]
+    """Enabled countries"""
     for_premium: bool
-    for_new_users: bool
+    """Only users with Telegram Premium can activate this cheque"""
+    for_new_users_only: bool
+    """Only new users can activate this cheque"""
     linked_wallet: bool
-    per_user: float = field(init=False)
+    """Only users with connected wallets can activate this cheque"""
+    tg_resources: List[TgResource]
+    activations: int
+    """How many times cheque is activate"""
+    ref_rewards: int
+    """How many times referral reward is payed"""
 
-    def __post_init__(self) -> None:
-        self.per_user = (self.total / self.users) if self.users else 0.0
 
     @classmethod
     def from_api(cls, j: Mapping[str, Any]) -> "Cheque":
@@ -187,22 +215,46 @@ class Cheque:
         return cls(
             id=j.get("id"),
             currency=j.get("currency"),
-            total=j.get("total"),
-            users=j.get("users"),
+            total=j.get("total", 0),
+            per_user=j.get("perUser", 0),
+            users=j.get("users", 0),
             password=j.get("password"),
             description=j.get("description"),
-            notifications=j.get("sendNotifications", False),
-            captcha=j.get("captchaEnabled", False),
-            telegram_resources=list(j.get("tgResources", []) or []),
-            ref_percents=j.get("refProgramPercents", 0),
-            state=j.get("state", ""),
+            send_notifications=j.get("sendNotifications", False),
+            captcha_enabled=j.get("captchaEnabled", False),
+            ref_program_percents=j.get("refProgramPercents", 0),
+            ref_reward_per_user=j.get("refRewardPerUser", 0),
+            state=ChequeState(j.get('state') or "UNKNOWN"),
             link=j.get("link", ""),
+            disabled_languages=j.get("disabledLanguages", []),
+            enabled_countries=[Country(country) for country in j.get('enabledCountries', [])],
+            for_premium=bool(j.get("forPremium", False)),
+            for_new_users_only=bool(j.get("forNewUsersOnly", False)),
+            linked_wallet=bool(j.get("linkedWallet", False)),
+            tg_resources=[TgResource.from_api(resourse) for resourse in j.get('resourses', [])],
             activations=j.get("activations", 0),
             ref_rewards=j.get("refRewards", 0),
-            disabled_langs=list(j.get("disabledLanguages", []) or []),
-            for_premium=j.get("forPremium", False),
-            for_new_users=j.get("forNewUsersOnly", False),
-            linked_wallet=j.get("linkedWallet", False),
+        )
+
+
+@dataclass(slots=True)
+class TgResource:
+    """
+    Represents a TgResourse entity returned by the xRocket Pay API.
+    """
+    telegram_id: int
+    name: str
+    username: str
+
+    @classmethod
+    def from_api(cls, j: Mapping[str, Any]) -> "TgResource":
+        """
+        Build Cheque from API JSON object.
+        """
+        return cls(
+            telegram_id=j.get("telegramId"),
+            name=j.get("name"),
+            username=j.get("username")
         )
 
 @dataclass(slots=True)
