@@ -1,7 +1,8 @@
 import asyncio
 from aiorocket import xRocketClient, Cheque, Invoice
 
-API_KEY = "7a26b4dafc47f0d7869c67d52"
+with open(".api-key.txt", 'r') as f:
+    API_KEY = f.read()
 
 async def main():
     # Using async context manager for session
