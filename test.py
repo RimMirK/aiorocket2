@@ -8,7 +8,7 @@ async def main():
     async with xRocketClient(API_KEY, testnet=False) as client:
 
         # Get API info
-        print(await client.available_currencies())
+        print(await client.get_info())
 
 
 if __name__ == "__main__":
