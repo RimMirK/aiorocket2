@@ -123,6 +123,35 @@ class Withdrawal:
         )
 
 @dataclass(slots=True)
+class WithdrawalCoin:
+    code: str
+    """Crypto code"""
+    min_withdraw: float
+    """Minimal amount for withdrawals"""
+    fees: List["WithdrawalCoinFees"]
+    
+    @classmethod
+    def from_api(cls, j: Mapping[str, Any]) -> "WithdrawalCoin":
+        """
+        Build WithdrawalCoin from API JSON object.
+        """
+        return cls(
+            code=j.get('code'),
+            min_withdrawal=j.get('minWithdrawal'),
+            fees=[WithdrawalCoinFees.from_api(fee) for fee in j.get("fees", [])]
+        )
+    
+class WithdrawalCoinFees:
+    network_code: Network
+    """Network code for withdraw"""
+    fee: float
+    """Fee amount"""
+    currency: str
+    """Withdraw fee currency"""
+    
+    def from_api(...) -> ...: # TODO
+
+@dataclass(slots=True)
 class Cheque:
     """
     Represents a multi-cheque entity returned by the xRocket Pay API.

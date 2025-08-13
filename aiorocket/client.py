@@ -305,6 +305,21 @@ class xRocketClient:
             WithdrawalStatus:
         """
         
+        return (await self.get_withdrawal(withdrawal_id=withdrawal_id)).status
+
+    async def get_withdrawal_fees(
+        self, currency: Optional[str] = None
+    ) -> WithdrawalStatus:
+        """
+        Returns withdrawal fees
+        
+        Args:
+            currency (str): Coin for get fees, optional
+            
+        Returns:
+            WithdrawalStatus:
+        """
+        
         return await self.get_withdrawal(withdrawal_id=withdrawal_id).status
 
 
