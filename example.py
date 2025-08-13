@@ -1,24 +1,15 @@
-import aiorocket, asyncio
-rocket = aiorocket.Rocket('412762fa70728f971f90719ad', testnet=True)
+import asyncio
+from aiorocket import xRocketClient, Cheque, Invoice
+
+API_KEY = "7a26b4dafc47f0d7869c67d52"
 
 async def main():
-    print(f'API Version: {await rocket.version()}')
-    print(f'App name: {(await rocket.info())["name"]}')
-    inv = await rocket.create_invoice(
-        amount=0.123,
-        description="покупка лучшой вещи в мире",
-        hiddenMessage="спасибо",
-        callbackUrl="https://t.me/Duo_sova", # опять мой реальный ТГ
-        payload="some payload",
-        expiredIn=60
-    )
-    print(f'New invoice: {inv.amount} {inv.currency} | {inv.id} | {inv.link}')
-    print(f'Invoices: {[(v.id, v.link) for v in await rocket.get_invoices()]}')
-    for inv in await rocket.get_invoices():
-        print(f'Deleting {inv.id} ...')
-        await inv.delete() # удобное удаление через ООП
-    print(f'Cheques: {[(v.id, v.link) for v in await rocket.get_cheques()]}')
-    print(f'Available currencies: {[{str(c): await c.get_price()} for c in await rocket.available_currencies()]}')
-    print(f'Balances: {await rocket.balance()}')
+    # Using async context manager for session
+    async with xRocketClient(API_KEY, testnet=False) as client:
 
-asyncio.run(main())
+        # Get API info
+        print(await client.available_currencies())
+
+
+if __name__ == "__main__":
+    asyncio.run(main())

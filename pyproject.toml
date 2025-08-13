@@ -1,6 +1,6 @@
 [project]
 name = "aiorocket"
-version = "1.3.1"
+version = "2.0"
 description = "Async Python SDK for TON Rocket"
 license = {file = "LICENSE"}
 requires-python = ">=3.7"
@@ -10,16 +10,17 @@ dependencies = [
 ]
 authors = [
     {name = "Sovenok-Hacker", email = "artemka.hvostov@yandex.ru"},
+    {name = "RimMirK", email = "me@RimMirK.pp.ua"},
 ]
-keywords = ["ton", "rocket", "sdk", "async", "the open network", "bot", "telegram", "crypto", "cryptocurrency"]
+keywords = ["ton", "rocket", "sdk", "async", "the open network", "bot", "telegram", "crypto", "cryptocurrency", "xRocket"]
 classifiers = [
   "Development Status :: 4 - Beta",
   "Programming Language :: Python"
 ]
 
 [project.urls]
-homepage = "https://github.com/Sovenok-Hacker/aiorocket"
-repository = "https://github.com/Sovenok-Hacker/aiorocket.git"
-MainnetBot = "https://t.me/tonRocketBot"
-TestnetBot = "https://t.me/ton_rocket_test_bot"
-Creator = "https://t.me/Duo_sova"
+homepage = "https://github.com/RimMirK/aiorocket"
+repository = "https://github.com/RimMirK/aiorocket.git"
+MainnetBot = "https://t.me/xRocket"
+TestnetBot = "https://t.me/xrocket_testnet_bot"
+Creator = "https://t.me/RimMirK"
