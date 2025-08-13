@@ -7,7 +7,7 @@ Asynchronous Python client for **xRocket API**. Provides full access to the API,
 ## DEV installation
 
 ```bash
-pip install git+https://github.com/<your-username>/aiorocket.git@dev
+pip install git+https://github.com/RimMirK/aiorocket.git@dev
 ````
 
 > Requires Python 3.11 or higher.
