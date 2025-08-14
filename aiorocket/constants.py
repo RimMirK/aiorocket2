@@ -3,7 +3,7 @@ Constants used by the aiorocket package.
 """
 
 BASEURL_MAINNET: str = "https://pay.xrocket.tg"
-BASEURL_TESTNET: str = "https://pay.st.xrocket.tg"
+BASEURL_TESTNET: str = "https://pay.testnet.xrocket.tg"
 
 # Networking defaults
 DEFAULT_TIMEOUT: float = 30.0          # seconds (aiohttp total timeout)

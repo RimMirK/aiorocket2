@@ -375,134 +375,148 @@ class xRocketClient:
         r = await self._request("POST", "multi-cheque", json=payload)
         return Cheque.from_api(r['data'])
 
-    async def get_cheque(self, cheque_id: int) -> Cheque:
-        """
-        Fetch a single cheque by its ID.
-        """
-        r = await self._request("GET", f"multi-cheques/{cheque_id}")
-        return Cheque.from_api(r["data"])
-
-    async def edit_cheque(
+    async def get_multi_cheques(
         self,
-        cheque_id: int,
-        *,
-        description: Optional[str] = None,
-        password: Optional[str] = None,
-        send_notifications: Optional[bool] = None,
-        captcha_enabled: Optional[bool] = None,
-        tg_resources: Optional[List[str]] = None,
-        ref_program_percents: Optional[int] = None,
-        disabled_languages: Optional[List[str]] = None,
-        for_premium: Optional[bool] = None,
-        for_new_users_only: Optional[bool] = None,
-        linked_wallet: Optional[bool] = None,
-        extra: Optional[Dict[str, Any]] = None,
+        limit: int = 100,
+        offset: int = 0
+    ) -> PaginatedCheque:
+        """
+        Get list of multi-cheques
+        
+        Args:
+            limit (int): Minimum 1. Maximum 1000. Default 100
+            offset (int): Minimum 0. Default 0
+            
+        Returns:
+            PaginatedCheque:
+        """
+        r = await self._request('GET', 'multi-cheque', params={"limit": limit, "offset": offset})
+        return PaginatedCheque.from_api(r['data'])
+
+    async def get_multi_cheque(
+        self,
+        cheque_id: int
     ) -> Cheque:
         """
-        Update editable fields of a cheque.
-
-        Only fields that are provided will be sent to the API.
+        Get multi-cheque info
+        
+        Args:
+            cheque_id (str):
+            
+        Returns:
+            Cheque:
         """
-        payload: Dict[str, Any] = {}
-        if description is not None:
-            payload["description"] = description
-        if password is not None:
-            payload["password"] = password
-        if send_notifications is not None:
-            payload["sendNotifications"] = send_notifications
-        if captcha_enabled is not None:
-            payload["captchaEnabled"] = captcha_enabled
-        if tg_resources is not None:
-            payload["tgResources"] = tg_resources
-        if ref_program_percents is not None:
-            payload["refProgramPercents"] = ref_program_percents
-        if disabled_languages is not None:
-            payload["disabledLanguages"] = disabled_languages
-        if for_premium is not None:
-            payload["forPremium"] = for_premium
-        if for_new_users_only is not None:
-            payload["forNewUsersOnly"] = for_new_users_only
-        if linked_wallet is not None:
-            payload["linkedWallet"] = linked_wallet
-        if extra:
-            payload.update(extra)
+        r = await self._request("GET", f"multi-cheque/{cheque_id}")
+        return Cheque.from_api(r["data"])
+
+    async def edit_multi_cheque(
+        self,
+        cheque_id: int,
+        password: str = None,
+        description: str = None,
+        send_notifications: bool = None,
+        enable_captcha: bool = None,
+        telegram_resources_ids: List[int|str] = None,
+        for_premium: bool = None,
+        linked_wallet: bool = None,
+        disabled_languages: List[str] = None,
+        enabled_countries: List[Country] = None
+    ) -> Cheque:
+        """
+        Edit multi-cheque
+        
+        Args:
+            password: (str): Optional. Password for cheque. Max lenght 100
+            description (str): Optional. Description for cheque. Max lenght 1000
+            send_notifications (bool): Optional. Send notifications about activations. Default True
+            enable_captcha (bool): Optional. Enable captcha. Default True
+            telegram_resources_ids (List of int or str): IDs of telegram resources (groups, channels, private groups)
+            for_premium (bool): Optional. Only users with Telegram Premium can activate this cheque. Default False
+            linked_wallet (bool): Optional. Only users with linked wallet can activate this cheque. Default False
+            disabled_languages (List of str): Optional. Disable languages
+            enabled_countries (List of Country): Optional. Enabled countries
+
+        Returns:
+            Cheque: 
+        
+        """
+        payload = {
+            "password": password,
+            "description": description,
+            "sendNotifications": send_notifications,
+            "enableCaptcha": enable_captcha,
+            "telegramResourcesIds": telegram_resources_ids,
+            "forPremium": for_premium,
+            "linkedWallet": linked_wallet,
+            "disabledLanguages": disabled_languages,
+            "enabledCountries": [country.value for country in (enabled_countries or [])]
+        }
 
         r = await self._request("PUT", f"multi-cheques/{cheque_id}", json=payload)
         return Cheque.from_api(r["data"])
 
-    async def delete_cheque(self, cheque_id: int) -> None:
+    async def delete_multi_cheque(self, cheque_id: str) -> True:
         """
-        Delete a cheque by ID.
+        Delete multi-cheque
+        
+        Args:
+            cheque_id (str):
+            
+        Returns:
+            True: on success, otherwise raises xRocketAPIError
         """
-        await self._request("DELETE", f"multi-cheques/{cheque_id}")
+        r = await self._request("DELETE", f"multi-cheques/{cheque_id}")
+        return r['success'] == True
 
-    async def list_cheques(self, *, limit: int = 100, offset: int = 0) -> List[Cheque]:
-        """
-        List cheques with pagination.
-        """
-        r = await self._request("GET", "multi-cheques", params={"limit": limit, "offset": offset})
-        return [Cheque.from_api(c) for c in r["data"].get("results", [])]
 
-    async def iter_cheques(self, *, page_size: int = 100, start_offset: int = 0) -> AsyncIterator[Cheque]:
-        """
-        Iterate over all cheques as an async generator.
-        """
-        offset = start_offset
-        while True:
-            batch = await self.list_cheques(limit=page_size, offset=offset)
-            if not batch:
-                return
-            for c in batch:
-                yield c
-            offset += len(batch)
-
-    # =========================
-    # Public API: Telegram Invoices
-    # =========================
 
     async def create_invoice(
         self,
-        *,
-        amount: int,
+        amount: float,
+        min_payment: float,
+        num_payments: int,
         currency: str,
-        description: Optional[str] = None,
-        hidden_message: Optional[str] = None,
-        payload: Optional[str] = None,
-        callback_url: Optional[str] = None,
-        expired_in: Optional[int] = None,
-        extra: Optional[Dict[str, Any]] = None,
+        description: str = None,
+        hidden_message: str = None,
+        comments_enabled: bool = False,
+        callback_url: str = None,
+        payload: str = None,
+        expired_in: int = 0,
+        platform_id: str = None,
     ) -> Invoice:
         """
-        Create a Telegram invoice.
-
+        Create invoice
+        
         Args:
-            amount: Amount to charge (integer, per API docs).
-            currency: Currency code.
-            description: Optional description text.
-            hidden_message: Optional hidden message shown after payment.
-            payload: Optional opaque payload string returned in callback.
-            callback_url: Optional webhook URL for payment updates.
-            expired_in: Optional TTL in seconds.
-            extra: Optional additional official fields.
-
+            amount (float): Invoice amount. 9 decimal places, others cut off. Minimum 0. Maximum 1_000_000
+            min_payment (float): Min payment only for multi invoice if invoice amount is None. Minimum 0. Maximum 1_000_000
+            num_payments (int): Num payments for invoice. Minimum 0. Maximum 1_000_000
+            currency (str): Currency of transfer, info `xRocketClient.get_available_currencies()`
+            description (str): Optional. Description for invoice. Maximum 1000
+            hidden_message (str): Optional. Hidden message after invoice is paid. Maximum 2000
+            comments_enabled (bool): Optional. Allow comments. Default False
+            callback_url (str): Optional. Url for Return button after invoice is paid. Maximum 500
+            payload (str): Optional. Any data. Invisible to user, will be returned in callback. Maximum 4000
+            expired_in (int): Optional. Invoice expire time in seconds, max 1 day, 0 - none expired. Minimum 0. Maximum 86400. Default 0
+            platform_id (str): Optional. Platform identifier
+        
         Returns:
-            Invoice model.
+            Invoice:
         """
-        payload_dict: Dict[str, Any] = {"amount": amount, "currency": currency}
-        if description is not None:
-            payload_dict["description"] = description
-        if hidden_message is not None:
-            payload_dict["hiddenMessage"] = hidden_message
-        if payload is not None:
-            payload_dict["payload"] = payload
-        if callback_url is not None:
-            payload_dict["callbackUrl"] = callback_url
-        if expired_in is not None:
-            payload_dict["expiredIn"] = expired_in
-        if extra:
-            payload_dict.update(extra)
-
-        r = await self._request("POST", "tg-invoices", json=payload_dict)
+        api_payload = {
+            "amount": amount,
+            "minPayment": min_payment,
+            "numPayments": num_payments,
+            "currency": currency,
+            "description": description, 
+            "hiddenMessage": hidden_message, 
+            "commentsEnabled": comments_enabled, 
+            "callbackUrl": callback_url, 
+            "payload": payload, 
+            "expiredIn": expired_in, 
+            "platformId": platform_id, 
+        }
+        r = await self._request("POST", "tg-invoices", json=api_payload)
         return Invoice.from_api(r["data"])
 
     async def get_invoice(self, invoice_id: int) -> Invoice:

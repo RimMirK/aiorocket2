@@ -258,25 +258,59 @@ class TgResource:
         )
 
 @dataclass(slots=True)
+class PaginatedCheque:
+    total: int
+    """Total times"""
+    limit: int
+    offset: int
+    results: List[Cheque]
+    
+    @classmethod
+    def from_api(cls, j: Mapping[str, Any]) -> "PaginatedCheque":
+        """
+        Build PaginatedCheque from API JSON object.
+        """
+        return cls(
+            total=j.get('total', 0),
+            limit=j.get('limit', 0),
+            offset=j.get('offset', 0),
+            results=[Cheque.from_api(cheque) for cheque in j.get('results', [])]
+        )
+
+@dataclass(slots=True)
 class Invoice:
     """
-    Represents a Telegram invoice entity returned by the xRocket Pay API.
+    Represents a Invoice entity returned by the xRocket Pay API.
     """
     id: int
-    amount: int
-    total_payments: int
-    payments_left: int
-    description: Optional[str]
-    hidden_message: Optional[str]
-    payload: Optional[str]
-    callback_url: Optional[str]
+    """Invoice ID"""
+    amount: float
+    """Amount of invoice"""
+    min_payment: float
+    """Min payment of invoice"""
+    total_activations: int
+    """Total activations of invoice"""
+    activations_left: int
+    """Activations left of invoice"""
+    description: str
+    """Invoice description"""
+    hidden_message: str
+    """Message that will be displayed after invoice payment"""
+    payload: str
+    """Any data that is attached to invoice"""
+    callback_url: str
+    """url that will be set for Return button after invoice is paid"""
+    comments_enabled: bool
+    """Allow comments for invoice"""
     currency: str
     created: str
-    paid: Optional[str]
-    status: str
+    """(date-time) When invoice was created"""
+    paid: str
+    """(date-time) When invoice was paid"""
+    status: InvoiceStatus
     expired_in: int
+    """Invoice expire time in seconds, max 1 day, 0 - none expired"""
     link: str
-    payments: List[Dict[str, Any]]
 
     @classmethod
     def from_api(cls, j: Mapping[str, Any]) -> "Invoice":
@@ -285,20 +319,21 @@ class Invoice:
         """
         return cls(
             id=j.get("id"),
-            amount=j.get("amount"),
-            total_payments=j.get("totalActivations", 0),
-            payments_left=j.get("activationsLeft", 0),
+            amount=j.get("amount", 0),
+            min_payment=j.get("minPayment", 0),
+            total_activations=j.get("totalActivations", 0),
+            activations_left=j.get("activationsLeft", 0),
             description=j.get("description"),
             hidden_message=j.get("hiddenMessage"),
             payload=j.get("payload"),
             callback_url=j.get("callbackUrl"),
+            comments_enabled=j.get("commentsEnabled", False),
             currency=j.get("currency"),
             created=j.get("created"),
             paid=j.get("paid"),
-            status=j.get("status", ""),
+            status=InvoiceStatus(j.get("status") or "UNKNOWN"),
             expired_in=j.get("expiredIn", 0),
-            link=j.get("link", ""),
-            payments=list(j.get("payments", []) or []),
+            link=j.get("link")
         )
 
 @dataclass(slots=True)

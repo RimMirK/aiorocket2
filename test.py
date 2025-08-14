@@ -9,6 +9,11 @@ def hr():
     width = shutil.get_terminal_size(fallback=(80, 20)).columns
     print('-' * width)
 
+
+
+    
+
+
 async def main():
     # Using async context manager for session
     async with xRocketClient(API_KEY, testnet=True) as client:
@@ -24,15 +29,6 @@ async def main():
         print(f"  balances:")
         for balance in info.balances:
             print(f"    {balance.currency}: {balance.balance}")
-
-        hr()
-
-        invoice = await client.create_invoice(
-            amount=1,
-            currency='USDT',
-            hidden_message="qq"
-        )
-        print(f"Invoice: {invoice}")
 
         hr()
 
@@ -77,8 +73,8 @@ async def main():
 
         hr()
         
-        withdrawal = await client.get_withdrawal('1755115621.4672675')
-        print(f"Withdrawal info: {withdrawal}")
+        # withdrawal = await client.get_withdrawal('1755115621.4672675')
+        # print(f"Withdrawal info: {withdrawal}")
 
         hr()
 
@@ -94,14 +90,31 @@ async def main():
 
         hr()
 
-        cheque = await client.create_multi_cheque(
-            currency="USDT",
-            cheque_per_user=.1,
-            users_number=1,
-            ref_program=0,
-            description="hi"
+        # cheque = await client.create_multi_cheque(
+        #     currency="DHD",
+        #     cheque_per_user=7,
+        #     users_number=1,
+        #     ref_program=0,
+        #     description="hi"
+        # )
+        # print("Created cheque:", cheque)
+        
+        hr()
+        
+        cheques = await client.get_multi_cheques()
+        print(f"Cheques: {cheques}")
+        
+        # hr()
+        
+        # cheque = await client.get_multi_cheque(426842)
+        # print(f"Cheque: {cheque}")
+        
+        hr()
+        
+        invoice = await client.create_invoice(
+            1, 0, 1, "USDT", "oplatite", "spasibo", True, payload="test payload"
         )
-        print("Created cheque:", cheque)
+        print(f"Invoice: {invoice}")
 
     
 

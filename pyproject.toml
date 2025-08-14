@@ -1,6 +1,6 @@
 [project]
 name = "aiorocket"
-version = "2.0"
+version = "dev-2.0.0"
 description = "Async Python SDK for TON Rocket"
 license = {file = "LICENSE"}
 requires-python = ">=3.7"

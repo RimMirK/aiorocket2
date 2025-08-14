@@ -4,7 +4,8 @@ __all__ = [
     'WithdrawalStatus',
     'Network',
     'Country',
-    'ChequeState'
+    'ChequeState',
+    'InvoiceStatus'
 ]
 
 class Base(str, Enum):
@@ -300,3 +301,11 @@ class ChequeState(Base):
 
     UNKNOWN = "UNKNOWN"
     """Returned when xRocket API does not sent state"""
+
+class InvoiceStatus(Base):
+    ACTIVE = "active"
+    PAID = "paid"
+    EXPIRED = "expired"
+    
+    UNKNOWN = "UNKNOWN"
+    """Returned when xRocket API does not sent status"""

@@ -4,13 +4,17 @@
 
 Asynchronous Python client for **xRocket API**. Provides full access to the API, passing all parameters directly.
 
-## DEV installation
+## Installation
 
 ```bash
-pip install git+https://github.com/RimMirK/aiorocket.git@dev
-````
+# IDK How to download this shit, sorry
+```
 
 > Requires Python 3.11 or higher.
+
+## Getting API Key
+
+You need an API key from the xRocket Payment System ([@xRocket](https://t.me/xRocket), [@xrocket_testnet_bot](https://t.me/xrocket_testnet_bot) for testnet). Open the bot and go to: **Rocket Pay** > **Create App** > **API token**.
 
 ## Quick Start
 
