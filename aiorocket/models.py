@@ -3,6 +3,8 @@ from __future__ import annotations
 from dataclasses import dataclass, is_dataclass, asdict
 from enum import Enum
 from typing import Any, Dict, List, Mapping, Optional
+from datetime import datetime, timezone
+
 
 from .enums import *
 
@@ -16,18 +18,24 @@ from .enums import *
 #     "Currency",
 # ]
 
+def to_dict(obj, keep_enums=False):
+    if is_dataclass(obj):
+        return {k: to_dict(v, keep_enums=keep_enums) for k, v in asdict(obj).items()}
+    elif isinstance(obj, Enum):
+        return obj if keep_enums else obj.value
+    elif isinstance(obj, list):
+        return [to_dict(x, keep_enums=keep_enums) for x in obj]
+    elif isinstance(obj, dict):
+        return {k: to_dict(v, keep_enums=keep_enums) for k, v in obj.items()}
+    else:
+        return obj
+
 class Base:
-    def as_dict(self):
-        if is_dataclass(self):
-            return {k: v.to_dict() for k, v in asdict(self).items()}
-        elif isinstance(self, Enum):
-            return self.value
-        elif isinstance(self, list):
-            return [x.to_dict() for x in self]
-        elif isinstance(self, dict):
-            return {k: v.to_dict() for k, v in self.items()}
-        else:
-            return self
+    def as_dict(self, keep_enums=False):
+        return to_dict(self, keep_enums=keep_enums)
+    
+    def __iter__(self):
+        return iter(self.as_dict(keep_enums=True).items())
 
 @dataclass(slots=True)
 class Info(Base):
@@ -292,6 +300,30 @@ class PaginatedCheque(Base):
         )
 
 @dataclass(slots=True)
+class DateTimeStr(str, Base):
+    
+    def __init__(self, value):
+        super(str, self).__init__()
+        self.value = value
+        self.raw = value
+    
+    def __str__(self):
+        return str(self.datetime)
+    
+    @property
+    def datetime(self) -> datetime:
+        if self.value:
+            return datetime.fromisoformat(self.value.replace("Z", "+00:00"))
+        return datetime.fromtimestamp(0, timezone.utc)
+    
+    @property
+    def timestamp(self) -> float:
+        if self.value:
+            return self.datetime.timestamp()
+        return 0
+    
+
+@dataclass(slots=True)
 class Invoice(Base):
     """
     Represents a Invoice entity returned by the xRocket Pay API.
@@ -317,9 +349,9 @@ class Invoice(Base):
     comments_enabled: bool
     """Allow comments for invoice"""
     currency: str
-    created: str
+    created: DateTimeStr
     """(date-time) When invoice was created"""
-    paid: str
+    paid: DateTimeStr
     """(date-time) When invoice was paid"""
     status: InvoiceStatus
     expired_in: int
@@ -343,8 +375,8 @@ class Invoice(Base):
             callback_url=j.get("callbackUrl"),
             comments_enabled=j.get("commentsEnabled", False),
             currency=j.get("currency"),
-            created=j.get("created"),
-            paid=j.get("paid"),
+            created=DateTimeStr(j.get("created")),
+            paid=DateTimeStr(j.get("paid")),
             status=InvoiceStatus(j.get("status") or "UNKNOWN"),
             expired_in=j.get("expiredIn", 0),
             link=j.get("link")

@@ -1,4 +1,5 @@
 import asyncio
+import json
 import shutil
 from aiorocket import *
 
@@ -118,9 +119,13 @@ async def main():
         
         hr()
         
-        invoices = await client.get_invoices()
-        print(f"Invoices: {invoices}")
-
+        invoices = await client.get_invoices(limit=3)
+        print(f"Invoices: {dict(invoices)}")
+        print(invoices.results[0].created)
+        print(invoices.results[0].created.datetime)
+        print(invoices.results[0].created.timestamp)
+        print(invoices.results[0].paid.datetime)
+        print(invoices.results[0].paid.timestamp)
     
 
 
