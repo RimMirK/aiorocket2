@@ -21,9 +21,9 @@ from aiorocket import xRocketClient
 async def main():
     xrocket = xRocketClient(api_key="YOUR_API_KEY")
     
-    # Example: get balance
-    balance = await xrocket.get_balance()
-    print(balance)
+    # Example: get app info
+    info = await xrocket.get_info()
+    print(info)
 
 asyncio.run(main())
 ```
