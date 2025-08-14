@@ -30,33 +30,6 @@ class _ApiResponse(TypedDict, total=False):
 class xRocketClient:
     """
     Asynchronous client for the xRocket Pay API.
-
-    This client wraps common API endpoints such as app info & balances,
-    transfers and withdrawals, multi-cheques, Telegram invoices, and available
-    currencies. It provides automatic retries for transient errors and
-    implements a context manager for clean session handling.
-
-    Notes:
-        * Most endpoints require the `Rocket-Pay-Key` header with your API key.
-        * `/version` does not require authentication.
-        * This client is built around the public patterns used by xRocket Pay:
-          - `GET /version`
-          - `GET /app/info`
-          - `POST /app/transfer`
-          - `POST /app/withdrawal`
-          - CRUD for `/multi-cheques`
-          - CRUD for `/tg-invoices`
-          - `GET /currencies/available`
-        * If the official API adds new fields, you can extend the explicit
-          parameters below without resorting to `**kwargs`.
-
-    Example:
-        ```python
-        async with xRocketClient("YOUR_KEY") as rp:
-            ver = await rp.version()
-            info = await rp.info()
-            bal = await rp.balance()
-        ```
     """
 
     def __init__(

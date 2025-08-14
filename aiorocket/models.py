@@ -405,7 +405,7 @@ class PaginatedInvoice(Base):
 @dataclass(slots=True)
 class Currency(Base):
     """
-    Represents a currency capabilities descriptor from /currencies/available.
+    Represents a currency capabilities descriptor from `xRocketClient.get_available_currencies()`
     """
     currency: str
     ticker: str
