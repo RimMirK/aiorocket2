@@ -1,6 +1,7 @@
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass, is_dataclass, asdict
+from enum import Enum
 from typing import Any, Dict, List, Mapping, Optional
 
 from .enums import *
@@ -14,6 +15,19 @@ from .enums import *
 #     "Invoice",
 #     "Currency",
 # ]
+
+class Base:
+    def as_dict(self):
+        if is_dataclass(self):
+            return {k: v.to_dict() for k, v in asdict(self).items()}
+        elif isinstance(self, Enum):
+            return self.value
+        elif isinstance(self, list):
+            return [x.to_dict() for x in self]
+        elif isinstance(self, dict):
+            return {k: v.to_dict() for k, v in self.items()}
+        else:
+            return self
 
 @dataclass(slots=True)
 class Info:
@@ -334,6 +348,26 @@ class Invoice:
             status=InvoiceStatus(j.get("status") or "UNKNOWN"),
             expired_in=j.get("expiredIn", 0),
             link=j.get("link")
+        )
+
+@dataclass(slots=True)
+class PaginatedInvoice:
+    total: int
+    """Total times"""
+    limit: int
+    offset: int
+    results: List[Invoice]
+    
+    @classmethod
+    def from_api(cls, j: Mapping[str, Any]) -> "PaginatedInvoice":
+        """
+        Build PaginatedInvoice from API JSON object.
+        """
+        return cls(
+            total=j.get('total', 0),
+            limit=j.get('limit', 0),
+            offset=j.get('offset', 0),
+            results=[Invoice.from_api(cheque) for cheque in j.get('results', [])]
         )
 
 @dataclass(slots=True)

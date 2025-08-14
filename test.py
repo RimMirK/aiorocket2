@@ -115,6 +115,11 @@ async def main():
             1, 0, 1, "USDT", "oplatite", "spasibo", True, payload="test payload"
         )
         print(f"Invoice: {invoice}")
+        
+        hr()
+        
+        invoices = await client.get_invoices()
+        print(f"Invoices: {invoices}")
 
     
 

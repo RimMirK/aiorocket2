@@ -519,6 +519,24 @@ class xRocketClient:
         r = await self._request("POST", "tg-invoices", json=api_payload)
         return Invoice.from_api(r["data"])
 
+    async def get_invoices(
+        self,
+        limit: int = 100,
+        offset: int = 0
+    ) -> PaginatedInvoice:
+        """
+        Get list of invoices
+        
+        Args:
+            limit (int): Minimum 1. Maximum 1000. Default 100
+            offset (int): Minimum 0. Default 0
+            
+        Returns:
+            PaginatedInvoice:
+        """
+        r = await self._request('GET', 'tg-invoices', params={"limit": limit, "offset": offset})
+        return PaginatedInvoice.from_api(r['data'])
+
     async def get_invoice(self, invoice_id: int) -> Invoice:
         """
         Get a Telegram invoice by ID.
