@@ -315,7 +315,7 @@ class xRocketClient:
             currency (str): Coin for get fees, optional
             
         Returns:
-            WithdrawalStatus:
+            List[WithdrawalCoin]: 
         """
         r = await self._request('GET', 'app/withdrawal/fees', params={'currency': currency} if currency else None)
         return [WithdrawalCoin.from_api(data) for data in r['data']]
