@@ -1,3 +1,25 @@
+#  aiorocket - Asynchronous Python client for xRocket Pay API
+#  Copyright (C) 2025-present RimMirK
+#
+#  This file is part of aiorocket.
+#
+#  aiorocket is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation, version 3 of the License.
+#
+#  aiorocket is an independent, unofficial client library.
+#  It is a near one-to-one reflection of the xRocket Pay API:
+#  all methods, parameters, objects and enums are implemented.
+#  If something does not work as expected, please open an issue.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with aiorocket.  If not, see the LICENSE file.
+#
+#  Repository: https://github.com/RimMirK/aiorocket
+#  Documentation: https://aiorocket.rimmirk.pp.ua
+#  Telegram: @RimMirK
+
+
 from __future__ import annotations
 
 from dataclasses import dataclass, is_dataclass, asdict
@@ -24,24 +46,31 @@ __all__ = [
     "Currency",
 ]
 
-def to_dict(obj, keep_enums=False):
+def to_dict(obj, keep_enums=False, keep_datetime=False):
     if is_dataclass(obj):
-        return {k: to_dict(v, keep_enums=keep_enums) for k, v in asdict(obj).items()}
+        return {k: to_dict(v, keep_enums=keep_enums, keep_datetime=keep_datetime) for k, v in asdict(obj).items()}
     elif isinstance(obj, Enum):
         return obj if keep_enums else obj.value
     elif isinstance(obj, list):
-        return [to_dict(x, keep_enums=keep_enums) for x in obj]
+        return [to_dict(x, keep_enums=keep_enums, keep_datetime=keep_datetime) for x in obj]
     elif isinstance(obj, dict):
-        return {k: to_dict(v, keep_enums=keep_enums) for k, v in obj.items()}
+        return {k: to_dict(v, keep_enums=keep_enums, keep_datetime=keep_datetime) for k, v in obj.items()}
+    elif isinstance(obj, datetime):
+        return obj if keep_datetime else obj.isoformat()
     else:
         return obj
 
 class Base:
-    def as_dict(self, keep_enums=False):
-        return to_dict(self, keep_enums=keep_enums)
+    def as_dict(self, keep_enums=False, keep_datetime=False) -> dict:
+        """
+        ### Note:
+        - To export data use method `.as_dict()`.
+        - To just convert data to a dict use built-in function `dict()`
+        """
+        return to_dict(self, keep_enums=keep_enums, keep_datetime=keep_datetime)
     
     def __iter__(self):
-        return iter(self.as_dict(keep_enums=True).items())
+        return iter(self.as_dict(keep_enums=True, keep_datetime=True).items())
     
     @classmethod
     def from_api(cls, j: Mapping[str, Any]) -> "Self":
@@ -310,26 +339,25 @@ class PaginatedCheque(Base):
 
 @dataclass(slots=True)
 class DateTimeStr(str, Base):
+    value: str|None
+    raw: Any
+    datetime: datetime
+    timestamp: float
     
     def __init__(self, value):
         super(str, self).__init__()
         self.value = value
         self.raw = value
+        
+        if self.value:
+            self.datetime = datetime.fromisoformat(self.value.replace("Z", "+00:00"))
+            self.timestamp = self.datetime.timestamp()
+        else:
+            self.datetime = datetime.fromtimestamp(0, timezone.utc)
+            self.timestamp = 0
     
     def __str__(self):
         return str(self.datetime)
-    
-    @property
-    def datetime(self) -> datetime:
-        if self.value:
-            return datetime.fromisoformat(self.value.replace("Z", "+00:00"))
-        return datetime.fromtimestamp(0, timezone.utc)
-    
-    @property
-    def timestamp(self) -> float:
-        if self.value:
-            return self.datetime.timestamp()
-        return 0
     
 @dataclass(slots=True)
 class Invoice(Base):

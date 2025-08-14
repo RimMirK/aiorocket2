@@ -1,3 +1,31 @@
+#  aiorocket - Asynchronous Python client for xRocket Pay API
+#  Copyright (C) 2025-present RimMirK
+#
+#  This file is part of aiorocket.
+#
+#  aiorocket is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation, version 3 of the License.
+#
+#  aiorocket is an independent, unofficial client library.
+#  It is a near one-to-one reflection of the xRocket Pay API:
+#  all methods, parameters, objects and enums are implemented.
+#  If something does not work as expected, please open an issue.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with aiorocket.  If not, see the LICENSE file.
+#
+#  Repository: https://github.com/RimMirK/aiorocket
+#  Documentation: https://aiorocket.rimmirk.pp.ua
+#  Telegram: @RimMirK
+
+
+
+"""
+This file is a developer test file, used to experiment and test the library
+during development. It is not part of the official release
+"""
+
 import asyncio
 import json
 import shutil
@@ -79,7 +107,7 @@ async def main():
 
         hr()
 
-        fees = await client.get_withdrawal_fees()
+        fees = await client.get_withdrawal_fees(currency="TONCOIN")
         print(f"All withdrawal fees:")
         for fee in fees:
             print(f"  code: {fee.code}")
@@ -105,10 +133,21 @@ async def main():
         cheques = await client.get_multi_cheques()
         print(f"Cheques: {cheques}")
         
+        hr()
+        
+        # # cheque = await client.get_multi_cheque(10)
+        # # print(f"Cheque: {cheque}")
+        
         # hr()
         
-        # cheque = await client.get_multi_cheque(426842)
-        # print(f"Cheque: {cheque}")
+        # # cheque = await client.edit_multi_cheque(cheque_id=cheque.id, description='edited', password='hehe')
+        # # print(f"Edited cheque: {cheque}")
+        
+        # # return
+        # hr()
+        
+        # deleted = await client.delete_multi_cheque(cheque_id=cheque.id)
+        # print(f"Deleted cheque: {deleted!r}")
         
         hr()
         
@@ -126,6 +165,40 @@ async def main():
         print(invoices.results[0].created.timestamp)
         print(invoices.results[0].paid.datetime)
         print(invoices.results[0].paid.timestamp)
+        
+        hr()
+        
+        # pokachto vse rabotajet, ura
+        
+        # invoice = await client.get_invoice(209)
+        # print(f"Get invoice: {dict(invoice)}")
+        
+        # hr()
+        
+        # deleted = await client.delete_invoice(209)
+        # print(f"deleted invoice: {deleted}")
+        
+        hr()
+        
+        # idk what this method really do, at testnet it doesn't work 
+        link = await client.get_withdrawal_link(
+            "USDT", Network.TON, "UQDJPTzJOo78ipLSu-7GstaqXFoXAVr0DUAk6UW-53wpgvB1",
+            2, comment='test comment'
+        )
+        print(f"Withdrawal link: {link!r}")
+        
+        hr()
+        
+        alive = await client.check_health()
+        print(f"alive: {alive}")
+        
+        hr()
+        
+        currencies = await client.get_available_currencies()
+        print(f"Currencies: {currencies}")
+        print(f"Currencies dict: {(currencies[0]).as_dict()}")
+        
+        
     
 
 

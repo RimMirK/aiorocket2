@@ -1,3 +1,25 @@
+#  aiorocket - Asynchronous Python client for xRocket Pay API
+#  Copyright (C) 2025-present RimMirK
+#
+#  This file is part of aiorocket.
+#
+#  aiorocket is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation, version 3 of the License.
+#
+#  aiorocket is an independent, unofficial client library.
+#  It is a near one-to-one reflection of the xRocket Pay API:
+#  all methods, parameters, objects and enums are implemented.
+#  If something does not work as expected, please open an issue.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with aiorocket.  If not, see the LICENSE file.
+#
+#  Repository: https://github.com/RimMirK/aiorocket
+#  Documentation: https://aiorocket.rimmirk.pp.ua
+#  Telegram: @RimMirK
+
+
 from enum import Enum
 
 __all__ = [
@@ -15,14 +37,14 @@ class Base(str, Enum):
 
     def __repr__(self):
         return str(self)
-    
-    UNKNOWN = "UNKNOWN"
-    """Returned when xRocket API does not sent value"""
 
 class WithdrawalStatus(Base):
     CREATED = "CREATED"
     COMPLETED = "COMPLETED"
     FAIL = "FAIL"
+    
+    UNKNOWN = "UNKNOWN"
+    """Returned when xRocket API does not sent value"""
     
 class Network(Base):
     TON = "TON"
@@ -31,6 +53,9 @@ class Network(Base):
     BTC = "BTC"
     TRX = "TRX"
     SOL = "SOL"
+    
+    UNKNOWN = "UNKNOWN"
+    """Returned when xRocket API does not sent value"""
     
 
 class Country(Base):
@@ -283,6 +308,9 @@ class Country(Base):
     ZA = "ZA"
     ZM = "ZM"
     ZW = "ZW"
+    
+    UNKNOWN = "UNKNOWN"
+    """Returned when xRocket API does not sent value"""
 
 
 
@@ -294,13 +322,22 @@ class ChequeState(Base):
     COMPLETED = "completed"
     """cheque totally activated."""
     DRAFT = "draft"
+    
+    UNKNOWN = "UNKNOWN"
+    """Returned when xRocket API does not sent value"""
 
 class InvoiceStatus(Base):
     ACTIVE = "active"
     PAID = "paid"
     EXPIRED = "expired"
+    
+    UNKNOWN = "UNKNOWN"
+    """Returned when xRocket API does not sent value"""
 
 class Status(Base):
     OK = "ok"
     ERROR = "error"
     SHUTTING_DOWN = "shutting_down"
+    
+    UNKNOWN = "UNKNOWN"
+    """Returned when xRocket API does not sent value"""

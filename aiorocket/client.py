@@ -1,3 +1,25 @@
+#  aiorocket - Asynchronous Python client for xRocket Pay API
+#  Copyright (C) 2025-present RimMirK
+#
+#  This file is part of aiorocket.
+#
+#  aiorocket is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation, version 3 of the License.
+#
+#  aiorocket is an independent, unofficial client library.
+#  It is a near one-to-one reflection of the xRocket Pay API:
+#  all methods, parameters, objects and enums are implemented.
+#  If something does not work as expected, please open an issue.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with aiorocket.  If not, see the LICENSE file.
+#
+#  Repository: https://github.com/RimMirK/aiorocket
+#  Documentation: https://aiorocket.rimmirk.pp.ua
+#  Telegram: @RimMirK
+
+
 from __future__ import annotations
 
 import asyncio
@@ -423,7 +445,7 @@ class xRocketClient:
             "enabledCountries": [country.value for country in (enabled_countries or [])]
         }
 
-        r = await self._request("PUT", f"multi-cheques/{cheque_id}", json=payload)
+        r = await self._request("PUT", f"multi-cheque/{cheque_id}", json=payload)
         return Cheque.from_api(r["data"])
 
     async def delete_multi_cheque(self, cheque_id: str) -> True:
@@ -436,7 +458,7 @@ class xRocketClient:
         Returns:
             True: on success, otherwise raises xRocketAPIError
         """
-        r = await self._request("DELETE", f"multi-cheques/{cheque_id}")
+        r = await self._request("DELETE", f"multi-cheque/{cheque_id}")
         return r['success'] == True
 
 
@@ -550,7 +572,34 @@ class xRocketClient:
         r = await self._request("GET", "currencies/available", require_auth_header=False)
         return [Currency.from_api(c) for c in r["data"].get("results", [])]
 
-    async def check_helth(self) -> Status:
+    async def get_withdrawal_link(
+        self,
+        currency: str,
+        network: Network,
+        address: str,
+        amount: float = 0,
+        comment: str = None,
+        platform: str = None
+    ) -> str|None:
+        params = {
+            'currency': currency,
+            'network': network.value,
+            'address': address,
+            'amount': amount
+        }
+        if comment:
+            params['comment'] = comment
+        if platform:
+            params['platform'] = platform
+            
+        r = await self._request("GET", "withdrawal-link", params=params)
+        link = r.get('data', {}).get('telegramAppLink')
+        if link:
+            return link
+        else:
+            raise xRocketAPIError(r)
+
+    async def check_health(self) -> Status:
         """
         Returns:
             Status: 
