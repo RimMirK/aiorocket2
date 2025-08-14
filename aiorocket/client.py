@@ -1,23 +1,20 @@
 from __future__ import annotations
 
 import asyncio
-from typing import Any, AsyncIterator, Dict, List, Mapping, Optional, TypedDict
+from typing import Any, Dict, List, Mapping, Optional, TypedDict
 
 import aiohttp
 
-from .constants import (
-    BASEURL_MAINNET,
-    BASEURL_TESTNET,
-    DEFAULT_BACKOFF_BASE,
-    DEFAULT_RETRIES,
-    DEFAULT_TIMEOUT,
-    DEFAULT_USER_AGENT,
-)
-from .exceptions import xRocketAPIError
+from .constants import *
+from .exceptions import *
 from .models import *
 from .utils import *
 from .enums import *
 
+
+__all__ = [
+    "xRocketClient"
+]
 
 class _ApiResponse(TypedDict, total=False):
     success: bool
@@ -399,6 +396,7 @@ class xRocketClient:
         Edit multi-cheque
         
         Args:
+            cheque_id (int):
             password: (str): Optional. Password for cheque. Max lenght 100
             description (str): Optional. Description for cheque. Max lenght 1000
             send_notifications (bool): Optional. Send notifications about activations. Default True
@@ -510,49 +508,52 @@ class xRocketClient:
         r = await self._request('GET', 'tg-invoices', params={"limit": limit, "offset": offset})
         return PaginatedInvoice.from_api(r['data'])
 
-    async def get_invoice(self, invoice_id: int) -> Invoice:
+    async def get_invoice(
+        self,
+        invoice_id: int
+    ) -> Invoice:
         """
-        Get a Telegram invoice by ID.
+        Get invoice
+
+        Args:
+            invoice_id (str): invoice id
+
+        Returns:
+            Invoice
         """
         r = await self._request("GET", f"tg-invoices/{invoice_id}")
         return Invoice.from_api(r["data"])
 
-    async def delete_invoice(self, invoice_id: int) -> None:
+    async def delete_invoice(
+        self,
+        invoice_id: int
+    ) -> True:
         """
-        Delete a Telegram invoice by ID.
-        """
-        await self._request("DELETE", f"tg-invoices/{invoice_id}")
+        Delete invoice
 
-    async def list_invoices(self, *, limit: int = 100, offset: int = 0) -> List[Invoice]:
+        Args:
+            invoice_id (int):
+        
+        Returns:
+            True: on succer otherwize raises xRocketAPIError
         """
-        List invoices with pagination.
-        """
-        r = await self._request("GET", "tg-invoices", params={"limit": limit, "offset": offset})
-        return [Invoice.from_api(i) for i in r["data"].get("results", [])]
-
-    async def iter_invoices(self, *, page_size: int = 100, start_offset: int = 0) -> AsyncIterator[Invoice]:
-        """
-        Iterate over all invoices as an async generator.
-        """
-        offset = start_offset
-        while True:
-            batch = await self.list_invoices(limit=page_size, offset=offset)
-            if not batch:
-                return
-            for inv in batch:
-                yield inv
-            offset += len(batch)
-
-    # =========================
-    # Public API: Currencies
-    # =========================
+        r = await self._request("DELETE", f"tg-invoices/{invoice_id}")
+        return r['success'] == True
 
     async def get_available_currencies(self) -> List[Currency]:
         """
-        Get the list of available currencies and their operational constraints.
+        Returns available currencies
 
-        Notes:
-            Documentation indicates this endpoint is public; we request it without auth header.
+        Returns:
+            List[Currency]: 
         """
         r = await self._request("GET", "currencies/available", require_auth_header=False)
         return [Currency.from_api(c) for c in r["data"].get("results", [])]
+
+    async def check_helth(self) -> Status:
+        """
+        Returns:
+            Status: 
+        """
+        r = await self._request("GET", "health", require_success=False)
+        return Status(r.get('status') or "UNKNOWN")

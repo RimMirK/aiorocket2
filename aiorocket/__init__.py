@@ -19,8 +19,16 @@ __keywords__ = ['crypto', 'telegram', 'async', 'asynchronous',
 __requires__ = ["aiohttps"] # зависимости (редко указывают прямо в коде)
 __python_requires__ = ">=3.8"    # минимальная версия питона
 
-from .client import xRocketClient
-from .exceptions import xRocketAPIError
+
+from .client import *
+from .client import __all__ as __client_all__
+from .exceptions import *
+from .exceptions import __all__ as __exceptions_all__
 from .models import *
+from .models import __all__ as __models_all__
 from .enums import *
+from .enums import __all__ as __enums_all__
 from .utils import *
+from .utils import __all__ as __utils_all__
+
+__all__ = __client_all__ + __exceptions_all__ + __models_all__ + __enums_all__ + __utils_all__ # type: ignore

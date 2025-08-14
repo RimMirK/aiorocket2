@@ -1,5 +1,8 @@
 from typing import Any, Mapping, Optional
 
+__all__ = [
+    "xRocketAPIError"
+]
 
 class xRocketAPIError(Exception):
     """

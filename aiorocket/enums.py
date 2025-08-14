@@ -5,7 +5,8 @@ __all__ = [
     'Network',
     'Country',
     'ChequeState',
-    'InvoiceStatus'
+    'InvoiceStatus',
+    'Status'
 ]
 
 class Base(str, Enum):
@@ -14,14 +15,14 @@ class Base(str, Enum):
 
     def __repr__(self):
         return str(self)
+    
+    UNKNOWN = "UNKNOWN"
+    """Returned when xRocket API does not sent value"""
 
 class WithdrawalStatus(Base):
     CREATED = "CREATED"
     COMPLETED = "COMPLETED"
     FAIL = "FAIL"
-    
-    UNKNOWN = "UNKNOWN"
-    """Returned when xRocket API does not sent status"""
     
 class Network(Base):
     TON = "TON"
@@ -31,8 +32,6 @@ class Network(Base):
     TRX = "TRX"
     SOL = "SOL"
     
-    UNKNOWN = "UNKNOWN"
-    """Returned when xRocket API does not sent network"""
 
 class Country(Base):
     AD = "AD"
@@ -285,9 +284,6 @@ class Country(Base):
     ZM = "ZM"
     ZW = "ZW"
 
-    
-    UNKNOWN = "UNKNOWN"
-    """Returned when xRocket API does not sent country"""
 
 
 class ChequeState(Base):
@@ -299,13 +295,12 @@ class ChequeState(Base):
     """cheque totally activated."""
     DRAFT = "draft"
 
-    UNKNOWN = "UNKNOWN"
-    """Returned when xRocket API does not sent state"""
-
 class InvoiceStatus(Base):
     ACTIVE = "active"
     PAID = "paid"
     EXPIRED = "expired"
-    
-    UNKNOWN = "UNKNOWN"
-    """Returned when xRocket API does not sent status"""
+
+class Status(Base):
+    OK = "ok"
+    ERROR = "error"
+    SHUTTING_DOWN = "shutting_down"

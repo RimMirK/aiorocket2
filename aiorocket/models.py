@@ -2,21 +2,27 @@ from __future__ import annotations
 
 from dataclasses import dataclass, is_dataclass, asdict
 from enum import Enum
-from typing import Any, Dict, List, Mapping, Optional
+from typing import Any, List, Mapping, Self
 from datetime import datetime, timezone
 
 
 from .enums import *
 
-# __all__ = [
-#     'Info',
-#     'Balance',
-#     'Transfer',
-#     "Withdrawal",
-#     "Cheque",
-#     "Invoice",
-#     "Currency",
-# ]
+__all__ = [
+    'Info',
+    'Balance',
+    'Transfer',
+    "Withdrawal",
+    'WithdrawalCoin',
+    'WithdrawalCoinFees',
+    "Cheque",
+    "TgResource",
+    "PaginatedCheque",
+    "Invoice",
+    "PaginatedInvoice",
+    "WithdrawalFee",
+    "Currency",
+]
 
 def to_dict(obj, keep_enums=False):
     if is_dataclass(obj):
@@ -36,6 +42,10 @@ class Base:
     
     def __iter__(self):
         return iter(self.as_dict(keep_enums=True).items())
+    
+    @classmethod
+    def from_api(cls, j: Mapping[str, Any]) -> "Self":
+        raise NotImplementedError
 
 @dataclass(slots=True)
 class Info(Base):
@@ -258,7 +268,6 @@ class Cheque(Base):
             ref_rewards=j.get("refRewards", 0),
         )
 
-
 @dataclass(slots=True)
 class TgResource(Base):
     """
@@ -322,7 +331,6 @@ class DateTimeStr(str, Base):
             return self.datetime.timestamp()
         return 0
     
-
 @dataclass(slots=True)
 class Invoice(Base):
     """
@@ -401,22 +409,50 @@ class PaginatedInvoice(Base):
             offset=j.get('offset', 0),
             results=[Invoice.from_api(cheque) for cheque in j.get('results', [])]
         )
+    
+@dataclass(slots=True)
+class WithdrawalFee(Base):
+    """
+    Represents a WithdrawalFee entity returned by the xRocket Pay API.
+    """
+    currency: str
+    """ID of main currency for token"""
+    networks: List[WithdrawalCoinFees]
+
+    @classmethod
+    def from_api(cls, j: Mapping[str, Any]) -> "WithdrawalFee":
+        """
+        Build WithdrawalFee from API JSON object.
+        """
+        return cls(
+            currency=j.get('currency'),
+            networks=[
+                WithdrawalCoinFees(
+                    network_code=Network(network.get("networkCode") or "UNKNOWN"),
+                    fee=network.get("feeWithdraw", {}).get("fee", 0),
+                    currency=network.get("feeWithdraw", {}).get("currency"),
+                ) for network in j.get('networks', [])
+            ]
+        )
 
 @dataclass(slots=True)
 class Currency(Base):
     """
-    Represents a currency capabilities descriptor from `xRocketClient.get_available_currencies()`
+    Represents a Currency entity returned by the xRocket Pay API.
     """
     currency: str
-    ticker: str
+    """ID of currency, use in Rocket Pay Api"""
+    name: str
+    """Name of currency"""
     min_transfer: float
+    """Minimal amount for transfer"""
     min_cheque: float
+    """Minimal amount for cheque"""
     min_invoice: float
+    """Minimal amount for invoice"""
     min_withdraw: float
-    withdraw_fee: float
-
-    def __str__(self) -> str:
-        return self.currency
+    """Minimal amount for withdrawals"""
+    withdraw_fee: WithdrawalFee
 
     @classmethod
     def from_api(cls, j: Mapping[str, Any]) -> "Currency":
@@ -425,10 +461,10 @@ class Currency(Base):
         """
         return cls(
             currency=j.get("currency"),
-            ticker=j.get("name"),
-            min_transfer=j.get("minTransfer"),
-            min_cheque=j.get("minCheque"),
-            min_invoice=j.get("minInvoice"),
-            min_withdraw=j.get("minWithdraw"),
-            withdraw_fee=j.get("feeWithdraw"),
+            name=j.get("name"),
+            min_transfer=j.get("minTransfer", 0),
+            min_cheque=j.get("minCheque", 0),
+            min_invoice=j.get("minInvoice", 0),
+            min_withdraw=j.get("minWithdraw", 0),
+            withdraw_fee=WithdrawalFee.from_api(j.get("feeWithdraw")),
         )
