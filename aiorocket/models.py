@@ -30,7 +30,7 @@ class Base:
             return self
 
 @dataclass(slots=True)
-class Info:
+class Info(Base):
     """
     Represents a info entity returned by the xRocket Pay API.
     """
@@ -52,7 +52,7 @@ class Info:
         )
 
 @dataclass(slots=True)
-class Balance:
+class Balance(Base):
     
     """
     Represents a balance entity returned by the xRocket Pay API.
@@ -71,7 +71,7 @@ class Balance:
         )
 
 @dataclass(slots=True)
-class Transfer:
+class Transfer(Base):
     """
     Represents a transfer entity returned by the xRocket Pay API.
     """
@@ -100,7 +100,7 @@ class Transfer:
         )
 
 @dataclass(slots=True)
-class Withdrawal:
+class Withdrawal(Base):
     network: Network
     """Network code."""
     address: str
@@ -138,7 +138,7 @@ class Withdrawal:
         )
 
 @dataclass(slots=True)
-class WithdrawalCoin:
+class WithdrawalCoin(Base):
     code: str
     """Crypto code"""
     min_withdrawal: float
@@ -157,7 +157,7 @@ class WithdrawalCoin:
         )
 
 @dataclass(slots=True)
-class WithdrawalCoinFees:
+class WithdrawalCoinFees(Base):
     network_code: Network
     """Network code for withdraw"""
     fee: float
@@ -177,7 +177,7 @@ class WithdrawalCoinFees:
         )
 
 @dataclass(slots=True)
-class Cheque:
+class Cheque(Base):
     """
     Represents a multi-cheque entity returned by the xRocket Pay API.
     """
@@ -252,7 +252,7 @@ class Cheque:
 
 
 @dataclass(slots=True)
-class TgResource:
+class TgResource(Base):
     """
     Represents a TgResourse entity returned by the xRocket Pay API.
     """
@@ -272,7 +272,7 @@ class TgResource:
         )
 
 @dataclass(slots=True)
-class PaginatedCheque:
+class PaginatedCheque(Base):
     total: int
     """Total times"""
     limit: int
@@ -292,7 +292,7 @@ class PaginatedCheque:
         )
 
 @dataclass(slots=True)
-class Invoice:
+class Invoice(Base):
     """
     Represents a Invoice entity returned by the xRocket Pay API.
     """
@@ -351,7 +351,7 @@ class Invoice:
         )
 
 @dataclass(slots=True)
-class PaginatedInvoice:
+class PaginatedInvoice(Base):
     total: int
     """Total times"""
     limit: int
@@ -371,7 +371,7 @@ class PaginatedInvoice:
         )
 
 @dataclass(slots=True)
-class Currency:
+class Currency(Base):
     """
     Represents a currency capabilities descriptor from /currencies/available.
     """
