@@ -38,7 +38,7 @@ __status__ = "Alpha"
 __keywords__ = ['crypto', 'telegram', 'async', 'asynchronous',
                 'payments', 'rocket', 'cryptocurrency', 'asyncio',
                 'crypto-bot', 'cryptopayments', 'xrocket', 'aiorocket2']
-__requires__ = ["aiohttps"]
+__requires__ = ["aiohttp"]
 __python_requires__ = ">=3.7"
 
 

@@ -13,13 +13,14 @@ authors = [
 ]
 keywords = [
     "crypto", "telegram", "async", "asynchronous", "payments", "rocket",
-    "cryptocurrency", "asyncio", "crypto-bot", "cryptopayments", "xrocket", "aiorocket"
+    "cryptocurrency", "asyncio", "crypto-bot", "cryptopayments", "xrocket",
+    "aiorocket", "aiorocket"
 ]
 dependencies = [
-    "aiohttp>=3.9.0"
+    "aiohttp"
 ]
 
-version = "2.0.0"
+version = "2.0.1"
 
 classifiers = [
     "Development Status :: 5 - Production/Stable",
