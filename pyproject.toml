@@ -20,7 +20,7 @@ dependencies = [
     "aiohttp"
 ]
 
-version = "2.0.1"
+version = "2.0.4"
 
 classifiers = [
     "Development Status :: 5 - Production/Stable",
@@ -44,8 +44,8 @@ Repository = "https://github.com/RimMirK/aiorocket2"
 Issues = "https://github.com/RimMirK/aiorocket2/issues"
 
 
-[tool.setuptools.packages.find]
-where = ["src"]
+[tool.setuptools]
+packages = ["aiorocket2"]
 
 [tool.setuptools_scm]
 version_scheme = "post-release"

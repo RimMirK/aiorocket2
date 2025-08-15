@@ -3,3 +3,4 @@ __pycache__
 .api-key.txt
 dist
 src
+aiorocket2.egg-info
