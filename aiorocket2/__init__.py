@@ -33,7 +33,7 @@ __url__ = "https://github.com/RimMirK/aiorocket2"
 __docs__ = "https://aiorocket2.rimmirk.pp.ua"
 __email__ = "me@RimMirK.pp.ua"
 __maintainer__ = "RimMirK"
-__credits__ = ["Sovenok-Hacker", "RimMirK"]
+__credits__ = ["RimMirK"]
 __status__ = "Alpha"
 __keywords__ = ['crypto', 'telegram', 'async', 'asynchronous',
                 'payments', 'rocket', 'cryptocurrency', 'asyncio',
