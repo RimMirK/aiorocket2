@@ -51,7 +51,7 @@ class MultiCheque:
             cheque_per_user (float): Cheque amount for one user. 9 decimal places, others cut off
             users_number (int): Number of users to save multicheque. 0 decimal places. Minimum 1
             ref_program (int): Referral program percentage (%). 0 decimal places. Minimum 0. Maximum 100
-            password: (str): Optional. Password for cheque. Max length 100
+            password (str): Optional. Password for cheque. Max length 100
             description (str): Optional. Description for cheque. Max length 1000
             send_notifications (bool): Optional. Send notifications about activations. Default True
             enable_captcha (bool): Optional. Enable captcha. Default True
@@ -108,10 +108,10 @@ class MultiCheque:
         Get multi-cheque info
         
         Args:
-            cheque_id (str):
+            cheque_id (str): Cheque ID
             
         Returns:
-            Cheque:
+            Cheque: 
         """
         r = await self._request("GET", f"multi-cheque/{cheque_id}")
         return Cheque.from_api(r["data"])
@@ -168,7 +168,7 @@ class MultiCheque:
         Delete multi-cheque
         
         Args:
-            cheque_id (str):
+            cheque_id (str): Cheque ID
             
         Returns:
             True: on success, otherwise raises xRocketAPIError

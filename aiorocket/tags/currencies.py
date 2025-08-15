@@ -31,7 +31,7 @@ class Currencies:
         Returns available currencies
 
         Returns:
-            List[Currency]: 
+            List[Currency]: List of available currencies
         """
         r = await self._request("GET", "currencies/available", require_auth_header=False)
         return [Currency.from_api(c) for c in r["data"].get("results", [])]

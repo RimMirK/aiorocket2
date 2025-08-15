@@ -100,10 +100,10 @@ class TgInvoices:
         Get invoice
 
         Args:
-            invoice_id (str): invoice id
+            invoice_id (str): Invoice ID
 
         Returns:
-            Invoice
+            Invoice:
         """
         r = await self._request("GET", f"tg-invoices/{invoice_id}")
         return Invoice.from_api(r["data"])
@@ -116,10 +116,10 @@ class TgInvoices:
         Delete invoice
 
         Args:
-            invoice_id (int):
+            invoice_id (int): Invoice ID
         
         Returns:
-            True: on succer otherwize raises xRocketAPIError
+            True: on success otherwise raises xRocketAPIError
         """
         r = await self._request("DELETE", f"tg-invoices/{invoice_id}")
         return r['success'] == True

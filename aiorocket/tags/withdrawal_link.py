@@ -35,6 +35,20 @@ class WithdrawalLink:
         comment: str = None,
         platform: str = None
     ) -> str|None:
+        """
+        Get withdrawal link
+        
+        Args:
+            currency (str): Currency code (get list from `xRocketClient.get_available_currencies()`)
+            network (Network): Network code
+            address (str): Target withdrawal address
+            amount (float): Optional. Withdrawal amount. Default 0
+            comment (str): Optional. Withdrawal comment
+            platform (str): Optional. Platform identifier (optional, use only if provided by xRocket)
+        
+        Returns:
+            str: Telegram app link
+        """
         params = {
             'currency': currency,
             'network': network.value,

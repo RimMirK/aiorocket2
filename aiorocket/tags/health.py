@@ -27,6 +27,8 @@ class Health:
 
     async def check_health(self) -> Status:
         """
+        Return API Status
+        
         Returns:
             Status: 
         """
