@@ -1,26 +1,67 @@
+[build-system]
+requires = ["setuptools>=61.0", "setuptools-scm[toml]>=7.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "aiorocket2"
-version = "dev-2.0.0"
-description = "Async Python SDK for TON Rocket"
-license = {file = "LICENSE"}
-requires-python = ">=3.7"
+description = "Asynchronous Python client for xRocket API."
 readme = "README.md"
-dependencies = [
-    "aiohttp"
-]
+license = { text = "GPL-3.0-only" }
+requires-python = ">=3.11"
 authors = [
-    {name = "Sovenok-Hacker", email = "artemka.hvostov@yandex.ru"},
-    {name = "RimMirK", email = "me@RimMirK.pp.ua"},
+    { name = "RimMirK", email = "me@rimmirk.pp.ua" }
 ]
-keywords = ["ton", "rocket", "sdk", "async", "the open network", "bot", "telegram", "crypto", "cryptocurrency", "xRocket"]
+keywords = [
+    "crypto", "telegram", "async", "asynchronous", "payments", "rocket",
+    "cryptocurrency", "asyncio", "crypto-bot", "cryptopayments", "xrocket", "aiorocket"
+]
+dependencies = [
+    "aiohttp>=3.9.0"
+]
+dynamic = ["version"]
+
 classifiers = [
-  "Development Status :: 4 - Beta",
-  "Programming Language :: Python"
+    "Development Status :: 2 - Pre-Alpha",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Programming Language :: Python :: 3.11",
+    "Operating System :: OS Independent",
+    "Framework :: AsyncIO",
+    "Typing :: Typed",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Intended Audience :: Developers"
 ]
 
 [project.urls]
-homepage = "https://github.com/RimMirK/aiorocket2"
-repository = "https://github.com/RimMirK/aiorocket2.git"
-MainnetBot = "https://t.me/xRocket"
-TestnetBot = "https://t.me/xrocket_testnet_bot"
-Creator = "https://t.me/RimMirK"
+Homepage = "https://github.com/RimMirK/aiorocket2"
+Documentation = "https://aiorocket2.rimmirk.pp.ua"
+Repository = "https://github.com/RimMirK/aiorocket2"
+Issues = "https://github.com/RimMirK/aiorocket2/issues"
+
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools_scm]
+version_scheme = "post-release"
+local_scheme = "node-and-date"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra -q"
+
+[tool.black]
+line-length = 88
+target-version = ["py311"]
+
+[tool.isort]
+profile = "black"
+
+[tool.mypy]
+python_version = 3.11
+strict = true
+ignore_missing_imports = true
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+select = ["E", "F", "I", "UP", "B"]

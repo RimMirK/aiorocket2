@@ -40,9 +40,6 @@ def hr():
 
 
 
-    
-
-
 async def main():
     # Using async context manager for session
     async with xRocketClient(API_KEY, testnet=True) as client:
