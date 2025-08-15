@@ -1,4 +1,5 @@
-aiorocket2.egg-info
 __pycache__
 .vscode
 .api-key.txt
+dist
+src
