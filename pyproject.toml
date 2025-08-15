@@ -7,7 +7,7 @@ name = "aiorocket2"
 description = "Asynchronous Python client for xRocket API."
 readme = "README.md"
 license = { text = "GPL-3.0-only" }
-requires-python = ">=3.11"
+requires-python = ">=3.7"
 authors = [
     { name = "RimMirK", email = "me@rimmirk.pp.ua" }
 ]
@@ -24,6 +24,10 @@ classifiers = [
     "Development Status :: 2 - Pre-Alpha",
     "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
     "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.7",
     "Operating System :: OS Independent",
     "Framework :: AsyncIO",
     "Typing :: Typed",
@@ -57,7 +61,7 @@ target-version = ["py311"]
 profile = "black"
 
 [tool.mypy]
-python_version = 3.11
+python_version = 3.7
 strict = true
 ignore_missing_imports = true
 
