@@ -34,7 +34,7 @@ pip install aiorocket2
 ## 🔑 Getting an API Key
 
 1. Open the bot [@xRocket](https://t.me/xRocket) or [@xrocket\_testnet\_bot](https://t.me/xrocket_testnet_bot) for the testnet
-2. Go to: **Rocket Pay → Create App → API token**
+2. Go to: **xRocket API -> xRocket Pay → Create App → API token**
 3. Copy the token and use it in your code
 
 ---
