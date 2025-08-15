@@ -1,5 +1,5 @@
 [project]
-name = "aiorocket"
+name = "aiorocket2"
 version = "dev-2.0.0"
 description = "Async Python SDK for TON Rocket"
 license = {file = "LICENSE"}
@@ -19,8 +19,8 @@ classifiers = [
 ]
 
 [project.urls]
-homepage = "https://github.com/RimMirK/aiorocket"
-repository = "https://github.com/RimMirK/aiorocket.git"
+homepage = "https://github.com/RimMirK/aiorocket2"
+repository = "https://github.com/RimMirK/aiorocket2.git"
 MainnetBot = "https://t.me/xRocket"
 TestnetBot = "https://t.me/xrocket_testnet_bot"
 Creator = "https://t.me/RimMirK"

@@ -1,6 +1,6 @@
-# aiorocket
+# aiorocket2
 
-[Documentation](https://aiorocket.rimmirk.pp.ua) | [Issues](https://github.com/RimMirK/aiorocket/issues) | [Dev Branch](https://github.com/RimMirK/aiorocket/tree/dev)
+[Documentation](https://aiorocket2.rimmirk.pp.ua) | [Issues](https://github.com/RimMirK/aiorocket2/issues) | [Dev Branch](https://github.com/RimMirK/aiorocket2/tree/dev)
 
 Asynchronous Python client for **xRocket API**. Provides full access to the API, passing all parameters directly.
 
@@ -20,7 +20,7 @@ You need an API key from the xRocket Payment System ([@xRocket](https://t.me/xRo
 
 ```python
 import asyncio
-from aiorocket import xRocketClient
+from aiorocket2 import xRocketClient
 
 async def main():
     xrocket = xRocketClient(api_key="YOUR_API_KEY")
@@ -41,8 +41,8 @@ asyncio.run(main())
 
 ## Authors
 
-* aiorocket 2.x: [RimMirK](https://github.com/RimMirK)
-* Original author (aiorocket 1.x): [Sovenok-Hacker](https://github.com/Sovenok-Hacker)
+* aiorocket2 2.x: [RimMirK](https://github.com/RimMirK)
+* Original author (aiorocket2 1.x): [Sovenok-Hacker](https://github.com/Sovenok-Hacker)
 
 ## License
 
