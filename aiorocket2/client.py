@@ -26,10 +26,9 @@ TODO
 from __future__ import annotations
 
 import asyncio
-from typing import Any, Dict, List, Mapping, Optional, Union
+from typing import Any, Mapping, Optional
 
 import aiohttp
-
 
 
 from .constants import (
@@ -94,8 +93,6 @@ class xRocketClient(Tags):
             "Accept": "application/json",
         }
 
-
-
     async def __aenter__(self) -> "xRocketClient":
         return self
 
@@ -106,7 +103,6 @@ class xRocketClient(Tags):
         """Close the underlying aiohttp session if it was created by this client."""
         if self._own_session:
             await self.session.close()
-
 
     async def _request(
         self,
@@ -153,8 +149,10 @@ class xRocketClient(Tags):
                         payload = await resp.json()
                     except Exception:
                         text = await resp.text()
-                        raise xRocketAPIError({"message": f"Non-JSON response: {text[:300]}"},
-                                             status=status)
+                        raise xRocketAPIError(
+                            {"message": f"Non-JSON response: {text[:300]}"},
+                            status=status
+                        )
 
                     if require_success and not payload.get("success", False):
                         raise xRocketAPIError(payload, status=status)

@@ -23,6 +23,7 @@
 Tag Version from the API
 """
 
+
 class Version:
     """
     Tag version from the API

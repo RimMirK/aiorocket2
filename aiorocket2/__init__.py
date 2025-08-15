@@ -54,4 +54,4 @@ from .utils import *
 from .utils import __all__ as __utils_all__
 
 __all__ = __client_all__ + __exceptions_all__ \
-    + __models_all__ + __enums_all__ + __utils_all__ # type: ignore
+    + __models_all__ + __enums_all__ + __utils_all__  # type: ignore

@@ -31,7 +31,7 @@ class Currencies:
     """
     Tag currencies from the API
     """
-    
+
     async def get_available_currencies(self) -> List[Currency]:
         """
         Returns available currencies

@@ -20,7 +20,7 @@
 #  Telegram: @RimMirK
 
 
-from typing import List, Optional, Union
+from typing import List, Union
 
 from ..enums import Country
 from ..models import Cheque, PaginatedCheque
@@ -47,22 +47,30 @@ class MultiCheque:
         Create multi-cheque
 
         Args:
-            currency (str): Currency of transfer, info `xRocketClient.get_available_currencies()`
-            cheque_per_user (float): Cheque amount for one user. 9 decimal places, others cut off
-            users_number (int): Number of users to save multicheque. 0 decimal places. Minimum 1
-            ref_program (int): Referral program percentage (%). 0 decimal places. Minimum 0. Maximum 100
+            currency (str): Currency of transfer, info \
+                `xRocketClient.get_available_currencies()`
+            cheque_per_user (float): Cheque amount for one user. \
+                9 decimal places, others cut off
+            users_number (int): Number of users to save multicheque. \
+                0 decimal places. Minimum 1
+            ref_program (int): Referral program percentage (%). \
+                0 decimal places. Minimum 0. Maximum 100
             password (str): Optional. Password for cheque. Max length 100
             description (str): Optional. Description for cheque. Max length 1000
-            send_notifications (bool): Optional. Send notifications about activations. Default True
+            send_notifications (bool): Optional. Send notifications about \
+                activations. Default True
             enable_captcha (bool): Optional. Enable captcha. Default True
-            telegram_resources_ids (List of int or str): IDs of telegram resources (groups, channels, private groups)
-            for_premium (bool): Optional. Only users with Telegram Premium can activate this cheque. Default False
-            linked_wallet (bool): Optional. Only users with linked wallet can activate this cheque. Default False
+            telegram_resources_ids (List of int or str): IDs of telegram resources \
+                (groups, channels, private groups)
+            for_premium (bool): Optional. Only users with Telegram Premium can \
+                activate this cheque. Default False
+            linked_wallet (bool): Optional. Only users with linked wallet can \
+                activate this cheque. Default False
             disabled_languages (List of str): Optional. Disable languages
             enabled_countries (List of Country): Optional. Enabled countries
 
         Returns:
-            Cheque: 
+            Cheque:
         """
         payload = {
             "currency": currency,
@@ -89,11 +97,11 @@ class MultiCheque:
     ) -> PaginatedCheque:
         """
         Get list of multi-cheques
-        
+
         Args:
             limit (int): Minimum 1. Maximum 1000. Default 100
             offset (int): Minimum 0. Default 0
-            
+
         Returns:
             PaginatedCheque:
         """
@@ -106,12 +114,12 @@ class MultiCheque:
     ) -> Cheque:
         """
         Get multi-cheque info
-        
+
         Args:
             cheque_id (str): Cheque ID
-            
+
         Returns:
-            Cheque: 
+            Cheque:
         """
         r = await self._request("GET", f"multi-cheque/{cheque_id}")
         return Cheque.from_api(r["data"])
@@ -131,22 +139,26 @@ class MultiCheque:
     ) -> Cheque:
         """
         Edit multi-cheque
-        
+
         Args:
             cheque_id (int):
             password: (str): Optional. Password for cheque. Max lenght 100
             description (str): Optional. Description for cheque. Max lenght 1000
-            send_notifications (bool): Optional. Send notifications about activations. Default True
+            send_notifications (bool): Optional. Send notifications about \
+                activations. Default True
             enable_captcha (bool): Optional. Enable captcha. Default True
-            telegram_resources_ids (List of int or str): IDs of telegram resources (groups, channels, private groups)
-            for_premium (bool): Optional. Only users with Telegram Premium can activate this cheque. Default False
-            linked_wallet (bool): Optional. Only users with linked wallet can activate this cheque. Default False
+            telegram_resources_ids (List of int or str): IDs of telegram resources \
+                (groups, channels, private groups)
+            for_premium (bool): Optional. Only users with Telegram Premium can \
+                activate this cheque. Default False
+            linked_wallet (bool): Optional. Only users with linked wallet can \
+                activate this cheque. Default False
             disabled_languages (List of str): Optional. Disable languages
             enabled_countries (List of Country): Optional. Enabled countries
 
         Returns:
-            Cheque: 
-        
+            Cheque:
+
         """
         payload = {
             "password": password,
@@ -166,10 +178,10 @@ class MultiCheque:
     async def delete_multi_cheque(self, cheque_id: str) -> True:
         """
         Delete multi-cheque
-        
+
         Args:
             cheque_id (str): Cheque ID
-            
+
         Returns:
             True: on success, otherwise raises xRocketAPIError
         """
