@@ -19,6 +19,10 @@
 #  Documentation: https://aiorocket2.rimmirk.pp.ua
 #  Telegram: @RimMirK
 
+"""
+The API is splitted by tags. Here is the same splitting
+"""
+
 from .version import Version
 from .app import App
 from .multi_cheque import MultiCheque
@@ -31,4 +35,8 @@ class Tags(
     Version, App, MultiCheque,
     TgInvoices, WithdrawalLink,
     Currencies, Health
-): ...
+):
+    """
+    General class to join all tags together
+    """
+    

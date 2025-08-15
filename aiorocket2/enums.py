@@ -19,6 +19,9 @@
 #  Documentation: https://aiorocket2.rimmirk.pp.ua
 #  Telegram: @RimMirK
 
+"""
+Enums used by aiorocket2
+"""
 
 from enum import Enum
 
@@ -42,10 +45,9 @@ class WithdrawalStatus(Base):
     CREATED = "CREATED"
     COMPLETED = "COMPLETED"
     FAIL = "FAIL"
-    
     UNKNOWN = "UNKNOWN"
     """Returned when xRocket API does not sent value"""
-    
+        
 class Network(Base):
     TON = "TON"
     BSC = "BSC"
@@ -53,10 +55,8 @@ class Network(Base):
     BTC = "BTC"
     TRX = "TRX"
     SOL = "SOL"
-    
     UNKNOWN = "UNKNOWN"
-    """Returned when xRocket API does not sent value"""
-    
+    """Returned when xRocket API does not sent value"""    
 
 class Country(Base):
     AD = "AD"
@@ -308,21 +308,20 @@ class Country(Base):
     ZA = "ZA"
     ZM = "ZM"
     ZW = "ZW"
-    
     UNKNOWN = "UNKNOWN"
     """Returned when xRocket API does not sent value"""
 
 
 
 class ChequeState(Base):
-    """Active - cheque created and has unclaimed activations. Completed - cheque totally activated."""
+    """Active - cheque created and has unclaimed activations.
+    Completed - cheque totally activated."""
 
     ACTIVE = "active"
     """cheque created and has unclaimed activations."""
     COMPLETED = "completed"
     """cheque totally activated."""
     DRAFT = "draft"
-    
     UNKNOWN = "UNKNOWN"
     """Returned when xRocket API does not sent value"""
 
@@ -330,7 +329,6 @@ class InvoiceStatus(Base):
     ACTIVE = "active"
     PAID = "paid"
     EXPIRED = "expired"
-    
     UNKNOWN = "UNKNOWN"
     """Returned when xRocket API does not sent value"""
 
@@ -338,6 +336,5 @@ class Status(Base):
     OK = "ok"
     ERROR = "error"
     SHUTTING_DOWN = "shutting_down"
-    
     UNKNOWN = "UNKNOWN"
     """Returned when xRocket API does not sent value"""

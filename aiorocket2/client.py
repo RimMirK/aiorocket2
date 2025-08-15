@@ -19,33 +19,33 @@
 #  Documentation: https://aiorocket2.rimmirk.pp.ua
 #  Telegram: @RimMirK
 
+"""
+TODO
+"""
 
 from __future__ import annotations
 
 import asyncio
-from typing import Any, Dict, List, Mapping, Optional, TypedDict
+from typing import Any, Dict, List, Mapping, Optional, Union
 
 import aiohttp
 
-from .constants import *
-from .exceptions import *
-from .models import *
-from .utils import *
-from .enums import *
+
+
+from .constants import (
+    BASEURL_MAINNET, BASEURL_TESTNET,
+    DEFAULT_BACKOFF_BASE, DEFAULT_RETRIES,
+    DEFAULT_TIMEOUT, DEFAULT_USER_AGENT
+)
+from .exceptions import xRocketAPIError
+from .tags import Tags
+from .utils import backoff_sleep
 
 
 __all__ = [
     "xRocketClient"
 ]
 
-class _ApiResponse(TypedDict, total=False):
-    success: bool
-    message: str
-    errors: list
-    data: Dict | List | Any
-    version: str
-
-from .tags import Tags
 
 class xRocketClient(Tags):
     """
@@ -117,7 +117,7 @@ class xRocketClient(Tags):
         json: Optional[Mapping[str, Any]] = None,
         require_auth_header: bool = True,
         require_success: bool = True
-    ) -> _ApiResponse:
+    ) -> dict:
         """
         Send an HTTP request with retries and consistent error handling.
 
@@ -150,7 +150,7 @@ class xRocketClient(Tags):
                 ) as resp:
                     status = resp.status
                     try:
-                        payload: _ApiResponse = await resp.json()
+                        payload = await resp.json()
                     except Exception:
                         text = await resp.text()
                         raise xRocketAPIError({"message": f"Non-JSON response: {text[:300]}"},
@@ -170,4 +170,3 @@ class xRocketClient(Tags):
                     raise xRocketAPIError({"message": str(e)}, status=None)
                 await backoff_sleep(attempt, self.backoff_base)
                 attempt += 1
-

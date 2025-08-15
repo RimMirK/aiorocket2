@@ -38,8 +38,8 @@ __status__ = "Alpha"
 __keywords__ = ['crypto', 'telegram', 'async', 'asynchronous',
                 'payments', 'rocket', 'cryptocurrency', 'asyncio',
                 'crypto-bot', 'cryptopayments', 'xrocket', 'aiorocket2']
-__requires__ = ["aiohttps"] # зависимости (редко указывают прямо в коде)
-__python_requires__ = ">=3.8"    # минимальная версия питона
+__requires__ = ["aiohttps"]
+__python_requires__ = ">=3.7"
 
 
 from .client import *
@@ -53,4 +53,5 @@ from .enums import __all__ as __enums_all__
 from .utils import *
 from .utils import __all__ as __utils_all__
 
-__all__ = __client_all__ + __exceptions_all__ + __models_all__ + __enums_all__ + __utils_all__ # type: ignore
+__all__ = __client_all__ + __exceptions_all__ \
+    + __models_all__ + __enums_all__ + __utils_all__ # type: ignore

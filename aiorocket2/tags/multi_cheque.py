@@ -20,7 +20,7 @@
 #  Telegram: @RimMirK
 
 
-from typing import List
+from typing import List, Optional, Union
 
 from ..enums import Country
 from ..models import Cheque, PaginatedCheque
@@ -37,11 +37,11 @@ class MultiCheque:
         description: str = None,
         send_notifications: bool = True,
         enable_captcha: bool = True,
-        telegram_resources_ids: List[int|str] = None,
+        telegram_resources_ids: List[Union[int, str]] = None,
         for_premium: bool = False,
         linked_wallet: bool = False,
         disabled_languages: List[str] = None,
-        enabled_countries: List[Country] = None
+        enabled_countries: List["Country"] = None
     ) -> Cheque:
         """
         Create multi-cheque
@@ -123,11 +123,11 @@ class MultiCheque:
         description: str = None,
         send_notifications: bool = None,
         enable_captcha: bool = None,
-        telegram_resources_ids: List[int|str] = None,
+        telegram_resources_ids: List[Union[int, str]] = None,
         for_premium: bool = None,
         linked_wallet: bool = None,
         disabled_languages: List[str] = None,
-        enabled_countries: List[Country] = None
+        enabled_countries: List["Country"] = None
     ) -> Cheque:
         """
         Edit multi-cheque
@@ -174,4 +174,4 @@ class MultiCheque:
             True: on success, otherwise raises xRocketAPIError
         """
         r = await self._request("DELETE", f"multi-cheque/{cheque_id}")
-        return r['success'] == True
+        return r['success'] is True

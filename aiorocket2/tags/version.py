@@ -19,9 +19,14 @@
 #  Documentation: https://aiorocket2.rimmirk.pp.ua
 #  Telegram: @RimMirK
 
+"""
+Tag Version from the API
+"""
 
 class Version:
-    
+    """
+    Tag version from the API
+    """
     async def get_version(self) -> str:
         """
         Returns current version of API. You may use it as healthcheck

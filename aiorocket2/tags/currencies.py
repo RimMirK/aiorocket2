@@ -18,6 +18,9 @@
 #  Repository: https://github.com/RimMirK/aiorocket2
 #  Documentation: https://aiorocket2.rimmirk.pp.ua
 #  Telegram: @RimMirK
+"""
+Tag currencies from the API
+"""
 
 from typing import List
 
@@ -25,6 +28,9 @@ from ..models import Currency
 
 
 class Currencies:
+    """
+    Tag currencies from the API
+    """
     
     async def get_available_currencies(self) -> List[Currency]:
         """

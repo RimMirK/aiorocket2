@@ -19,7 +19,9 @@
 #  Documentation: https://aiorocket2.rimmirk.pp.ua
 #  Telegram: @RimMirK
 
-
+"""
+additional functions used by aiorocket2
+"""
 
 import asyncio
 import time

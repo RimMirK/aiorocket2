@@ -19,7 +19,9 @@
 #  Documentation: https://aiorocket2.rimmirk.pp.ua
 #  Telegram: @RimMirK
 
-
+"""
+Tag App from the API
+"""
 
 from typing import Any, Dict, List, Optional
 
@@ -28,7 +30,9 @@ from ..models import Info, Transfer, Withdrawal, WithdrawalCoin
 
 
 class App:
-    
+    """
+    Tag App from the API
+    """    
     async def get_info(self) -> Info:
         """
         Returns information about your application

@@ -19,13 +19,19 @@
 #  Documentation: https://aiorocket2.rimmirk.pp.ua
 #  Telegram: @RimMirK
 
+"""
+Tag withdrawal-link from the API
+"""
+
+from typing import Optional
 from ..enums import Network
 from ..exceptions import xRocketAPIError
 
 
 class WithdrawalLink:
-    
-    
+    """
+    Tag Withdrawal-link from the API
+    """
     async def get_withdrawal_link(
         self,
         currency: str,
@@ -34,12 +40,12 @@ class WithdrawalLink:
         amount: float = 0,
         comment: str = None,
         platform: str = None
-    ) -> str|None:
+    ) -> Optional[str]:
         """
         Get withdrawal link
         
         Args:
-            currency (str): Currency code (get list from `xRocketClient.get_available_currencies()`)
+            currency (str): Currency code (`xRocketClient.get_available_currencies()`)
             network (Network): Network code
             address (str): Target withdrawal address
             amount (float): Optional. Withdrawal amount. Default 0
@@ -64,5 +70,4 @@ class WithdrawalLink:
         link = r.get('data', {}).get('telegramAppLink')
         if link:
             return link
-        else:
-            raise xRocketAPIError(r)
+        raise xRocketAPIError(r)

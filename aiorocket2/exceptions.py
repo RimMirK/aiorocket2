@@ -19,6 +19,9 @@
 #  Documentation: https://aiorocket2.rimmirk.pp.ua
 #  Telegram: @RimMirK
 
+"""
+Exceptions used by aiorocket2
+"""
 
 from typing import Any, Mapping, Optional
 

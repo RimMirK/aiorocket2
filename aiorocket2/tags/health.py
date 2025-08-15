@@ -18,12 +18,17 @@
 #  Repository: https://github.com/RimMirK/aiorocket2
 #  Documentation: https://aiorocket2.rimmirk.pp.ua
 #  Telegram: @RimMirK
-
+"""
+Tag health from the API
+"""
 
 from ..enums import Status
 
 
 class Health:
+    """
+    Tag health from the API
+    """
 
     async def check_health(self) -> Status:
         """
@@ -34,3 +39,4 @@ class Health:
         """
         r = await self._request("GET", "health", require_success=False)
         return Status(r.get('status') or "UNKNOWN")
+    

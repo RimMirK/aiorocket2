@@ -19,16 +19,19 @@
 #  Documentation: https://aiorocket2.rimmirk.pp.ua
 #  Telegram: @RimMirK
 
+"""
+Modules (dataclases) used by aiorocket2
+"""
 
 from __future__ import annotations
 
 from dataclasses import dataclass, is_dataclass, asdict
 from enum import Enum
-from typing import Any, List, Mapping, Self
+from typing import Any, List, Mapping
 from datetime import datetime, timezone
 
+from .enums import ChequeState, Country, InvoiceStatus, Network, WithdrawalStatus
 
-from .enums import *
 
 __all__ = [
     'Info',
@@ -46,21 +49,43 @@ __all__ = [
     "Currency",
 ]
 
-def to_dict(obj, keep_enums=False, keep_datetime=False):
+def to_dict(obj, keep_enums=False, keep_datetime=False) -> dict:
+    """
+    Recursively converts an object to a dictionary suitable for JSON serialization.
+
+    Supports:
+    - dataclass: recursively converts all fields.
+    - Enum: returns the enum value if keep_enums=False, otherwise returns the Enum object.
+    - list: recursively converts all elements.
+    - dict: recursively converts all values.
+    - datetime: returns ISO-formatted string if keep_datetime=False, otherwise returns the datetime object.
+    
+    Args:
+        obj (Any): Any object to convert.
+        keep_enums (bool): If True, keeps Enum objects, otherwise returns their values.
+        keep_datetime (bool): If True, keeps datetime objects, otherwise returns ISO string.
+
+    Returns:
+        dict: recursively converted object.
+    """
     if is_dataclass(obj):
-        return {k: to_dict(v, keep_enums=keep_enums, keep_datetime=keep_datetime) for k, v in asdict(obj).items()}
-    elif isinstance(obj, Enum):
+        return {k: to_dict(v, keep_enums=keep_enums, keep_datetime=keep_datetime)
+                for k, v in asdict(obj).items()}
+    if isinstance(obj, Enum):
         return obj if keep_enums else obj.value
-    elif isinstance(obj, list):
+    if isinstance(obj, list):
         return [to_dict(x, keep_enums=keep_enums, keep_datetime=keep_datetime) for x in obj]
-    elif isinstance(obj, dict):
-        return {k: to_dict(v, keep_enums=keep_enums, keep_datetime=keep_datetime) for k, v in obj.items()}
-    elif isinstance(obj, datetime):
+    if isinstance(obj, dict):
+        return {k: to_dict(v, keep_enums=keep_enums, keep_datetime=keep_datetime)
+                for k, v in obj.items()}
+    if isinstance(obj, datetime):
         return obj if keep_datetime else obj.isoformat()
-    else:
-        return obj
+    return obj
 
 class Base:
+    """
+    Base class for all models
+    """
     def as_dict(self, keep_enums=False, keep_datetime=False) -> dict:
         """
         ### Note:
@@ -73,10 +98,13 @@ class Base:
         return iter(self.as_dict(keep_enums=True, keep_datetime=True).items())
     
     @classmethod
-    def from_api(cls, j: Mapping[str, Any]) -> "Self":
+    def from_api(cls, j: Mapping[str, Any]):
+        """
+        Build model from api data
+        """
         raise NotImplementedError
 
-@dataclass(slots=True)
+@dataclass
 class Info(Base):
     """
     Represents a info entity returned by the xRocket Pay API.
@@ -98,9 +126,8 @@ class Info(Base):
             balances=[Balance.from_api(balance) for balance in j.get('balances', [])]
         )
 
-@dataclass(slots=True)
+@dataclass
 class Balance(Base):
-    
     """
     Represents a balance entity returned by the xRocket Pay API.
     """
@@ -117,7 +144,7 @@ class Balance(Base):
             balance=j.get('balance', 0.0)
         )
 
-@dataclass(slots=True)
+@dataclass
 class Transfer(Base):
     """
     Represents a transfer entity returned by the xRocket Pay API.
@@ -146,8 +173,12 @@ class Transfer(Base):
             description=j.get('description')
         )
 
-@dataclass(slots=True)
+@dataclass
 class Withdrawal(Base):
+    """
+    Represents a Withdrawal entity returned by the xRocket Pay API.
+    """
+    
     network: Network
     """Network code."""
     address: str
@@ -184,8 +215,11 @@ class Withdrawal(Base):
             tx_link=j.get('txLink'),
         )
 
-@dataclass(slots=True)
+@dataclass
 class WithdrawalCoin(Base):
+    """
+    Represents a WithdrawalCoin entity returned by the xRocket Pay API.
+    """
     code: str
     """Crypto code"""
     min_withdrawal: float
@@ -203,8 +237,12 @@ class WithdrawalCoin(Base):
             fees=[WithdrawalCoinFees.from_api(fee) for fee in j.get("fees", [])]
         )
 
-@dataclass(slots=True)
+@dataclass
 class WithdrawalCoinFees(Base):
+    """
+    Represents a WithdrawalCoinFees entity returned by the xRocket Pay API.
+    """
+    
     network_code: Network
     """Network code for withdraw"""
     fee: float
@@ -223,7 +261,7 @@ class WithdrawalCoinFees(Base):
             currency=j.get('feeWithdraw', {}).get('currency')
         )
 
-@dataclass(slots=True)
+@dataclass
 class Cheque(Base):
     """
     Represents a multi-cheque entity returned by the xRocket Pay API.
@@ -297,7 +335,7 @@ class Cheque(Base):
             ref_rewards=j.get("refRewards", 0),
         )
 
-@dataclass(slots=True)
+@dataclass
 class TgResource(Base):
     """
     Represents a TgResourse entity returned by the xRocket Pay API.
@@ -317,8 +355,12 @@ class TgResource(Base):
             username=j.get("username")
         )
 
-@dataclass(slots=True)
+@dataclass
 class PaginatedCheque(Base):
+    """
+    Represents a PaginatedCheque entity returned by the xRocket Pay API.
+    """
+    
     total: int
     """Total times"""
     limit: int
@@ -337,8 +379,12 @@ class PaginatedCheque(Base):
             results=[Cheque.from_api(cheque) for cheque in j.get('results', [])]
         )
 
-@dataclass(slots=True)
+@dataclass
 class DateTimeStr(str, Base):
+    """
+    Time object, to comfortable get time from the api
+    """
+    
     value: str|None
     raw: Any
     datetime: datetime
@@ -359,7 +405,7 @@ class DateTimeStr(str, Base):
     def __str__(self):
         return str(self.datetime)
     
-@dataclass(slots=True)
+@dataclass
 class Invoice(Base):
     """
     Represents a Invoice entity returned by the xRocket Pay API.
@@ -418,8 +464,12 @@ class Invoice(Base):
             link=j.get("link")
         )
 
-@dataclass(slots=True)
+@dataclass
 class PaginatedInvoice(Base):
+    """
+    Represents a PaginatedInvoice entity returned by the xRocket Pay API.
+    """
+    
     total: int
     """Total times"""
     limit: int
@@ -438,7 +488,7 @@ class PaginatedInvoice(Base):
             results=[Invoice.from_api(cheque) for cheque in j.get('results', [])]
         )
     
-@dataclass(slots=True)
+@dataclass
 class WithdrawalFee(Base):
     """
     Represents a WithdrawalFee entity returned by the xRocket Pay API.
@@ -463,7 +513,7 @@ class WithdrawalFee(Base):
             ]
         )
 
-@dataclass(slots=True)
+@dataclass
 class Currency(Base):
     """
     Represents a Currency entity returned by the xRocket Pay API.

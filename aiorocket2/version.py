@@ -19,6 +19,9 @@
 #  Documentation: https://aiorocket2.rimmirk.pp.ua
 #  Telegram: @RimMirK
 
+"""
+version of aiorocket2
+"""
 
 __all__ = [
     '__version__'

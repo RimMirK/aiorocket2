@@ -19,11 +19,17 @@
 #  Documentation: https://aiorocket2.rimmirk.pp.ua
 #  Telegram: @RimMirK
 
+"""
+Tag tg-invoices from the API
+"""
+
 from ..models import Invoice, PaginatedInvoice
 
 
 class TgInvoices:
-    
+    """
+    Tag tg-invoices from the API
+    """
 
     async def create_invoice(
         self,
@@ -122,4 +128,4 @@ class TgInvoices:
             True: on success otherwise raises xRocketAPIError
         """
         r = await self._request("DELETE", f"tg-invoices/{invoice_id}")
-        return r['success'] == True
+        return r['success'] is True
