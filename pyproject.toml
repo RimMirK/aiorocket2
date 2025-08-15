@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "aiorocket2"
 description = "Asynchronous Python client for xRocket API."
 readme = "README.md"
-license = { text = "GPL-3.0-only" }
+license = { text = "GNU GPLv3" }
 requires-python = ">=3.7"
 authors = [
     { name = "RimMirK", email = "me@rimmirk.pp.ua" }
