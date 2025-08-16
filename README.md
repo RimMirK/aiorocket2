@@ -52,7 +52,7 @@ async def main():
     info = await client.get_info()
     print(info)
     
-    # Example: create a payment
+    # Example: create a invoice
     invoice = await client.create_invoice(
         amount=10, # 10 USDT to pay
         min_payment=0, # For single payment pass 0
