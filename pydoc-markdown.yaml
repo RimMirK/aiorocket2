@@ -1,0 +1,7 @@
+loader:
+  type: python
+  search_path: aiorocket2
+
+renderer:
+  type: markdown
+  filename: docs-website/docs/aiorocket2.md

@@ -1,3 +1,6 @@
+---
+sidebar_position: 1
+---
 # aiorocket2 🚀
 
 [![PyPI](https://img.shields.io/pypi/v/aiorocket2?color=blue&logo=python&style=flat-square)](https://pypi.org/project/aiorocket2/)
@@ -10,8 +13,7 @@
 All types, enums, and data structures are mirrored as closely as possible to the original API.
 
 ---
-<img src="docs-website/static/img/aiorocket_logo.png" width="333">
-
+<img src="/img/aiorocket_logo.png" width="333" />
 ---
 
 ## 🚀 Features
@@ -44,7 +46,7 @@ pip install aiorocket2
 
 ## ⚡ Quick Start
 
-```python
+```py showLineNumberss
 import asyncio
 from aiorocket2 import xRocketClient
 
@@ -55,7 +57,7 @@ async def main():
     info = await client.get_info()
     print(info)
     
-    # Example: create a payment
+    # Example: create a invoice
     invoice = await client.create_invoice(
         amount=10, # 10 USDT to pay
         min_payment=0, # For single payment pass 0
@@ -69,29 +71,3 @@ async def main():
 
 asyncio.run(main())
 ```
-
-> All library methods mirror the xRocket API exactly, including types, required and optional parameters.
-
----
-
-## 📚 Documentation
-
-Full documentation is available online: [aiorocket2 Docs](https://aiorocket2.rimmirk.pp.ua)
-Includes:
-
-* Description of all API methods
-* Usage examples
-* List of all enums and data structures
-
----
-
-## 👨‍💻 Authors
-
-* [RimMirK](https://github.com/RimMirK)
-
----
-
-## 📝 License
-
-This project is licensed under **GNU GPLv3**.
-[Full license text](https://www.gnu.org/licenses/gpl-3.0.en.html)
