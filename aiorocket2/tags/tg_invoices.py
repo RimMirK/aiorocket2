@@ -47,20 +47,25 @@ class TgInvoices:
     ) -> Invoice:
         """
         Create invoice
-        
+
         Args:
-            amount (float): Invoice amount. 9 decimal places, others cut off. Minimum 0. Maximum 1_000_000
-            min_payment (float): Min payment only for multi invoice if invoice amount is None. Minimum 0. Maximum 1_000_000
+            amount (float): Invoice amount. 9 decimal places, others cut off. Minimum 0. \
+                Maximum 1_000_000
+            min_payment (float): Min payment only for multi invoice if invoice amount is None. \
+                Minimum 0. Maximum 1_000_000
             num_payments (int): Num payments for invoice. Minimum 0. Maximum 1_000_000
             currency (str): Currency of transfer, info `xRocketClient.get_available_currencies()`
             description (str): Optional. Description for invoice. Maximum 1000
             hidden_message (str): Optional. Hidden message after invoice is paid. Maximum 2000
             comments_enabled (bool): Optional. Allow comments. Default False
             callback_url (str): Optional. Url for Return button after invoice is paid. Maximum 500
-            payload (str): Optional. Any data. Invisible to user, will be returned in callback. Maximum 4000
-            expired_in (int): Optional. Invoice expire time in seconds, max 1 day, 0 - none expired. Minimum 0. Maximum 86400. Default 0
+            payload (str): Optional. Any data. Invisible to user, will be returned in callback. \
+                Maximum 4000
+            expired_in (int): Optional. Invoice expire time in seconds, \
+                max 1 day, 0 - none expired. \
+                Minimum 0. Maximum 86400. Default 0
             platform_id (str): Optional. Platform identifier
-        
+
         Returns:
             Invoice:
         """
@@ -69,13 +74,13 @@ class TgInvoices:
             "minPayment": min_payment,
             "numPayments": num_payments,
             "currency": currency,
-            "description": description, 
-            "hiddenMessage": hidden_message, 
-            "commentsEnabled": comments_enabled, 
-            "callbackUrl": callback_url, 
-            "payload": payload, 
-            "expiredIn": expired_in, 
-            "platformId": platform_id, 
+            "description": description,
+            "hiddenMessage": hidden_message,
+            "commentsEnabled": comments_enabled,
+            "callbackUrl": callback_url,
+            "payload": payload,
+            "expiredIn": expired_in,
+            "platformId": platform_id,
         }
         r = await self._request("POST", "tg-invoices", json=api_payload)
         return Invoice.from_api(r["data"])
@@ -87,11 +92,11 @@ class TgInvoices:
     ) -> PaginatedInvoice:
         """
         Get list of invoices
-        
+
         Args:
             limit (int): Minimum 1. Maximum 1000. Default 100
             offset (int): Minimum 0. Default 0
-            
+
         Returns:
             PaginatedInvoice:
         """
@@ -123,7 +128,7 @@ class TgInvoices:
 
         Args:
             invoice_id (int): Invoice ID
-        
+
         Returns:
             True: on success otherwise raises xRocketAPIError
         """

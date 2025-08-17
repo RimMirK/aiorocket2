@@ -31,6 +31,7 @@ from .withdrawal_link import WithdrawalLink
 from .currencies import Currencies
 from .health import Health
 
+
 class Tags(
     Version, App, MultiCheque,
     TgInvoices, WithdrawalLink,
@@ -39,4 +40,3 @@ class Tags(
     """
     General class to join all tags together
     """
-    

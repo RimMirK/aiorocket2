@@ -43,15 +43,17 @@ class WithdrawalLink:
     ) -> Optional[str]:
         """
         Get withdrawal link
-        
+
         Args:
-            currency (str): Currency code (`xRocketClient.get_available_currencies()`)
+            currency (str): Currency code \
+                (`xRocketClient.get_available_currencies()`)
             network (Network): Network code
             address (str): Target withdrawal address
             amount (float): Optional. Withdrawal amount. Default 0
             comment (str): Optional. Withdrawal comment
-            platform (str): Optional. Platform identifier (optional, use only if provided by xRocket)
-        
+            platform (str): Optional. Platform identifier \
+                (optional, use only if provided by xRocket)
+
         Returns:
             str: Telegram app link
         """
@@ -65,7 +67,7 @@ class WithdrawalLink:
             params['comment'] = comment
         if platform:
             params['platform'] = platform
-            
+
         r = await self._request("GET", "withdrawal-link", params=params)
         link = r.get('data', {}).get('telegramAppLink')
         if link:

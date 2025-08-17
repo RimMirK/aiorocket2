@@ -488,6 +488,7 @@ class PaginatedInvoice(Base):
             results=[Invoice.from_api(cheque) for cheque in j.get('results', [])]
         )
     
+
 @dataclass
 class WithdrawalFee(Base):
     """
@@ -512,6 +513,7 @@ class WithdrawalFee(Base):
                 ) for network in j.get('networks', [])
             ]
         )
+
 
 @dataclass
 class Currency(Base):

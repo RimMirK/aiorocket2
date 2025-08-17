@@ -32,6 +32,7 @@ __all__ = [
     "backoff_sleep"
 ]
 
+
 def generate_idempotency_id() -> str:
     """
     Generate a simple idempotency identifier based on the current timestamp.
@@ -40,7 +41,9 @@ def generate_idempotency_id() -> str:
     """
     return str(time.time())
 
+
 gii = generate_idempotency_id
+
 
 async def backoff_sleep(attempt: int, base: float) -> None:
     """

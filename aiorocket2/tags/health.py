@@ -33,10 +33,9 @@ class Health:
     async def check_health(self) -> Status:
         """
         Return API Status
-        
+
         Returns:
-            Status: 
+            Status:
         """
         r = await self._request("GET", "health", require_success=False)
         return Status(r.get('status') or "UNKNOWN")
-    
