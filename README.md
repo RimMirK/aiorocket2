@@ -1,4 +1,4 @@
-# aiorocket2 🚀
+# ![aiorocket2 🚀](.github/logo+name.png)
 
 [![PyPI](https://img.shields.io/pypi/v/aiorocket2?color=blue&logo=python&style=flat-square)](https://pypi.org/project/aiorocket2/)
 [![Python Version](https://img.shields.io/pypi/pyversions/aiorocket2?style=flat-square)](https://www.python.org/)
