@@ -5,6 +5,7 @@
 [![License](https://img.shields.io/badge/license-GPLv3-blue?style=flat-square)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 [![Documentation](https://img.shields.io/badge/docs-online-brightgreen?style=flat-square)](https://aiorocket2.rimmirk.pp.ua)
 [![Issues](https://img.shields.io/github/issues/RimMirK/aiorocket2?style=flat-square)](https://github.com/RimMirK/aiorocket2/issues)
+[![StandWithUkraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg)](https://github.com/vshymanskyy/StandWithUkraine/blob/main/docs/README.md)
 
 **aiorocket2** is an asynchronous Python client for the **xRocket Pay API**, providing full access to all methods and parameters of the payment system.  
 All types, enums, and data structures are mirrored as closely as possible to the original API.
