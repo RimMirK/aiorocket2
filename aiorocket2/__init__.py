@@ -26,7 +26,7 @@ aiorocket2 — idiomatic async Python client for the xRocket Pay API.
 from .version import __version__
 __author__ = "RimMirK"
 __license__ = "GPL-3.0"
-__copyright__ = "Copyright (c) 2025 RimMirK"
+__copyright__ = "Copyright (c) 2026 RimMirK"
 __title__ = "aiorocket2"
 __summary__ = "Async client for xRocket Pay API"
 __url__ = "https://github.com/RimMirK/aiorocket2"
