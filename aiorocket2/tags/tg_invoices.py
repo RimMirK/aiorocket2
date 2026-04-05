@@ -36,7 +36,7 @@ class TgInvoices:
         currency: str,
         amount: float = None,
         min_payment: float = None,
-        num_payments: int = None,
+        num_payments: int = 1,
         description: str = None,
         hidden_message: str = None,
         comments_enabled: bool = False,
