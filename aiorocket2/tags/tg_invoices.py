@@ -33,10 +33,10 @@ class TgInvoices:
 
     async def create_invoice(
         self,
-        amount: float,
-        min_payment: float,
-        num_payments: int,
         currency: str,
+        amount: float = None,
+        min_payment: float = None,
+        num_payments: int = None,
         description: str = None,
         hidden_message: str = None,
         comments_enabled: bool = False,
@@ -49,10 +49,10 @@ class TgInvoices:
         Create invoice
         
         Args:
-            amount (float): Invoice amount. 9 decimal places, others cut off. Minimum 0. Maximum 1_000_000
-            min_payment (float): Min payment only for multi invoice if invoice amount is None. Minimum 0. Maximum 1_000_000
-            num_payments (int): Num payments for invoice. Minimum 0. Maximum 1_000_000
             currency (str): Currency of transfer, info `xRocketClient.get_available_currencies()`
+            amount (float): Optional. Invoice amount. 9 decimal places, others cut off. Minimum 0. Maximum 1_000_000
+            min_payment (float): Optional. Min payment only for multi invoice if invoice amount is None. Minimum 0. Maximum 1_000_000
+            num_payments (int): Optional. Num payments for invoice. Minimum 0. Maximum 1_000_000
             description (str): Optional. Description for invoice. Maximum 1000
             hidden_message (str): Optional. Hidden message after invoice is paid. Maximum 2000
             comments_enabled (bool): Optional. Allow comments. Default False
