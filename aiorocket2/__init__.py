@@ -16,7 +16,7 @@
 #  along with aiorocket2.  If not, see the LICENSE file.
 #
 #  Repository: https://github.com/RimMirK/aiorocket2
-#  Documentation: https://aiorocket2.rimmirk.pp.ua
+#  Documentation: https://docs.aiorocket2.rimmirk.dev
 #  Telegram: @RimMirK
 
 
@@ -30,7 +30,7 @@ __copyright__ = "Copyright (c) 2026 RimMirK"
 __title__ = "aiorocket2"
 __summary__ = "Async client for xRocket Pay API"
 __url__ = "https://github.com/RimMirK/aiorocket2"
-__docs__ = "https://aiorocket2.rimmirk.pp.ua"
+__docs__ = "https://docs.aiorocket2.rimmirk.dev"
 __email__ = "me@RimMirK.pp.ua"
 __maintainer__ = "RimMirK"
 __credits__ = ["RimMirK"]

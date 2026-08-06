@@ -39,10 +39,17 @@ classifiers = [
 
 [project.urls]
 Homepage = "https://github.com/RimMirK/aiorocket2"
-Documentation = "https://aiorocket2.rimmirk.pp.ua"
+Documentation = "https://docs.aiorocket2.rimmirk.dev"
 Repository = "https://github.com/RimMirK/aiorocket2"
 Issues = "https://github.com/RimMirK/aiorocket2/issues"
 
+[project.optional-dependencies]
+docs = [
+    "sphinx>=7.0",
+    "furo>=2024.8.6",
+    "sphinx-copybutton>=0.5",
+    "sphinx-design>=0.6",
+]
 
 [tool.setuptools]
 packages = ["aiorocket2"]
