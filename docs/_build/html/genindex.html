@@ -1,0 +1,2253 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="./">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="#"><link rel="search" title="Search" href="search.html">
+        <link rel="prefetch" href="_static/logo+name-lt.png" as="image">
+
+    <link rel="shortcut icon" href="_static/logo_round.png"><!-- Generated with Sphinx 9.1.0 and Furo 2025.12.19 --><title>Index - aiorocket2</title>
+<link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d111a655" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=8dab3a3b" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=51d6ecb4" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f2f2f2;
+  --color-code-foreground: #1e1e1e;
+  --color-brand-primary: #2563eb;
+  --color-brand-content: #1d4ed8;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-brand-primary: #60a5fa;
+  --color-brand-content: #93c5fd;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-brand-primary: #60a5fa;
+  --color-brand-content: #93c5fd;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">aiorocket2</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="_static/logo+name-lt.png" alt="Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">aiorocket2</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Documentation</span></p>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="api/index.html">API reference</a><input aria-label="Toggle navigation of API reference" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/generated/aiorocket2.client.html">aiorocket2.client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/generated/aiorocket2.models.html">aiorocket2.models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/generated/aiorocket2.enums.html">aiorocket2.enums</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/generated/aiorocket2.exceptions.html">aiorocket2.exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/generated/aiorocket2.utils.html">aiorocket2.utils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/generated/aiorocket2.tags.html">aiorocket2.tags</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about_me.html">About me</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          
+<section class="genindex-section">
+  <h1 id="index">Index</h1>
+  <div class="genindex-jumpbox"><a href="#_"><strong>_</strong></a> | <a href="#A"><strong>A</strong></a> | <a href="#B"><strong>B</strong></a> | <a href="#C"><strong>C</strong></a> | <a href="#D"><strong>D</strong></a> | <a href="#E"><strong>E</strong></a> | <a href="#F"><strong>F</strong></a> | <a href="#G"><strong>G</strong></a> | <a href="#H"><strong>H</strong></a> | <a href="#I"><strong>I</strong></a> | <a href="#J"><strong>J</strong></a> | <a href="#K"><strong>K</strong></a> | <a href="#L"><strong>L</strong></a> | <a href="#M"><strong>M</strong></a> | <a href="#N"><strong>N</strong></a> | <a href="#O"><strong>O</strong></a> | <a href="#P"><strong>P</strong></a> | <a href="#Q"><strong>Q</strong></a> | <a href="#R"><strong>R</strong></a> | <a href="#S"><strong>S</strong></a> | <a href="#T"><strong>T</strong></a> | <a href="#U"><strong>U</strong></a> | <a href="#V"><strong>V</strong></a> | <a href="#W"><strong>W</strong></a> | <a href="#X"><strong>X</strong></a> | <a href="#Y"><strong>Y</strong></a> | <a href="#Z"><strong>Z</strong></a></div>
+</section>
+<section id="_" class="genindex-section">
+  <h2>_</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/generated/aiorocket2.client.html#aiorocket2.client.xRocketClient.__init__">__init__() (aiorocket2.client.xRocketClient method)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="A" class="genindex-section">
+  <h2>A</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/generated/aiorocket2.client.html#aiorocket2.client.xRocketClient.aclose">aclose() (aiorocket2.client.xRocketClient method)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Cheque.activations">activations (aiorocket2.models.Cheque attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Invoice.activations_left">activations_left (aiorocket2.models.Invoice attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.ChequeState.ACTIVE">ACTIVE (aiorocket2.enums.ChequeState attribute)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.InvoiceStatus.ACTIVE">(aiorocket2.enums.InvoiceStatus attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.AD">AD (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.exceptions.html#aiorocket2.exceptions.xRocketAPIError.add_note">add_note() (aiorocket2.exceptions.xRocketAPIError method)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Withdrawal.address">address (aiorocket2.models.Withdrawal attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.AE">AE (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.AF">AF (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.AG">AG (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.AI">AI (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li>
+    aiorocket2.client
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.client.html#module-aiorocket2.client">module</a>
+</li>
+        </ul></li>
+        <li>
+    aiorocket2.enums
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.enums.html#module-aiorocket2.enums">module</a>
+</li>
+        </ul></li>
+        <li>
+    aiorocket2.exceptions
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.exceptions.html#module-aiorocket2.exceptions">module</a>
+</li>
+        </ul></li>
+        <li>
+    aiorocket2.models
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.models.html#module-aiorocket2.models">module</a>
+</li>
+        </ul></li>
+        <li>
+    aiorocket2.tags
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.tags.html#module-aiorocket2.tags">module</a>
+</li>
+        </ul></li>
+        <li>
+    aiorocket2.utils
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.utils.html#module-aiorocket2.utils">module</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.AL">AL (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.AM">AM (aiorocket2.enums.Country attribute)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Invoice.amount">amount (aiorocket2.models.Invoice attribute)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Transfer.amount">(aiorocket2.models.Transfer attribute)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Withdrawal.amount">(aiorocket2.models.Withdrawal attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.AO">AO (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.AQ">AQ (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.AR">AR (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.exceptions.html#aiorocket2.exceptions.xRocketAPIError.args">args (aiorocket2.exceptions.xRocketAPIError attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.AS">AS (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Balance.as_dict">as_dict() (aiorocket2.models.Balance method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Cheque.as_dict">(aiorocket2.models.Cheque method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Currency.as_dict">(aiorocket2.models.Currency method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Info.as_dict">(aiorocket2.models.Info method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Invoice.as_dict">(aiorocket2.models.Invoice method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.PaginatedCheque.as_dict">(aiorocket2.models.PaginatedCheque method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.PaginatedInvoice.as_dict">(aiorocket2.models.PaginatedInvoice method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.TgResource.as_dict">(aiorocket2.models.TgResource method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Transfer.as_dict">(aiorocket2.models.Transfer method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Withdrawal.as_dict">(aiorocket2.models.Withdrawal method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.WithdrawalCoin.as_dict">(aiorocket2.models.WithdrawalCoin method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.WithdrawalCoinFees.as_dict">(aiorocket2.models.WithdrawalCoinFees method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.WithdrawalFee.as_dict">(aiorocket2.models.WithdrawalFee method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.AT">AT (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.AU">AU (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.AW">AW (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.AX">AX (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.AZ">AZ (aiorocket2.enums.Country attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="B" class="genindex-section">
+  <h2>B</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.BA">BA (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.utils.html#aiorocket2.utils.backoff_sleep">backoff_sleep() (in module aiorocket2.utils)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Balance.balance">balance (aiorocket2.models.Balance attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Balance">Balance (class in aiorocket2.models)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Info.balances">balances (aiorocket2.models.Info attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.BB">BB (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.BD">BD (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.BE">BE (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.BF">BF (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.BG">BG (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.BH">BH (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.BI">BI (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.BJ">BJ (aiorocket2.enums.Country attribute)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.BL">BL (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.BM">BM (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.BN">BN (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.BO">BO (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.BQ">BQ (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.BR">BR (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.BS">BS (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Network.BSC">BSC (aiorocket2.enums.Network attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.BT">BT (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Network.BTC">BTC (aiorocket2.enums.Network attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.BV">BV (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.BW">BW (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.BY">BY (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.BZ">BZ (aiorocket2.enums.Country attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="C" class="genindex-section">
+  <h2>C</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.CA">CA (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Invoice.callback_url">callback_url (aiorocket2.models.Invoice attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.ChequeState.capitalize">capitalize() (aiorocket2.enums.ChequeState method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.capitalize">(aiorocket2.enums.Country method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.InvoiceStatus.capitalize">(aiorocket2.enums.InvoiceStatus method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Network.capitalize">(aiorocket2.enums.Network method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Status.capitalize">(aiorocket2.enums.Status method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.WithdrawalStatus.capitalize">(aiorocket2.enums.WithdrawalStatus method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Cheque.captcha_enabled">captcha_enabled (aiorocket2.models.Cheque attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.ChequeState.casefold">casefold() (aiorocket2.enums.ChequeState method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.casefold">(aiorocket2.enums.Country method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.InvoiceStatus.casefold">(aiorocket2.enums.InvoiceStatus method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Network.casefold">(aiorocket2.enums.Network method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Status.casefold">(aiorocket2.enums.Status method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.WithdrawalStatus.casefold">(aiorocket2.enums.WithdrawalStatus method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.CC">CC (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.CD">CD (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.ChequeState.center">center() (aiorocket2.enums.ChequeState method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.center">(aiorocket2.enums.Country method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.InvoiceStatus.center">(aiorocket2.enums.InvoiceStatus method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Network.center">(aiorocket2.enums.Network method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Status.center">(aiorocket2.enums.Status method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.WithdrawalStatus.center">(aiorocket2.enums.WithdrawalStatus method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.CF">CF (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.CG">CG (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.CH">CH (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.client.html#aiorocket2.client.xRocketClient.check_health">check_health() (aiorocket2.client.xRocketClient method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.tags.html#aiorocket2.tags.Tags.check_health">(aiorocket2.tags.Tags method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Cheque">Cheque (class in aiorocket2.models)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.ChequeState">ChequeState (class in aiorocket2.enums)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.CI">CI (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.CK">CK (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.CL">CL (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.CM">CM (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.CN">CN (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.CO">CO (aiorocket2.enums.Country attribute)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.WithdrawalCoin.code">code (aiorocket2.models.WithdrawalCoin attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Withdrawal.comment">comment (aiorocket2.models.Withdrawal attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Invoice.comments_enabled">comments_enabled (aiorocket2.models.Invoice attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.ChequeState.COMPLETED">COMPLETED (aiorocket2.enums.ChequeState attribute)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.WithdrawalStatus.COMPLETED">(aiorocket2.enums.WithdrawalStatus attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.ChequeState.count">count() (aiorocket2.enums.ChequeState method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.count">(aiorocket2.enums.Country method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.InvoiceStatus.count">(aiorocket2.enums.InvoiceStatus method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Network.count">(aiorocket2.enums.Network method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Status.count">(aiorocket2.enums.Status method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.WithdrawalStatus.count">(aiorocket2.enums.WithdrawalStatus method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country">Country (class in aiorocket2.enums)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.CR">CR (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.client.html#aiorocket2.client.xRocketClient.create_invoice">create_invoice() (aiorocket2.client.xRocketClient method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.tags.html#aiorocket2.tags.Tags.create_invoice">(aiorocket2.tags.Tags method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.client.html#aiorocket2.client.xRocketClient.create_multi_cheque">create_multi_cheque() (aiorocket2.client.xRocketClient method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.tags.html#aiorocket2.tags.Tags.create_multi_cheque">(aiorocket2.tags.Tags method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.client.html#aiorocket2.client.xRocketClient.create_withdrawal">create_withdrawal() (aiorocket2.client.xRocketClient method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.tags.html#aiorocket2.tags.Tags.create_withdrawal">(aiorocket2.tags.Tags method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.WithdrawalStatus.CREATED">CREATED (aiorocket2.enums.WithdrawalStatus attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Invoice.created">created (aiorocket2.models.Invoice attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.CU">CU (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Balance.currency">currency (aiorocket2.models.Balance attribute)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Cheque.currency">(aiorocket2.models.Cheque attribute)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Currency.currency">(aiorocket2.models.Currency attribute)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Invoice.currency">(aiorocket2.models.Invoice attribute)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Transfer.currency">(aiorocket2.models.Transfer attribute)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Withdrawal.currency">(aiorocket2.models.Withdrawal attribute)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.WithdrawalCoinFees.currency">(aiorocket2.models.WithdrawalCoinFees attribute)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.WithdrawalFee.currency">(aiorocket2.models.WithdrawalFee attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Currency">Currency (class in aiorocket2.models)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.CV">CV (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.CW">CW (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.CX">CX (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.CY">CY (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.CZ">CZ (aiorocket2.enums.Country attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="D" class="genindex-section">
+  <h2>D</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.DE">DE (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.client.html#aiorocket2.client.xRocketClient.delete_invoice">delete_invoice() (aiorocket2.client.xRocketClient method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.tags.html#aiorocket2.tags.Tags.delete_invoice">(aiorocket2.tags.Tags method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.client.html#aiorocket2.client.xRocketClient.delete_multi_cheque">delete_multi_cheque() (aiorocket2.client.xRocketClient method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.tags.html#aiorocket2.tags.Tags.delete_multi_cheque">(aiorocket2.tags.Tags method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Cheque.description">description (aiorocket2.models.Cheque attribute)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Invoice.description">(aiorocket2.models.Invoice attribute)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Transfer.description">(aiorocket2.models.Transfer attribute)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Cheque.disabled_languages">disabled_languages (aiorocket2.models.Cheque attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.DJ">DJ (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.DK">DK (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.DM">DM (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.DO">DO (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.ChequeState.DRAFT">DRAFT (aiorocket2.enums.ChequeState attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.DZ">DZ (aiorocket2.enums.Country attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="E" class="genindex-section">
+  <h2>E</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.EC">EC (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.client.html#aiorocket2.client.xRocketClient.edit_multi_cheque">edit_multi_cheque() (aiorocket2.client.xRocketClient method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.tags.html#aiorocket2.tags.Tags.edit_multi_cheque">(aiorocket2.tags.Tags method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.EE">EE (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.EG">EG (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.EH">EH (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Cheque.enabled_countries">enabled_countries (aiorocket2.models.Cheque attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.ChequeState.encode">encode() (aiorocket2.enums.ChequeState method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.encode">(aiorocket2.enums.Country method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.InvoiceStatus.encode">(aiorocket2.enums.InvoiceStatus method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Network.encode">(aiorocket2.enums.Network method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Status.encode">(aiorocket2.enums.Status method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.WithdrawalStatus.encode">(aiorocket2.enums.WithdrawalStatus method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.ChequeState.endswith">endswith() (aiorocket2.enums.ChequeState method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.endswith">(aiorocket2.enums.Country method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.InvoiceStatus.endswith">(aiorocket2.enums.InvoiceStatus method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Network.endswith">(aiorocket2.enums.Network method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Status.endswith">(aiorocket2.enums.Status method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.WithdrawalStatus.endswith">(aiorocket2.enums.WithdrawalStatus method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.ER">ER (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Status.ERROR">ERROR (aiorocket2.enums.Status attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.ES">ES (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.ET">ET (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Network.ETH">ETH (aiorocket2.enums.Network attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.ChequeState.expandtabs">expandtabs() (aiorocket2.enums.ChequeState method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.expandtabs">(aiorocket2.enums.Country method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.InvoiceStatus.expandtabs">(aiorocket2.enums.InvoiceStatus method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Network.expandtabs">(aiorocket2.enums.Network method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Status.expandtabs">(aiorocket2.enums.Status method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.WithdrawalStatus.expandtabs">(aiorocket2.enums.WithdrawalStatus method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.InvoiceStatus.EXPIRED">EXPIRED (aiorocket2.enums.InvoiceStatus attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Invoice.expired_in">expired_in (aiorocket2.models.Invoice attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="F" class="genindex-section">
+  <h2>F</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.WithdrawalStatus.FAIL">FAIL (aiorocket2.enums.WithdrawalStatus attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.WithdrawalCoinFees.fee">fee (aiorocket2.models.WithdrawalCoinFees attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Info.fee_percents">fee_percents (aiorocket2.models.Info attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.WithdrawalCoin.fees">fees (aiorocket2.models.WithdrawalCoin attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.FI">FI (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.ChequeState.find">find() (aiorocket2.enums.ChequeState method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.find">(aiorocket2.enums.Country method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.InvoiceStatus.find">(aiorocket2.enums.InvoiceStatus method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Network.find">(aiorocket2.enums.Network method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Status.find">(aiorocket2.enums.Status method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.WithdrawalStatus.find">(aiorocket2.enums.WithdrawalStatus method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.FJ">FJ (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.FK">FK (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.FM">FM (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.FO">FO (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Cheque.for_new_users_only">for_new_users_only (aiorocket2.models.Cheque attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Cheque.for_premium">for_premium (aiorocket2.models.Cheque attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.ChequeState.format">format() (aiorocket2.enums.ChequeState method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.format">(aiorocket2.enums.Country method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.InvoiceStatus.format">(aiorocket2.enums.InvoiceStatus method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Network.format">(aiorocket2.enums.Network method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Status.format">(aiorocket2.enums.Status method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.WithdrawalStatus.format">(aiorocket2.enums.WithdrawalStatus method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.ChequeState.format_map">format_map() (aiorocket2.enums.ChequeState method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.format_map">(aiorocket2.enums.Country method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.InvoiceStatus.format_map">(aiorocket2.enums.InvoiceStatus method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Network.format_map">(aiorocket2.enums.Network method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Status.format_map">(aiorocket2.enums.Status method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.WithdrawalStatus.format_map">(aiorocket2.enums.WithdrawalStatus method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.FR">FR (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Balance.from_api">from_api() (aiorocket2.models.Balance class method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Cheque.from_api">(aiorocket2.models.Cheque class method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Currency.from_api">(aiorocket2.models.Currency class method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Info.from_api">(aiorocket2.models.Info class method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Invoice.from_api">(aiorocket2.models.Invoice class method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.PaginatedCheque.from_api">(aiorocket2.models.PaginatedCheque class method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.PaginatedInvoice.from_api">(aiorocket2.models.PaginatedInvoice class method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.TgResource.from_api">(aiorocket2.models.TgResource class method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Transfer.from_api">(aiorocket2.models.Transfer class method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Withdrawal.from_api">(aiorocket2.models.Withdrawal class method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.WithdrawalCoin.from_api">(aiorocket2.models.WithdrawalCoin class method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.WithdrawalCoinFees.from_api">(aiorocket2.models.WithdrawalCoinFees class method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.WithdrawalFee.from_api">(aiorocket2.models.WithdrawalFee class method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="G" class="genindex-section">
+  <h2>G</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.GA">GA (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.GB">GB (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.GD">GD (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.GE">GE (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.utils.html#aiorocket2.utils.generate_idempotency_id">generate_idempotency_id() (in module aiorocket2.utils)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.client.html#aiorocket2.client.xRocketClient.get_available_currencies">get_available_currencies() (aiorocket2.client.xRocketClient method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.tags.html#aiorocket2.tags.Tags.get_available_currencies">(aiorocket2.tags.Tags method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.client.html#aiorocket2.client.xRocketClient.get_info">get_info() (aiorocket2.client.xRocketClient method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.tags.html#aiorocket2.tags.Tags.get_info">(aiorocket2.tags.Tags method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.client.html#aiorocket2.client.xRocketClient.get_invoice">get_invoice() (aiorocket2.client.xRocketClient method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.tags.html#aiorocket2.tags.Tags.get_invoice">(aiorocket2.tags.Tags method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.client.html#aiorocket2.client.xRocketClient.get_invoices">get_invoices() (aiorocket2.client.xRocketClient method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.tags.html#aiorocket2.tags.Tags.get_invoices">(aiorocket2.tags.Tags method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.client.html#aiorocket2.client.xRocketClient.get_multi_cheque">get_multi_cheque() (aiorocket2.client.xRocketClient method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.tags.html#aiorocket2.tags.Tags.get_multi_cheque">(aiorocket2.tags.Tags method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.client.html#aiorocket2.client.xRocketClient.get_multi_cheques">get_multi_cheques() (aiorocket2.client.xRocketClient method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.tags.html#aiorocket2.tags.Tags.get_multi_cheques">(aiorocket2.tags.Tags method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.client.html#aiorocket2.client.xRocketClient.get_version">get_version() (aiorocket2.client.xRocketClient method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.tags.html#aiorocket2.tags.Tags.get_version">(aiorocket2.tags.Tags method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.client.html#aiorocket2.client.xRocketClient.get_withdrawal">get_withdrawal() (aiorocket2.client.xRocketClient method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.tags.html#aiorocket2.tags.Tags.get_withdrawal">(aiorocket2.tags.Tags method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/generated/aiorocket2.client.html#aiorocket2.client.xRocketClient.get_withdrawal_fees">get_withdrawal_fees() (aiorocket2.client.xRocketClient method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.tags.html#aiorocket2.tags.Tags.get_withdrawal_fees">(aiorocket2.tags.Tags method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.client.html#aiorocket2.client.xRocketClient.get_withdrawal_link">get_withdrawal_link() (aiorocket2.client.xRocketClient method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.tags.html#aiorocket2.tags.Tags.get_withdrawal_link">(aiorocket2.tags.Tags method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.client.html#aiorocket2.client.xRocketClient.get_withdrawal_status">get_withdrawal_status() (aiorocket2.client.xRocketClient method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.tags.html#aiorocket2.tags.Tags.get_withdrawal_status">(aiorocket2.tags.Tags method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.GF">GF (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.GG">GG (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.GH">GH (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.GI">GI (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.utils.html#aiorocket2.utils.gii">gii() (in module aiorocket2.utils)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.GL">GL (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.GM">GM (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.GN">GN (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.GP">GP (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.GQ">GQ (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.GR">GR (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.GS">GS (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.GT">GT (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.GU">GU (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.GW">GW (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.GY">GY (aiorocket2.enums.Country attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="H" class="genindex-section">
+  <h2>H</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Invoice.hidden_message">hidden_message (aiorocket2.models.Invoice attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.HK">HK (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.HM">HM (aiorocket2.enums.Country attribute)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.HN">HN (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.HR">HR (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.HT">HT (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.HU">HU (aiorocket2.enums.Country attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="I" class="genindex-section">
+  <h2>I</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.ID">ID (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Cheque.id">id (aiorocket2.models.Cheque attribute)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Invoice.id">(aiorocket2.models.Invoice attribute)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Transfer.id">(aiorocket2.models.Transfer attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.IE">IE (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.IL">IL (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.IM">IM (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.IN">IN (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.ChequeState.index">index() (aiorocket2.enums.ChequeState method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.index">(aiorocket2.enums.Country method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.InvoiceStatus.index">(aiorocket2.enums.InvoiceStatus method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Network.index">(aiorocket2.enums.Network method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Status.index">(aiorocket2.enums.Status method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.WithdrawalStatus.index">(aiorocket2.enums.WithdrawalStatus method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Info">Info (class in aiorocket2.models)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Invoice">Invoice (class in aiorocket2.models)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.InvoiceStatus">InvoiceStatus (class in aiorocket2.enums)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.IO">IO (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.IQ">IQ (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.IR">IR (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.IS">IS (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.ChequeState.isalnum">isalnum() (aiorocket2.enums.ChequeState method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.isalnum">(aiorocket2.enums.Country method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.InvoiceStatus.isalnum">(aiorocket2.enums.InvoiceStatus method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Network.isalnum">(aiorocket2.enums.Network method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Status.isalnum">(aiorocket2.enums.Status method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.WithdrawalStatus.isalnum">(aiorocket2.enums.WithdrawalStatus method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.ChequeState.isalpha">isalpha() (aiorocket2.enums.ChequeState method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.isalpha">(aiorocket2.enums.Country method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.InvoiceStatus.isalpha">(aiorocket2.enums.InvoiceStatus method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Network.isalpha">(aiorocket2.enums.Network method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Status.isalpha">(aiorocket2.enums.Status method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.WithdrawalStatus.isalpha">(aiorocket2.enums.WithdrawalStatus method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.ChequeState.isascii">isascii() (aiorocket2.enums.ChequeState method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.isascii">(aiorocket2.enums.Country method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.InvoiceStatus.isascii">(aiorocket2.enums.InvoiceStatus method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Network.isascii">(aiorocket2.enums.Network method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Status.isascii">(aiorocket2.enums.Status method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.WithdrawalStatus.isascii">(aiorocket2.enums.WithdrawalStatus method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.ChequeState.isdecimal">isdecimal() (aiorocket2.enums.ChequeState method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.isdecimal">(aiorocket2.enums.Country method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.InvoiceStatus.isdecimal">(aiorocket2.enums.InvoiceStatus method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Network.isdecimal">(aiorocket2.enums.Network method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Status.isdecimal">(aiorocket2.enums.Status method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.WithdrawalStatus.isdecimal">(aiorocket2.enums.WithdrawalStatus method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.ChequeState.isdigit">isdigit() (aiorocket2.enums.ChequeState method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.isdigit">(aiorocket2.enums.Country method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.InvoiceStatus.isdigit">(aiorocket2.enums.InvoiceStatus method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Network.isdigit">(aiorocket2.enums.Network method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Status.isdigit">(aiorocket2.enums.Status method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.WithdrawalStatus.isdigit">(aiorocket2.enums.WithdrawalStatus method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.ChequeState.isidentifier">isidentifier() (aiorocket2.enums.ChequeState method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.isidentifier">(aiorocket2.enums.Country method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.InvoiceStatus.isidentifier">(aiorocket2.enums.InvoiceStatus method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Network.isidentifier">(aiorocket2.enums.Network method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Status.isidentifier">(aiorocket2.enums.Status method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.WithdrawalStatus.isidentifier">(aiorocket2.enums.WithdrawalStatus method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.ChequeState.islower">islower() (aiorocket2.enums.ChequeState method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.islower">(aiorocket2.enums.Country method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.InvoiceStatus.islower">(aiorocket2.enums.InvoiceStatus method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Network.islower">(aiorocket2.enums.Network method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Status.islower">(aiorocket2.enums.Status method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.WithdrawalStatus.islower">(aiorocket2.enums.WithdrawalStatus method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.ChequeState.isnumeric">isnumeric() (aiorocket2.enums.ChequeState method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.isnumeric">(aiorocket2.enums.Country method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.InvoiceStatus.isnumeric">(aiorocket2.enums.InvoiceStatus method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Network.isnumeric">(aiorocket2.enums.Network method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Status.isnumeric">(aiorocket2.enums.Status method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.WithdrawalStatus.isnumeric">(aiorocket2.enums.WithdrawalStatus method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.ChequeState.isprintable">isprintable() (aiorocket2.enums.ChequeState method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.isprintable">(aiorocket2.enums.Country method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.InvoiceStatus.isprintable">(aiorocket2.enums.InvoiceStatus method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Network.isprintable">(aiorocket2.enums.Network method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Status.isprintable">(aiorocket2.enums.Status method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.WithdrawalStatus.isprintable">(aiorocket2.enums.WithdrawalStatus method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.ChequeState.isspace">isspace() (aiorocket2.enums.ChequeState method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.isspace">(aiorocket2.enums.Country method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.InvoiceStatus.isspace">(aiorocket2.enums.InvoiceStatus method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Network.isspace">(aiorocket2.enums.Network method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Status.isspace">(aiorocket2.enums.Status method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.WithdrawalStatus.isspace">(aiorocket2.enums.WithdrawalStatus method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.ChequeState.istitle">istitle() (aiorocket2.enums.ChequeState method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.istitle">(aiorocket2.enums.Country method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.InvoiceStatus.istitle">(aiorocket2.enums.InvoiceStatus method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Network.istitle">(aiorocket2.enums.Network method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Status.istitle">(aiorocket2.enums.Status method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.WithdrawalStatus.istitle">(aiorocket2.enums.WithdrawalStatus method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.ChequeState.isupper">isupper() (aiorocket2.enums.ChequeState method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.isupper">(aiorocket2.enums.Country method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.InvoiceStatus.isupper">(aiorocket2.enums.InvoiceStatus method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Network.isupper">(aiorocket2.enums.Network method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Status.isupper">(aiorocket2.enums.Status method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.WithdrawalStatus.isupper">(aiorocket2.enums.WithdrawalStatus method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.IT">IT (aiorocket2.enums.Country attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="J" class="genindex-section">
+  <h2>J</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.JE">JE (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.JM">JM (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.JO">JO (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.ChequeState.join">join() (aiorocket2.enums.ChequeState method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.join">(aiorocket2.enums.Country method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.InvoiceStatus.join">(aiorocket2.enums.InvoiceStatus method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Network.join">(aiorocket2.enums.Network method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Status.join">(aiorocket2.enums.Status method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.WithdrawalStatus.join">(aiorocket2.enums.WithdrawalStatus method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.JP">JP (aiorocket2.enums.Country attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="K" class="genindex-section">
+  <h2>K</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.KE">KE (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.KG">KG (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.KH">KH (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.KI">KI (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.KM">KM (aiorocket2.enums.Country attribute)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.KN">KN (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.KP">KP (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.KR">KR (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.KW">KW (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.KY">KY (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.KZ">KZ (aiorocket2.enums.Country attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="L" class="genindex-section">
+  <h2>L</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.LA">LA (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.LB">LB (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.LC">LC (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.LI">LI (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.PaginatedCheque.limit">limit (aiorocket2.models.PaginatedCheque attribute)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.PaginatedInvoice.limit">(aiorocket2.models.PaginatedInvoice attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Cheque.link">link (aiorocket2.models.Cheque attribute)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Invoice.link">(aiorocket2.models.Invoice attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Cheque.linked_wallet">linked_wallet (aiorocket2.models.Cheque attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.ChequeState.ljust">ljust() (aiorocket2.enums.ChequeState method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.ljust">(aiorocket2.enums.Country method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.InvoiceStatus.ljust">(aiorocket2.enums.InvoiceStatus method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Network.ljust">(aiorocket2.enums.Network method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Status.ljust">(aiorocket2.enums.Status method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.WithdrawalStatus.ljust">(aiorocket2.enums.WithdrawalStatus method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.LK">LK (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.ChequeState.lower">lower() (aiorocket2.enums.ChequeState method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.lower">(aiorocket2.enums.Country method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.InvoiceStatus.lower">(aiorocket2.enums.InvoiceStatus method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Network.lower">(aiorocket2.enums.Network method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Status.lower">(aiorocket2.enums.Status method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.WithdrawalStatus.lower">(aiorocket2.enums.WithdrawalStatus method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.LR">LR (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.LS">LS (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.ChequeState.lstrip">lstrip() (aiorocket2.enums.ChequeState method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.lstrip">(aiorocket2.enums.Country method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.InvoiceStatus.lstrip">(aiorocket2.enums.InvoiceStatus method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Network.lstrip">(aiorocket2.enums.Network method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Status.lstrip">(aiorocket2.enums.Status method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.WithdrawalStatus.lstrip">(aiorocket2.enums.WithdrawalStatus method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.LT">LT (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.LU">LU (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.LV">LV (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.LY">LY (aiorocket2.enums.Country attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="M" class="genindex-section">
+  <h2>M</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.MA">MA (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.ChequeState.maketrans">maketrans() (aiorocket2.enums.ChequeState static method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.maketrans">(aiorocket2.enums.Country static method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.InvoiceStatus.maketrans">(aiorocket2.enums.InvoiceStatus static method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Network.maketrans">(aiorocket2.enums.Network static method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Status.maketrans">(aiorocket2.enums.Status static method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.WithdrawalStatus.maketrans">(aiorocket2.enums.WithdrawalStatus static method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.MC">MC (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.MD">MD (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.ME">ME (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.exceptions.html#aiorocket2.exceptions.xRocketAPIError.message">message (aiorocket2.exceptions.xRocketAPIError attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.MF">MF (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.MG">MG (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.MH">MH (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Currency.min_cheque">min_cheque (aiorocket2.models.Currency attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Currency.min_invoice">min_invoice (aiorocket2.models.Currency attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Invoice.min_payment">min_payment (aiorocket2.models.Invoice attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Currency.min_transfer">min_transfer (aiorocket2.models.Currency attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Currency.min_withdraw">min_withdraw (aiorocket2.models.Currency attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.WithdrawalCoin.min_withdrawal">min_withdrawal (aiorocket2.models.WithdrawalCoin attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.MK">MK (aiorocket2.enums.Country attribute)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.ML">ML (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.MM">MM (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.MN">MN (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.MO">MO (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li>
+    module
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.client.html#module-aiorocket2.client">aiorocket2.client</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#module-aiorocket2.enums">aiorocket2.enums</a>
+</li>
+          <li><a href="api/generated/aiorocket2.exceptions.html#module-aiorocket2.exceptions">aiorocket2.exceptions</a>
+</li>
+          <li><a href="api/generated/aiorocket2.models.html#module-aiorocket2.models">aiorocket2.models</a>
+</li>
+          <li><a href="api/generated/aiorocket2.tags.html#module-aiorocket2.tags">aiorocket2.tags</a>
+</li>
+          <li><a href="api/generated/aiorocket2.utils.html#module-aiorocket2.utils">aiorocket2.utils</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.MP">MP (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.MQ">MQ (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.MR">MR (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.MS">MS (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.MT">MT (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.MU">MU (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.MV">MV (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.MW">MW (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.MX">MX (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.MY">MY (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.MZ">MZ (aiorocket2.enums.Country attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="N" class="genindex-section">
+  <h2>N</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.NA">NA (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Currency.name">name (aiorocket2.models.Currency attribute)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Info.name">(aiorocket2.models.Info attribute)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.TgResource.name">(aiorocket2.models.TgResource attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.NC">NC (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.NE">NE (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Withdrawal.network">network (aiorocket2.models.Withdrawal attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Network">Network (class in aiorocket2.enums)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.WithdrawalCoinFees.network_code">network_code (aiorocket2.models.WithdrawalCoinFees attribute)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.WithdrawalFee.networks">networks (aiorocket2.models.WithdrawalFee attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.NF">NF (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.NG">NG (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.NI">NI (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.NL">NL (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.NO">NO (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.NP">NP (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.NR">NR (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.NU">NU (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.NZ">NZ (aiorocket2.enums.Country attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="O" class="genindex-section">
+  <h2>O</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.PaginatedCheque.offset">offset (aiorocket2.models.PaginatedCheque attribute)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.PaginatedInvoice.offset">(aiorocket2.models.PaginatedInvoice attribute)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Status.OK">OK (aiorocket2.enums.Status attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.OM">OM (aiorocket2.enums.Country attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="P" class="genindex-section">
+  <h2>P</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.PA">PA (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.PaginatedCheque">PaginatedCheque (class in aiorocket2.models)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.PaginatedInvoice">PaginatedInvoice (class in aiorocket2.models)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.InvoiceStatus.PAID">PAID (aiorocket2.enums.InvoiceStatus attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Invoice.paid">paid (aiorocket2.models.Invoice attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.ChequeState.partition">partition() (aiorocket2.enums.ChequeState method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.partition">(aiorocket2.enums.Country method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.InvoiceStatus.partition">(aiorocket2.enums.InvoiceStatus method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Network.partition">(aiorocket2.enums.Network method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Status.partition">(aiorocket2.enums.Status method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.WithdrawalStatus.partition">(aiorocket2.enums.WithdrawalStatus method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Cheque.password">password (aiorocket2.models.Cheque attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.exceptions.html#aiorocket2.exceptions.xRocketAPIError.payload">payload (aiorocket2.exceptions.xRocketAPIError attribute)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Invoice.payload">(aiorocket2.models.Invoice attribute)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.PE">PE (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Cheque.per_user">per_user (aiorocket2.models.Cheque attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.PF">PF (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.PG">PG (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.PH">PH (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.PK">PK (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.PL">PL (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.PM">PM (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.PN">PN (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.PR">PR (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.PS">PS (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.PT">PT (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.PW">PW (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.PY">PY (aiorocket2.enums.Country attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="Q" class="genindex-section">
+  <h2>Q</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.QA">QA (aiorocket2.enums.Country attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="R" class="genindex-section">
+  <h2>R</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.RE">RE (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Cheque.ref_program_percents">ref_program_percents (aiorocket2.models.Cheque attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Cheque.ref_reward_per_user">ref_reward_per_user (aiorocket2.models.Cheque attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Cheque.ref_rewards">ref_rewards (aiorocket2.models.Cheque attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.ChequeState.removeprefix">removeprefix() (aiorocket2.enums.ChequeState method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.removeprefix">(aiorocket2.enums.Country method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.InvoiceStatus.removeprefix">(aiorocket2.enums.InvoiceStatus method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Network.removeprefix">(aiorocket2.enums.Network method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Status.removeprefix">(aiorocket2.enums.Status method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.WithdrawalStatus.removeprefix">(aiorocket2.enums.WithdrawalStatus method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.ChequeState.removesuffix">removesuffix() (aiorocket2.enums.ChequeState method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.removesuffix">(aiorocket2.enums.Country method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.InvoiceStatus.removesuffix">(aiorocket2.enums.InvoiceStatus method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Network.removesuffix">(aiorocket2.enums.Network method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Status.removesuffix">(aiorocket2.enums.Status method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.WithdrawalStatus.removesuffix">(aiorocket2.enums.WithdrawalStatus method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.ChequeState.replace">replace() (aiorocket2.enums.ChequeState method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.replace">(aiorocket2.enums.Country method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.InvoiceStatus.replace">(aiorocket2.enums.InvoiceStatus method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Network.replace">(aiorocket2.enums.Network method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Status.replace">(aiorocket2.enums.Status method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.WithdrawalStatus.replace">(aiorocket2.enums.WithdrawalStatus method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.PaginatedCheque.results">results (aiorocket2.models.PaginatedCheque attribute)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.PaginatedInvoice.results">(aiorocket2.models.PaginatedInvoice attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.ChequeState.rfind">rfind() (aiorocket2.enums.ChequeState method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.rfind">(aiorocket2.enums.Country method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.InvoiceStatus.rfind">(aiorocket2.enums.InvoiceStatus method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Network.rfind">(aiorocket2.enums.Network method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Status.rfind">(aiorocket2.enums.Status method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.WithdrawalStatus.rfind">(aiorocket2.enums.WithdrawalStatus method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.ChequeState.rindex">rindex() (aiorocket2.enums.ChequeState method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.rindex">(aiorocket2.enums.Country method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.InvoiceStatus.rindex">(aiorocket2.enums.InvoiceStatus method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Network.rindex">(aiorocket2.enums.Network method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Status.rindex">(aiorocket2.enums.Status method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.WithdrawalStatus.rindex">(aiorocket2.enums.WithdrawalStatus method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.ChequeState.rjust">rjust() (aiorocket2.enums.ChequeState method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.rjust">(aiorocket2.enums.Country method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.InvoiceStatus.rjust">(aiorocket2.enums.InvoiceStatus method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Network.rjust">(aiorocket2.enums.Network method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Status.rjust">(aiorocket2.enums.Status method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.WithdrawalStatus.rjust">(aiorocket2.enums.WithdrawalStatus method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.RO">RO (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.ChequeState.rpartition">rpartition() (aiorocket2.enums.ChequeState method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.rpartition">(aiorocket2.enums.Country method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.InvoiceStatus.rpartition">(aiorocket2.enums.InvoiceStatus method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Network.rpartition">(aiorocket2.enums.Network method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Status.rpartition">(aiorocket2.enums.Status method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.WithdrawalStatus.rpartition">(aiorocket2.enums.WithdrawalStatus method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.RS">RS (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.ChequeState.rsplit">rsplit() (aiorocket2.enums.ChequeState method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.rsplit">(aiorocket2.enums.Country method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.InvoiceStatus.rsplit">(aiorocket2.enums.InvoiceStatus method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Network.rsplit">(aiorocket2.enums.Network method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Status.rsplit">(aiorocket2.enums.Status method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.WithdrawalStatus.rsplit">(aiorocket2.enums.WithdrawalStatus method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.ChequeState.rstrip">rstrip() (aiorocket2.enums.ChequeState method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.rstrip">(aiorocket2.enums.Country method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.InvoiceStatus.rstrip">(aiorocket2.enums.InvoiceStatus method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Network.rstrip">(aiorocket2.enums.Network method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Status.rstrip">(aiorocket2.enums.Status method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.WithdrawalStatus.rstrip">(aiorocket2.enums.WithdrawalStatus method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.RU">RU (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.RW">RW (aiorocket2.enums.Country attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="S" class="genindex-section">
+  <h2>S</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.SA">SA (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.SB">SB (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.SC">SC (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.SD">SD (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.SE">SE (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Cheque.send_notifications">send_notifications (aiorocket2.models.Cheque attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.client.html#aiorocket2.client.xRocketClient.send_transfer">send_transfer() (aiorocket2.client.xRocketClient method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.tags.html#aiorocket2.tags.Tags.send_transfer">(aiorocket2.tags.Tags method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.SG">SG (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.SH">SH (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Status.SHUTTING_DOWN">SHUTTING_DOWN (aiorocket2.enums.Status attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.SI">SI (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.SJ">SJ (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.SK">SK (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.SL">SL (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.SM">SM (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.SN">SN (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.SO">SO (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Network.SOL">SOL (aiorocket2.enums.Network attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.ChequeState.split">split() (aiorocket2.enums.ChequeState method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.split">(aiorocket2.enums.Country method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.InvoiceStatus.split">(aiorocket2.enums.InvoiceStatus method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Network.split">(aiorocket2.enums.Network method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Status.split">(aiorocket2.enums.Status method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.WithdrawalStatus.split">(aiorocket2.enums.WithdrawalStatus method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.ChequeState.splitlines">splitlines() (aiorocket2.enums.ChequeState method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.splitlines">(aiorocket2.enums.Country method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.InvoiceStatus.splitlines">(aiorocket2.enums.InvoiceStatus method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Network.splitlines">(aiorocket2.enums.Network method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Status.splitlines">(aiorocket2.enums.Status method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.WithdrawalStatus.splitlines">(aiorocket2.enums.WithdrawalStatus method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.SR">SR (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.SS">SS (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.ST">ST (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.ChequeState.startswith">startswith() (aiorocket2.enums.ChequeState method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.startswith">(aiorocket2.enums.Country method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.InvoiceStatus.startswith">(aiorocket2.enums.InvoiceStatus method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Network.startswith">(aiorocket2.enums.Network method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Status.startswith">(aiorocket2.enums.Status method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.WithdrawalStatus.startswith">(aiorocket2.enums.WithdrawalStatus method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Cheque.state">state (aiorocket2.models.Cheque attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.exceptions.html#aiorocket2.exceptions.xRocketAPIError.status">status (aiorocket2.exceptions.xRocketAPIError attribute)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Invoice.status">(aiorocket2.models.Invoice attribute)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Withdrawal.status">(aiorocket2.models.Withdrawal attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Status">Status (class in aiorocket2.enums)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.ChequeState.strip">strip() (aiorocket2.enums.ChequeState method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.strip">(aiorocket2.enums.Country method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.InvoiceStatus.strip">(aiorocket2.enums.InvoiceStatus method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Network.strip">(aiorocket2.enums.Network method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Status.strip">(aiorocket2.enums.Status method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.WithdrawalStatus.strip">(aiorocket2.enums.WithdrawalStatus method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.SV">SV (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.ChequeState.swapcase">swapcase() (aiorocket2.enums.ChequeState method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.swapcase">(aiorocket2.enums.Country method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.InvoiceStatus.swapcase">(aiorocket2.enums.InvoiceStatus method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Network.swapcase">(aiorocket2.enums.Network method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Status.swapcase">(aiorocket2.enums.Status method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.WithdrawalStatus.swapcase">(aiorocket2.enums.WithdrawalStatus method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.SX">SX (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.SY">SY (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.SZ">SZ (aiorocket2.enums.Country attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="T" class="genindex-section">
+  <h2>T</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/generated/aiorocket2.tags.html#aiorocket2.tags.Tags">Tags (class in aiorocket2.tags)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.TC">TC (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.TD">TD (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.TgResource.telegram_id">telegram_id (aiorocket2.models.TgResource attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.TF">TF (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.TG">TG (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Cheque.tg_resources">tg_resources (aiorocket2.models.Cheque attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Transfer.tg_user_id">tg_user_id (aiorocket2.models.Transfer attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.TgResource">TgResource (class in aiorocket2.models)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.TH">TH (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.ChequeState.title">title() (aiorocket2.enums.ChequeState method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.title">(aiorocket2.enums.Country method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.InvoiceStatus.title">(aiorocket2.enums.InvoiceStatus method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Network.title">(aiorocket2.enums.Network method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Status.title">(aiorocket2.enums.Status method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.WithdrawalStatus.title">(aiorocket2.enums.WithdrawalStatus method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.TJ">TJ (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.TK">TK (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.TL">TL (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.TM">TM (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.TN">TN (aiorocket2.enums.Country attribute)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.TO">TO (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Network.TON">TON (aiorocket2.enums.Network attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Cheque.total">total (aiorocket2.models.Cheque attribute)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.PaginatedCheque.total">(aiorocket2.models.PaginatedCheque attribute)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.PaginatedInvoice.total">(aiorocket2.models.PaginatedInvoice attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Invoice.total_activations">total_activations (aiorocket2.models.Invoice attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.TR">TR (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Transfer">Transfer (class in aiorocket2.models)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.ChequeState.translate">translate() (aiorocket2.enums.ChequeState method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.translate">(aiorocket2.enums.Country method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.InvoiceStatus.translate">(aiorocket2.enums.InvoiceStatus method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Network.translate">(aiorocket2.enums.Network method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Status.translate">(aiorocket2.enums.Status method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.WithdrawalStatus.translate">(aiorocket2.enums.WithdrawalStatus method)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Network.TRX">TRX (aiorocket2.enums.Network attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.TT">TT (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.TV">TV (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.TW">TW (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Withdrawal.tx_hash">tx_hash (aiorocket2.models.Withdrawal attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Withdrawal.tx_link">tx_link (aiorocket2.models.Withdrawal attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.TZ">TZ (aiorocket2.enums.Country attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="U" class="genindex-section">
+  <h2>U</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.UA">UA (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.UG">UG (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.UM">UM (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.ChequeState.UNKNOWN">UNKNOWN (aiorocket2.enums.ChequeState attribute)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.UNKNOWN">(aiorocket2.enums.Country attribute)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.InvoiceStatus.UNKNOWN">(aiorocket2.enums.InvoiceStatus attribute)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Network.UNKNOWN">(aiorocket2.enums.Network attribute)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Status.UNKNOWN">(aiorocket2.enums.Status attribute)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.WithdrawalStatus.UNKNOWN">(aiorocket2.enums.WithdrawalStatus attribute)</a>
+</li>
+        </ul></li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.ChequeState.upper">upper() (aiorocket2.enums.ChequeState method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.upper">(aiorocket2.enums.Country method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.InvoiceStatus.upper">(aiorocket2.enums.InvoiceStatus method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Network.upper">(aiorocket2.enums.Network method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Status.upper">(aiorocket2.enums.Status method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.WithdrawalStatus.upper">(aiorocket2.enums.WithdrawalStatus method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.US">US (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.TgResource.username">username (aiorocket2.models.TgResource attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Cheque.users">users (aiorocket2.models.Cheque attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.UY">UY (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.UZ">UZ (aiorocket2.enums.Country attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="V" class="genindex-section">
+  <h2>V</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.VA">VA (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.VC">VC (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.VE">VE (aiorocket2.enums.Country attribute)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.VG">VG (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.VI">VI (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.VN">VN (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.VU">VU (aiorocket2.enums.Country attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="W" class="genindex-section">
+  <h2>W</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.WF">WF (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.exceptions.html#aiorocket2.exceptions.xRocketAPIError.with_traceback">with_traceback() (aiorocket2.exceptions.xRocketAPIError method)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Currency.withdraw_fee">withdraw_fee (aiorocket2.models.Currency attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Withdrawal">Withdrawal (class in aiorocket2.models)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.Withdrawal.withdrawal_id">withdrawal_id (aiorocket2.models.Withdrawal attribute)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.WithdrawalCoin">WithdrawalCoin (class in aiorocket2.models)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.WithdrawalCoinFees">WithdrawalCoinFees (class in aiorocket2.models)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.models.html#aiorocket2.models.WithdrawalFee">WithdrawalFee (class in aiorocket2.models)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.WithdrawalStatus">WithdrawalStatus (class in aiorocket2.enums)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.WS">WS (aiorocket2.enums.Country attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="X" class="genindex-section">
+  <h2>X</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/generated/aiorocket2.exceptions.html#aiorocket2.exceptions.xRocketAPIError">xRocketAPIError</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/generated/aiorocket2.client.html#aiorocket2.client.xRocketClient">xRocketClient (class in aiorocket2.client)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="Y" class="genindex-section">
+  <h2>Y</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.YE">YE (aiorocket2.enums.Country attribute)</a>
+</li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.YT">YT (aiorocket2.enums.Country attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="Z" class="genindex-section">
+  <h2>Z</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.ZA">ZA (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.ChequeState.zfill">zfill() (aiorocket2.enums.ChequeState method)</a>
+
+        <ul>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.zfill">(aiorocket2.enums.Country method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.InvoiceStatus.zfill">(aiorocket2.enums.InvoiceStatus method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Network.zfill">(aiorocket2.enums.Network method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Status.zfill">(aiorocket2.enums.Status method)</a>
+</li>
+          <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.WithdrawalStatus.zfill">(aiorocket2.enums.WithdrawalStatus method)</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.ZM">ZM (aiorocket2.enums.Country attribute)</a>
+</li>
+        <li><a href="api/generated/aiorocket2.enums.html#aiorocket2.enums.Country.ZW">ZW (aiorocket2.enums.Country attribute)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script src="_static/documentation_options.js?v=3e466467"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    </body>
+</html>
