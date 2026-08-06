@@ -3,7 +3,7 @@
 [![PyPI](https://img.shields.io/pypi/v/aiorocket2?color=blue&logo=python&style=flat-square)](https://pypi.org/project/aiorocket2/)
 [![Python Version](https://img.shields.io/pypi/pyversions/aiorocket2?style=flat-square)](https://www.python.org/)
 [![License](https://img.shields.io/badge/license-GPLv3-blue?style=flat-square)](https://www.gnu.org/licenses/gpl-3.0.en.html)
-[![Documentation](https://img.shields.io/badge/docs-online-brightgreen?style=flat-square)](https://aiorocket2.rimmirk.pp.ua)
+[![Documentation](https://img.shields.io/badge/docs-online-brightgreen?style=flat-square)](https://docs.aiorocket2.rimmirk.dev)
 [![Issues](https://img.shields.io/github/issues/RimMirK/aiorocket2?style=flat-square)](https://github.com/RimMirK/aiorocket2/issues)
 [![StandWithUkraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg)](https://github.com/vshymanskyy/StandWithUkraine/blob/main/docs/README.md)
 
@@ -76,12 +76,21 @@ asyncio.run(main())
 
 ## 📚 Documentation
 
-Full documentation is available online: [aiorocket2 Docs](https://aiorocket2.rimmirk.pp.ua)
+Full documentation is available online: [aiorocket2 Docs](https://docs.aiorocket2.rimmirk.dev)
 Includes:
 
 * Description of all API methods
 * Usage examples
 * List of all enums and data structures
+
+### Build the docs locally
+
+```bash
+python -m pip install -e .[docs]
+python -m sphinx -b html docs docs/_build/html
+python -m http.server 8000 --directory docs/_build/html
+```
+
 
 ---
 

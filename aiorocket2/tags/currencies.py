@@ -16,7 +16,7 @@
 #  along with aiorocket2.  If not, see the LICENSE file.
 #
 #  Repository: https://github.com/RimMirK/aiorocket2
-#  Documentation: https://aiorocket2.rimmirk.pp.ua
+#  Documentation: https://docs.aiorocket2.rimmirk.dev
 #  Telegram: @RimMirK
 """
 Tag currencies from the API
