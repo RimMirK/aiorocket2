@@ -1,0 +1,81 @@
+site_name: aiorocket2
+site_description: Async Python client for xRocket Pay API
+site_url: https://aiorocket2.rimmirk.pp.ua
+repo_url: https://github.com/RimMirK/aiorocket2
+repo_name: RimMirK/aiorocket2
+site_author: RimMirK
+use_directory_urls: true
+
+theme:
+  name: material
+  custom_dir: docs/overrides
+  logo: assets/logo.svg
+  favicon: assets/logo.svg
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: blue
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: blue
+      toggle:
+        icon: material/brightness-4
+        name: Switch to dark mode
+  icon:
+    repo: fontawesome/brands/github
+
+nav:
+  - Home: index.md
+  - API Reference:
+      - Overview: api/index.md
+      - Client: api/client.md
+      - Models: api/models.md
+      - Enums: api/enums.md
+      - Exceptions: api/exceptions.md
+      - Utilities: api/utils.md
+      - Tags: api/tags.md
+  - Examples: examples.md
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            docstring_style: google
+            show_source: false
+            show_root_heading: true
+            show_root_full_path: false
+            show_category_heading: true
+            members_order: source
+            filters:
+              - "!^_"
+  - gen-files:
+      scripts:
+        - docs/gen_api_docs.py
+
+markdown_extensions:
+  - admonition
+  - pymdownx.superfences
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - toc:
+      permalink: true
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/RimMirK
+    - icon: fontawesome/brands/telegram
+      link: https://t.me/RimMirK

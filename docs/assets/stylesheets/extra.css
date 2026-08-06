@@ -1,0 +1,66 @@
+:root {
+  --md-primary-fg-color: #111827;
+  --md-accent-fg-color: #3b82f6;
+  --md-typeset-a-color: #2563eb;
+}
+
+.md-grid {
+  max-width: 72rem;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 2rem;
+  align-items: center;
+  padding: 2rem 0 1rem;
+}
+
+.hero h1 {
+  margin-bottom: 0.5rem;
+  font-size: 2.25rem;
+}
+
+.hero .lead {
+  font-size: 1.05rem;
+  color: var(--md-default-fg-color--light);
+  max-width: 42rem;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0 2rem;
+}
+
+.card {
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 0.8rem;
+  padding: 1rem 1.1rem;
+  background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(248,250,252,0.95));
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.06);
+}
+
+[data-md-color-scheme="slate"] .card {
+  background: linear-gradient(180deg, rgba(30,41,59,0.95), rgba(15,23,42,0.95));
+}
+
+.card h3 {
+  margin-top: 0;
+  margin-bottom: 0.35rem;
+}
+
+.card p {
+  margin-bottom: 0;
+}
+
+.code-block {
+  margin-top: 0.75rem;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+}
