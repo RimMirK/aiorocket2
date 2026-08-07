@@ -11,7 +11,7 @@ real integrations with xRocket Pay.
 If you are looking for the upstream service documentation, use the
 official xRocket API reference:
 
-- xRocket API: https://xrocket.io/docs
+- xRocket API: https://pay.xrocket.exchange/api
 
 Quick navigation
 ----------------

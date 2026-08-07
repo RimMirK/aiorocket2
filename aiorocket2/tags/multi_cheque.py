@@ -47,7 +47,8 @@ class MultiCheque:
         Create multi-cheque
 
         Args:
-            currency (str): Currency of transfer, info `xRocketClient.get_available_currencies()`
+            currency (str): Currency of transfer, see `xRocketClient.get_available_currencies()`.
+                Prefer the exact currency code (e.g. "TON").
             cheque_per_user (float): Cheque amount for one user. 9 decimal places, others cut off
             users_number (int): Number of users to save multicheque. 0 decimal places. Minimum 1
             ref_program (int): Referral program percentage (%). 0 decimal places. Minimum 0. Maximum 100
@@ -59,7 +60,9 @@ class MultiCheque:
             for_premium (bool): Optional. Only users with Telegram Premium can activate this cheque. Default False
             linked_wallet (bool): Optional. Only users with linked wallet can activate this cheque. Default False
             disabled_languages (List of str): Optional. Disable languages
-            enabled_countries (List of Country): Optional. Enabled countries
+            enabled_countries (List of Country): Optional. Enabled countries. Pass members of
+                the `Country` enum (for example: `[Country.US, Country.GB]`). The client will
+                convert enum members to API values internally.
 
         Returns:
             Cheque: 

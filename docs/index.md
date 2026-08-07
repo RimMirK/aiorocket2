@@ -1,47 +1,40 @@
-# aiorocket2
+# aiorocket2 — Async xRocket Pay client
 
-<div class="hero">
-  <div>
-    <p class="lead">Asynchronous Python client for the xRocket Pay API. The docs are generated directly from the package docstrings, so the reference stays close to the code and easy to maintain.</p>
-    <p><a class="md-button md-button--primary" href="api/client/">Explore the API</a>
-    <a class="md-button" href="examples/">See examples</a></p>
-  </div>
-  <div class="card">
-    <h3>Quick start</h3>
-    <pre class="code-block"><code>import asyncio
-from aiorocket2 import xRocketClient
+Welcome — these docs are written for developers embedding xRocket payments into Telegram bots and services.
 
-async def main():
-    client = xRocketClient(api_key="YOUR_API_KEY")
-    info = await client.get_info()
-    print(info)
+This site contains:
 
-asyncio.run(main())</code></pre>
-  </div>
-</div>
+- Quickstart and usage guides focused on common flows for Telegram integrations.
+- A generated API reference (from docstrings) for every class and method in the client.
+- Practical examples for the most-used methods: creating invoices, multi-cheques and withdrawal links.
 
-<div class="card-grid">
-  <div class="card">
-    <h3>Async-first</h3>
-    <p>Built around <code>asyncio</code> with a simple client interface.</p>
-  </div>
-  <div class="card">
-    <h3>Typed models</h3>
-    <p>Clear data models, enums and error handling are documented alongside the code.</p>
-  </div>
-  <div class="card">
-    <h3>Auto-generated docs</h3>
-    <p>Every API page is rendered from the source docstrings and published automatically.</p>
-  </div>
-</div>
+If you open this documentation you should be able to implement payments with minimal time spent reading xRocket's upstream docs.
 
-## API reference
+Explore:
 
-Browse the generated reference by area:
+- [Quickstart](quickstart.md)
+- [API Reference](api/index.md)
+- [Examples](examples.md)
+- [Methods guide (practical)](guides/methods.md)
 
-- [Client API](api/client.md)
-- [Models](api/models.md)
-- [Enums](api/enums.md)
-- [Exceptions](api/exceptions.md)
-- [Utilities](api/utils.md)
-- [Tags](api/tags.md)
+Why this docs set exists
+------------------------
+
+Many integrators only need a few methods. The goal here is to present those methods, their parameters (with explicit types and notes about enums), and short copy-pasteable examples so you can get working fast.
+
+Important: where a parameter expects an Enum (see `aiorocket2.enums`) we emphasise that in examples. Passing arbitrary strings may be accepted by the library but can easily produce invalid API calls — treat enum fields as typed values.
+
+Conventions used in examples
+----------------------------
+
+- Code examples are synchronous-friendly via `asyncio.run(...)` and assume Python 3.10+.
+- All examples are in English; translations will be added later if the site engine supports it.
+- API reference pages are auto-generated using `mkdocstrings`. If you want clearer method docs I will update docstrings in the source so the generated pages look great.
+
+Next steps
+----------
+
+- Start at the [Quickstart](quickstart.md) to install and run a tiny working example.
+- Then read the [Methods guide](guides/methods.md) for practical details on `create_invoice`, `create_multi_cheque`, and `get_withdrawal_link`.
+
+If anything is unclear, open an issue on the repo or contact the maintainer listed in the footer.

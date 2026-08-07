@@ -49,7 +49,9 @@ class TgInvoices:
         Create invoice
         
         Args:
-            currency (str): Currency of transfer, info `xRocketClient.get_available_currencies()`
+            currency (str): Currency of transfer, see `xRocketClient.get_available_currencies()`.
+                Prefer using the exact currency code (e.g. "TON"). If the library exposes
+                a currency enum in the future prefer that. Do not pass malformed strings.
             amount (float): Optional. Invoice amount. 9 decimal places, others cut off. Minimum 0. Maximum 1_000_000
             min_payment (float): Optional. Min payment only for multi invoice if invoice amount is None. Minimum 0. Maximum 1_000_000
             num_payments (int): Optional. Num payments for invoice. Minimum 0. Maximum 1_000_000

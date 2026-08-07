@@ -43,10 +43,10 @@ class WithdrawalLink:
     ) -> Optional[str]:
         """
         Get withdrawal link
-        
+
         Args:
-            currency (str): Currency code (`xRocketClient.get_available_currencies()`)
-            network (Network): Network code
+            currency (str): Currency code (`xRocketClient.get_available_currencies()`).
+            network (Network): Network enum member (e.g. `Network.TON`). Pass the enum, not a raw string.
             address (str): Target withdrawal address
             amount (float): Optional. Withdrawal amount. Default 0
             comment (str): Optional. Withdrawal comment
