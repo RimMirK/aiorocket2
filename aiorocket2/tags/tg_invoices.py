@@ -112,15 +112,17 @@ class TgInvoices:
         limit: int = 100,
         offset: int = 0
     ) -> PaginatedInvoice:
-        """
-        Get list of invoices
-        
+        """Return paginated list of invoices.
+
         Args:
-            limit (int): Minimum 1. Maximum 1000. Default 100
-            offset (int): Minimum 0. Default 0
-            
+            limit (int): Number of items to return (1-1000). Default 100.
+            offset (int): Result offset (>=0). Default 0.
+
         Returns:
-            PaginatedInvoice:
+            PaginatedInvoice: Paginated result with `results` list of :class:`Invoice`.
+
+        Raises:
+            xRocketAPIError: If the API returns an error.
         """
         r = await self._request('GET', 'tg-invoices', params={"limit": limit, "offset": offset})
         return PaginatedInvoice.from_api(r['data'])
@@ -129,14 +131,16 @@ class TgInvoices:
         self,
         invoice_id: int
     ) -> Invoice:
-        """
-        Get invoice
+        """Return a single invoice by id.
 
         Args:
-            invoice_id (str): Invoice ID
+            invoice_id (int): Invoice identifier.
 
         Returns:
-            Invoice:
+            Invoice: Parsed invoice model.
+
+        Raises:
+            xRocketAPIError: If invoice is not found or API error occurs.
         """
         r = await self._request("GET", f"tg-invoices/{invoice_id}")
         return Invoice.from_api(r["data"])
@@ -145,14 +149,16 @@ class TgInvoices:
         self,
         invoice_id: int
     ) -> True:
-        """
-        Delete invoice
+        """Delete an invoice.
 
         Args:
-            invoice_id (int): Invoice ID
-        
+            invoice_id (int): Invoice identifier.
+
         Returns:
-            True: on success otherwise raises xRocketAPIError
+            True: On successful deletion.
+
+        Raises:
+            xRocketAPIError: If deletion fails.
         """
         r = await self._request("DELETE", f"tg-invoices/{invoice_id}")
         return r['success'] is True

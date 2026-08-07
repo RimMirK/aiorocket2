@@ -22,6 +22,8 @@
 
 from typing import List, Optional, Union
 
+from ..exceptions import xRocketAPIError
+
 from ..enums import Country
 from ..models import Cheque, PaginatedCheque
 
@@ -99,15 +101,17 @@ class MultiCheque:
         limit: int = 100,
         offset: int = 0
     ) -> PaginatedCheque:
-        """
-        Get list of multi-cheques
-        
+        """Return paginated list of multi-cheques.
+
         Args:
-            limit (int): Minimum 1. Maximum 1000. Default 100
-            offset (int): Minimum 0. Default 0
-            
+            limit (int): Number of items to return (1-1000). Default 100.
+            offset (int): Result offset (>=0). Default 0.
+
         Returns:
-            PaginatedCheque:
+            PaginatedCheque: Paginated result with `results` containing :class:`Cheque`.
+
+        Raises:
+            xRocketAPIError: If the API returns an error.
         """
         r = await self._request('GET', 'multi-cheque', params={"limit": limit, "offset": offset})
         return PaginatedCheque.from_api(r['data'])
@@ -116,14 +120,16 @@ class MultiCheque:
         self,
         cheque_id: int
     ) -> Cheque:
-        """
-        Get multi-cheque info
-        
+        """Return details for a single multi-cheque.
+
         Args:
-            cheque_id (str): Cheque ID
-            
+            cheque_id (int): Cheque identifier.
+
         Returns:
-            Cheque: 
+            Cheque: Parsed cheque model.
+
+        Raises:
+            xRocketAPIError: If the cheque is not found or API reports an error.
         """
         r = await self._request("GET", f"multi-cheque/{cheque_id}")
         return Cheque.from_api(r["data"])
@@ -141,24 +147,25 @@ class MultiCheque:
         disabled_languages: List[str] = None,
         enabled_countries: List["Country"] = None
     ) -> Cheque:
-        """
-        Edit multi-cheque
-        
+        """Update properties of an existing multi-cheque.
+
         Args:
-            cheque_id (int):
-            password: (str): Optional. Password for cheque. Max lenght 100
-            description (str): Optional. Description for cheque. Max lenght 1000
-            send_notifications (bool): Optional. Send notifications about activations. Default True
-            enable_captcha (bool): Optional. Enable captcha. Default True
-            telegram_resources_ids (List of int or str): IDs of telegram resources (groups, channels, private groups)
-            for_premium (bool): Optional. Only users with Telegram Premium can activate this cheque. Default False
-            linked_wallet (bool): Optional. Only users with linked wallet can activate this cheque. Default False
-            disabled_languages (List of str): Optional. Disable languages
-            enabled_countries (List of Country): Optional. Enabled countries
+            cheque_id (int): Cheque identifier.
+            password (str): Optional password (max 100 chars).
+            description (str): Optional description (max 1000 chars).
+            send_notifications (bool): Whether to send activation notifications.
+            enable_captcha (bool): Enable captcha for activation.
+            telegram_resources_ids (List[Union[int,str]]): IDs of telegram resources.
+            for_premium (bool): Restrict activation to Telegram Premium users.
+            linked_wallet (bool): Require linked wallet for activation.
+            disabled_languages (List[str]): Languages to disable.
+            enabled_countries (List[Country]): Allowed countries.
 
         Returns:
-            Cheque: 
-        
+            Cheque: Updated cheque model.
+
+        Raises:
+            xRocketAPIError: On validation or API errors.
         """
         payload = {
             "password": password,
@@ -177,13 +184,16 @@ class MultiCheque:
 
     async def delete_multi_cheque(self, cheque_id: str) -> True:
         """
-        Delete multi-cheque
-        
+        Delete a multi-cheque by id.
+
         Args:
-            cheque_id (str): Cheque ID
-            
+            cheque_id (str): Cheque identifier.
+
         Returns:
-            True: on success, otherwise raises xRocketAPIError
+            True: On success.
+
+        Raises:
+            xRocketAPIError: If deletion fails.
         """
         r = await self._request("DELETE", f"multi-cheque/{cheque_id}")
         return r['success'] is True
