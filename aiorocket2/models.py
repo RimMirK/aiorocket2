@@ -19,8 +19,18 @@
 #  Documentation: https://docs.aiorocket2.rimmirk.dev
 #  Telegram: @RimMirK
 
-"""
-Modules (dataclases) used by aiorocket2
+"""Data models used by aiorocket2.
+
+This module defines lightweight dataclasses that mirror objects returned by the
+xRocket Pay API. Each model implements :meth:`from_api` to build an instance
+from the JSON response, and :meth:`as_dict` to convert back to plain Python
+structures suitable for serialization.
+
+Notes
+-----
+- Use :func:`to_dict` or :meth:`Base.as_dict` to prepare payloads for downstream
+    code (``keep_enums`` and ``keep_datetime`` flags control how enums/datetimes are
+    serialized).
 """
 
 from __future__ import annotations
@@ -99,8 +109,10 @@ class Base:
     
     @classmethod
     def from_api(cls, j: Mapping[str, Any]):
-        """
-        Build model from api data
+        """Construct model from API response mapping.
+
+        Subclasses implement this method to convert the API JSON structure into a
+        typed dataclass instance.
         """
         raise NotImplementedError
 
@@ -152,7 +164,7 @@ class Transfer(Base):
     id: int
     """Transfer ID"""
     tg_user_id: int
-    """"""
+    """Telegram user id related to the transfer."""
     currency: str
     """Currency code"""
     amount: float
