@@ -49,6 +49,9 @@ Contents
    api/index
    quickstart
    guides/methods
+   guides/create_invoice
+   guides/create_multi_cheque
+   guides/get_withdrawal_link
    faq
    resources
    examples
