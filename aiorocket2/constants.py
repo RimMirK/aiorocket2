@@ -20,8 +20,19 @@
 #  Telegram: @RimMirK
 
 
-"""
-Constants used by the aiorocket2 package.
+"""Constants used by the aiorocket2 package.
+
+This module centralises configuration-like constants used by the client and
+documentation. Consumers normally do not need to import these values, but they
+are exposed for advanced integrations and testing.
+
+Available constants
+- ``BASEURL_MAINNET``: Production API base URL.
+- ``BASEURL_TESTNET``: Testnet API base URL.
+- ``DEFAULT_TIMEOUT``: Default network timeout in seconds.
+- ``DEFAULT_RETRIES``: Default retry attempts for transient errors.
+- ``DEFAULT_BACKOFF_BASE``: Base backoff (seconds) for exponential backoff.
+- ``DEFAULT_USER_AGENT``: Default HTTP `User-Agent` header value.
 """
 
 __all__ = [
