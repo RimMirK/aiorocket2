@@ -35,6 +35,12 @@ __all__ = [
 ]
 
 class Base(str, Enum):
+    """Common base for string-backed enums used by the client.
+
+    The class provides a readable ``__str__``/``__repr__`` implementation used
+    by the docs and logging.
+    """
+
     def __str__(self):
         return f"{self.__class__.__name__}.{self.name}"
 
@@ -46,7 +52,7 @@ class WithdrawalStatus(Base):
     COMPLETED = "COMPLETED"
     FAIL = "FAIL"
     UNKNOWN = "UNKNOWN"
-    """Returned when xRocket API does not sent value"""
+    """Fallback value used when the API returns no known status."""
         
 class Network(Base):
     TON = "TON"
@@ -56,7 +62,7 @@ class Network(Base):
     TRX = "TRX"
     SOL = "SOL"
     UNKNOWN = "UNKNOWN"
-    """Returned when xRocket API does not sent value"""    
+    """Fallback value used when the API returns no known network."""
 
 class Country(Base):
     AD = "AD"
@@ -309,13 +315,15 @@ class Country(Base):
     ZM = "ZM"
     ZW = "ZW"
     UNKNOWN = "UNKNOWN"
-    """Returned when xRocket API does not sent value"""
+    """Fallback value used when the API returns no known country."""
 
 
 
 class ChequeState(Base):
-    """Active - cheque created and has unclaimed activations.
-    Completed - cheque totally activated."""
+    """State of a multi-cheque (voucher).
+
+    Typical states include ``ACTIVE``, ``COMPLETED`` and ``DRAFT``.
+    """
 
     ACTIVE = "active"
     """cheque created and has unclaimed activations."""
@@ -323,18 +331,18 @@ class ChequeState(Base):
     """cheque totally activated."""
     DRAFT = "draft"
     UNKNOWN = "UNKNOWN"
-    """Returned when xRocket API does not sent value"""
+    """Fallback used when the API returns an unknown state."""
 
 class InvoiceStatus(Base):
     ACTIVE = "active"
     PAID = "paid"
     EXPIRED = "expired"
     UNKNOWN = "UNKNOWN"
-    """Returned when xRocket API does not sent value"""
+    """Fallback value used when the API returns no known invoice status."""
 
 class Status(Base):
     OK = "ok"
     ERROR = "error"
     SHUTTING_DOWN = "shutting_down"
     UNKNOWN = "UNKNOWN"
-    """Returned when xRocket API does not sent value"""
+    """Fallback used when the API health endpoint returns an unknown status."""
