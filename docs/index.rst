@@ -1,5 +1,5 @@
 aiorocket2 documentation
-=======================
+=========================
 
 Async Python client for the xRocket Pay API.
 
@@ -16,7 +16,7 @@ official xRocket API reference:
 Quick navigation
 ----------------
 
-.. grid:: 1 2 2
+.. grid:: 1 2 2 2
    :gutter: 3
 
    .. grid-item-card:: Quick start
@@ -49,5 +49,7 @@ Contents
    api/index
    quickstart
    guides/methods
+   faq
+   resources
    examples
    about_me
