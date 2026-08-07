@@ -46,12 +46,6 @@ class TgInvoices:
         platform_id: str = None,
     ) -> Invoice:
         """
-        Create invoice
-        
-        Args:
-            currency (str): Currency of transfer, see `xRocketClient.get_available_currencies()`.
-                Prefer using the exact currency code (e.g. "TON"). If the library exposes
-                a currency enum in the future prefer that. Do not pass malformed strings.
             amount (float): Optional. Invoice amount. 9 decimal places, others cut off. Minimum 0. Maximum 1_000_000
             min_payment (float): Optional. Min payment only for multi invoice if invoice amount is None. Minimum 0. Maximum 1_000_000
             num_payments (int): Optional. Num payments for invoice. Minimum 0. Maximum 1_000_000
@@ -63,8 +57,39 @@ class TgInvoices:
             expired_in (int): Optional. Invoice expire time in seconds, max 1 day, 0 - none expired. Minimum 0. Maximum 86400. Default 0
             platform_id (str): Optional. Platform identifier
         
+        Create invoice.
+
+        Args:
+            currency (str): Currency code, for example ``"TON"``. Use
+                ``xRocketClient.get_available_currencies()`` to list valid currencies.
+            amount (float): Optional fixed invoice amount. Use decimal precision up to
+                9 fractional places; values are truncated by the API.
+            min_payment (float): Optional minimum payment for multi-pay invoices.
+            num_payments (int): Number of allowed partial payments (default ``1``).
+            description (str): Visible description for the payer (max 1000 chars).
+            hidden_message (str): Message shown to the payer after successful payment.
+            comments_enabled (bool): Allow comments on the invoice.
+            callback_url (str): Return/callback URL (optional).
+            payload (str): Opaque string returned in callbacks — useful for your internal IDs.
+            expired_in (int): Expiry in seconds (``0`` — never expire).
+            platform_id (str): Optional platform identifier.
+
         Returns:
-            Invoice:
+            Invoice: Parsed invoice model returned by the API.
+
+        Raises:
+            xRocketAPIError: When API returns non-success or for network errors.
+
+        Notes:
+            - Prefer passing enum members where available; for currency codes the
+              current API accepts strings, but using a canonical source reduces typos.
+            - For accounting-sensitive flows consider using ``decimal.Decimal`` to
+              construct amounts before converting to ``float``.
+
+        Example:
+            >>> async with xRocketClient(api_key="KEY") as client:
+            ...     inv = await client.create_invoice(currency="TON", amount=0.005, description="Tip")
+            ...     print(inv.id, inv.url)
         """
         api_payload = {
             "amount": amount,

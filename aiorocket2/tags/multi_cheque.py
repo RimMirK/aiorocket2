@@ -43,29 +43,38 @@ class MultiCheque:
         disabled_languages: List[str] = None,
         enabled_countries: List["Country"] = None
     ) -> Cheque:
-        """
-        Create multi-cheque
+        """Create a multi-cheque (voucher) for multiple activations.
 
         Args:
-            currency (str): Currency of transfer, see `xRocketClient.get_available_currencies()`.
-                Prefer the exact currency code (e.g. "TON").
-            cheque_per_user (float): Cheque amount for one user. 9 decimal places, others cut off
-            users_number (int): Number of users to save multicheque. 0 decimal places. Minimum 1
-            ref_program (int): Referral program percentage (%). 0 decimal places. Minimum 0. Maximum 100
-            password (str): Optional. Password for cheque. Max length 100
-            description (str): Optional. Description for cheque. Max length 1000
-            send_notifications (bool): Optional. Send notifications about activations. Default True
-            enable_captcha (bool): Optional. Enable captcha. Default True
-            telegram_resources_ids (List of int or str): IDs of telegram resources (groups, channels, private groups)
-            for_premium (bool): Optional. Only users with Telegram Premium can activate this cheque. Default False
-            linked_wallet (bool): Optional. Only users with linked wallet can activate this cheque. Default False
-            disabled_languages (List of str): Optional. Disable languages
-            enabled_countries (List of Country): Optional. Enabled countries. Pass members of
-                the `Country` enum (for example: `[Country.US, Country.GB]`). The client will
-                convert enum members to API values internally.
+            currency (str): Currency code such as ``"TON"``. Use
+                :meth:`xRocketClient.get_available_currencies` to list valid currencies.
+            cheque_per_user (float): Amount reserved per activation (up to 9 decimals).
+            users_number (int): Number of activations (integer, minimum 1).
+            ref_program (int): Referral program percentage (0-100).
+            password (str): Optional password for the cheque (max length 100).
+            description (str): Optional description for the cheque (max length 1000).
+            send_notifications (bool): Whether to send activation notifications.
+            enable_captcha (bool): Enable captcha for activation flow.
+            telegram_resources_ids (List[Union[int, str]]): Telegram resource ids (group/channel ids).
+            for_premium (bool): Restrict activation to Telegram Premium users.
+            linked_wallet (bool): Require linked wallet for activation.
+            disabled_languages (List[str]): Languages to disable.
+            enabled_countries (List[Country]): Pass members of the ``Country`` enum
+                (for example ``[Country.US, Country.GB]``). The client converts enums
+                to their API string values internally.
 
         Returns:
-            Cheque: 
+            Cheque: Model representing created cheque.
+
+        Raises:
+            xRocketAPIError: On API or validation errors.
+
+        Example:
+
+            >>> from aiorocket2.enums import Country
+            >>> async with xRocketClient(api_key="KEY") as client:
+            ...     chk = await client.create_multi_cheque(currency="TON", cheque_per_user=0.001, users_number=50, ref_program=0, enabled_countries=[Country.US])
+            ...     print(chk.id, chk.inviteUrl)
         """
         payload = {
             "currency": currency,

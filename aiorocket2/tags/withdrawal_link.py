@@ -41,19 +41,28 @@ class WithdrawalLink:
         comment: str = None,
         platform: str = None
     ) -> Optional[str]:
-        """
-        Get withdrawal link
+        """Get a withdrawal link for on-chain withdrawals.
 
         Args:
-            currency (str): Currency code (`xRocketClient.get_available_currencies()`).
-            network (Network): Network enum member (e.g. `Network.TON`). Pass the enum, not a raw string.
-            address (str): Target withdrawal address
-            amount (float): Optional. Withdrawal amount. Default 0
-            comment (str): Optional. Withdrawal comment
-            platform (str): Optional. Platform identifier (optional, use only if provided by xRocket)
-        
+            currency (str): Currency code (use :meth:`xRocketClient.get_available_currencies`).
+            network (Network): ``Network`` enum member (e.g. ``Network.TON``).
+            address (str): Target on-chain address.
+            amount (float): Optional withdrawal amount (default ``0``).
+            comment (str): Optional comment attached to withdrawal.
+            platform (str): Optional platform identifier.
+
         Returns:
-            str: Telegram app link
+            Optional[str]: Telegram application link for withdrawal.
+
+        Raises:
+            xRocketAPIError: If the API returns an error or no link is available.
+
+        Example:
+
+            >>> from aiorocket2.enums import Network
+            >>> async with xRocketClient(api_key="KEY") as client:
+            ...     link = await client.get_withdrawal_link(currency="TON", network=Network.TON, address="EQ...", amount=0.1)
+            ...     print(link)
         """
         params = {
             'currency': currency,

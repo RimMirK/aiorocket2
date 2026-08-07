@@ -19,8 +19,33 @@
 #  Documentation: https://docs.aiorocket2.rimmirk.dev
 #  Telegram: @RimMirK
 
-"""
-TODO
+"""aiorocket2 client module.
+
+This module provides :class:`xRocketClient` — an async-first wrapper around the
+xRocket Pay HTTP API. The client implements retries, consistent error handling
+and typed model conversion for responses.
+
+Example
+-------
+
+Simple invoice creation::
+
+        import asyncio
+        from aiorocket2 import xRocketClient
+
+        async def main():
+                async with xRocketClient(api_key="YOUR_API_KEY", testnet=True) as client:
+                        invoice = await client.create_invoice(currency="TON", amount=0.01)
+                        print(invoice.id, invoice.url)
+
+        asyncio.run(main())
+
+Notes
+-----
+
+- Methods are asynchronous; integrate the client into your bot's event loop.
+- Where parameters expect enum types (see :mod:`aiorocket2.enums`) prefer passing
+    enum members (for example ``Network.TON``) to avoid typos.
 """
 
 from __future__ import annotations
