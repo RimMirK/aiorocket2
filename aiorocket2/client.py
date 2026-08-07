@@ -75,6 +75,17 @@ __all__ = [
 class xRocketClient(Tags):
     """
     Asynchronous client for the xRocket Pay API.
+
+    The client composes all tag mixins (see :mod:`aiorocket2.tags`) and exposes
+    high-level helpers for sending requests, handling retries and converting
+    responses into typed models. Typical usage is via an async context manager
+    which ensures the underlying HTTP session is closed automatically.
+
+    Example::
+
+        async with xRocketClient(api_key="KEY") as client:
+            inv = await client.create_invoice(currency="TON", amount=0.01)
+            print(inv.url)
     """
 
     def __init__(
