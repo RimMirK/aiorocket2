@@ -214,6 +214,8 @@
 <li class="toctree-l2"><a class="reference internal" href="aiorocket2.tags.html">aiorocket2.tags</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../guides/methods.html">Methods guide — practical usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples.html">Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../about_me.html">About me</a></li>
 </ul>
@@ -338,7 +340,9 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>currency</strong> (<em>str</em>) – Currency of transfer, info <cite>xRocketClient.get_available_currencies()</cite></p></li>
+<li><p><strong>currency</strong> (<em>str</em>) – Currency of transfer, see <cite>xRocketClient.get_available_currencies()</cite>.
+Prefer using the exact currency code (e.g. “TON”). If the library exposes
+a currency enum in the future prefer that. Do not pass malformed strings.</p></li>
 <li><p><strong>amount</strong> (<em>float</em>) – Optional. Invoice amount. 9 decimal places, others cut off. Minimum 0. Maximum 1_000_000</p></li>
 <li><p><strong>min_payment</strong> (<em>float</em>) – Optional. Min payment only for multi invoice if invoice amount is None. Minimum 0. Maximum 1_000_000</p></li>
 <li><p><strong>num_payments</strong> (<em>int</em>) – Optional. Num payments for invoice. Minimum 0. Maximum 1_000_000</p></li>
@@ -364,7 +368,8 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>currency</strong> (<em>str</em>) – Currency of transfer, info <cite>xRocketClient.get_available_currencies()</cite></p></li>
+<li><p><strong>currency</strong> (<em>str</em>) – Currency of transfer, see <cite>xRocketClient.get_available_currencies()</cite>.
+Prefer the exact currency code (e.g. “TON”).</p></li>
 <li><p><strong>cheque_per_user</strong> (<em>float</em>) – Cheque amount for one user. 9 decimal places, others cut off</p></li>
 <li><p><strong>users_number</strong> (<em>int</em>) – Number of users to save multicheque. 0 decimal places. Minimum 1</p></li>
 <li><p><strong>ref_program</strong> (<em>int</em>) – Referral program percentage (%). 0 decimal places. Minimum 0. Maximum 100</p></li>
@@ -376,7 +381,9 @@
 <li><p><strong>for_premium</strong> (<em>bool</em>) – Optional. Only users with Telegram Premium can activate this cheque. Default False</p></li>
 <li><p><strong>linked_wallet</strong> (<em>bool</em>) – Optional. Only users with linked wallet can activate this cheque. Default False</p></li>
 <li><p><strong>disabled_languages</strong> (<em>List</em><em> of </em><em>str</em>) – Optional. Disable languages</p></li>
-<li><p><strong>enabled_countries</strong> (<em>List</em><em> of </em><a class="reference internal" href="aiorocket2.enums.html#aiorocket2.enums.Country" title="aiorocket2.enums.Country"><em>Country</em></a>) – Optional. Enabled countries</p></li>
+<li><p><strong>enabled_countries</strong> (<em>List</em><em> of </em><a class="reference internal" href="aiorocket2.enums.html#aiorocket2.enums.Country" title="aiorocket2.enums.Country"><em>Country</em></a>) – Optional. Enabled countries. Pass members of
+the <cite>Country</cite> enum (for example: <cite>[Country.US, Country.GB]</cite>). The client will
+convert enum members to API values internally.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
@@ -604,8 +611,8 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>currency</strong> (<em>str</em>) – Currency code (<cite>xRocketClient.get_available_currencies()</cite>)</p></li>
-<li><p><strong>network</strong> (<a class="reference internal" href="aiorocket2.enums.html#aiorocket2.enums.Network" title="aiorocket2.enums.Network"><em>Network</em></a>) – Network code</p></li>
+<li><p><strong>currency</strong> (<em>str</em>) – Currency code (<cite>xRocketClient.get_available_currencies()</cite>).</p></li>
+<li><p><strong>network</strong> (<a class="reference internal" href="aiorocket2.enums.html#aiorocket2.enums.Network" title="aiorocket2.enums.Network"><em>Network</em></a>) – Network enum member (e.g. <cite>Network.TON</cite>). Pass the enum, not a raw string.</p></li>
 <li><p><strong>address</strong> (<em>str</em>) – Target withdrawal address</p></li>
 <li><p><strong>amount</strong> (<em>float</em>) – Optional. Withdrawal amount. Default 0</p></li>
 <li><p><strong>comment</strong> (<em>str</em>) – Optional. Withdrawal comment</p></li>

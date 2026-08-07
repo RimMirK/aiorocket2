@@ -47,5 +47,7 @@ Contents
    :caption: Documentation
 
    api/index
+   quickstart
+   guides/methods
    examples
    about_me
