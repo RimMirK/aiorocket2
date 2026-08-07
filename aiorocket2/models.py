@@ -94,7 +94,11 @@ def to_dict(obj, keep_enums=False, keep_datetime=False) -> dict:
 
 class Base:
     """
-    Base class for all models
+    Base class for all models.
+
+    Subclasses should implement :meth:`from_api` which accepts a mapping
+    produced by the API and returns a typed model instance. Use
+    :meth:`as_dict` to convert models back to plain Python structures.
     """
     def as_dict(self, keep_enums=False, keep_datetime=False) -> dict:
         """
@@ -118,8 +122,12 @@ class Base:
 
 @dataclass
 class Info(Base):
-    """
-    Represents a info entity returned by the xRocket Pay API.
+    """Application information returned by the API.
+
+    Attributes:
+        name: Application name.
+        fee_percents: Default fee percentage for incoming payments.
+        balances: List of :class:`Balance` entries for each currency.
     """
     name: str
     """Name of current app"""
@@ -140,9 +148,7 @@ class Info(Base):
 
 @dataclass
 class Balance(Base):
-    """
-    Represents a balance entity returned by the xRocket Pay API.
-    """
+    """Account balance for a specific currency."""
     currency: str
     balance: float
     
@@ -158,9 +164,7 @@ class Balance(Base):
 
 @dataclass
 class Transfer(Base):
-    """
-    Represents a transfer entity returned by the xRocket Pay API.
-    """
+    """Internal transfer record."""
     id: int
     """Transfer ID"""
     tg_user_id: int
@@ -187,9 +191,7 @@ class Transfer(Base):
 
 @dataclass
 class Withdrawal(Base):
-    """
-    Represents a Withdrawal entity returned by the xRocket Pay API.
-    """
+    """On-chain or off-chain withdrawal record."""
     
     network: Network
     """Network code."""
@@ -229,9 +231,7 @@ class Withdrawal(Base):
 
 @dataclass
 class WithdrawalCoin(Base):
-    """
-    Represents a WithdrawalCoin entity returned by the xRocket Pay API.
-    """
+    """Metadata about a withdrawable coin, including fees."""
     code: str
     """Crypto code"""
     min_withdrawal: float
@@ -251,9 +251,7 @@ class WithdrawalCoin(Base):
 
 @dataclass
 class WithdrawalCoinFees(Base):
-    """
-    Represents a WithdrawalCoinFees entity returned by the xRocket Pay API.
-    """
+    """Fee schedule for a specific network for a coin."""
     
     network_code: Network
     """Network code for withdraw"""
@@ -275,9 +273,7 @@ class WithdrawalCoinFees(Base):
 
 @dataclass
 class Cheque(Base):
-    """
-    Represents a multi-cheque entity returned by the xRocket Pay API.
-    """
+    """Multi-cheque (voucher) representation with activation rules."""
     id: int
     """Cheque ID"""
     currency: str
@@ -349,9 +345,7 @@ class Cheque(Base):
 
 @dataclass
 class TgResource(Base):
-    """
-    Represents a TgResourse entity returned by the xRocket Pay API.
-    """
+    """Telegram resource (group/channel) referenced by a cheque."""
     telegram_id: int
     name: str
     username: str
@@ -369,9 +363,7 @@ class TgResource(Base):
 
 @dataclass
 class PaginatedCheque(Base):
-    """
-    Represents a PaginatedCheque entity returned by the xRocket Pay API.
-    """
+    """Paginated result container for multi-cheques."""
     
     total: int
     """Total times"""
@@ -393,8 +385,9 @@ class PaginatedCheque(Base):
 
 @dataclass
 class DateTimeStr(str, Base):
-    """
-    Time object, to comfortable get time from the api
+    """Small helper that exposes parsed datetime/timestamp from API strings.
+
+    Use as a field type for date-time properties returned by the API.
     """
     
     value: str|None
