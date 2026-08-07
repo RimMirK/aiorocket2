@@ -19,8 +19,9 @@
 #  Documentation: https://docs.aiorocket2.rimmirk.dev
 #  Telegram: @RimMirK
 
-"""
-version of aiorocket2
+"""Package version information for aiorocket2.
+
+Expose the ``__version__`` constant used by the package and tooling.
 """
 
 __all__ = [

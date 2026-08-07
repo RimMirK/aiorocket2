@@ -18,8 +18,17 @@
 #  Repository: https://github.com/RimMirK/aiorocket2
 #  Documentation: https://docs.aiorocket2.rimmirk.dev
 #  Telegram: @RimMirK
-"""
-Tag currencies from the API
+"""Currencies tag — list available currencies.
+
+Provides a convenience method to fetch the list of currencies supported by
+the upstream API. This call is safe to use without authentication.
+
+Example::
+
+    async with xRocketClient(api_key="KEY") as client:
+        currencies = await client.get_available_currencies()
+        for c in currencies:
+            print(c.currency, c.min_transfer)
 """
 
 from typing import List
@@ -33,11 +42,10 @@ class Currencies:
     """
     
     async def get_available_currencies(self) -> List[Currency]:
-        """
-        Returns available currencies
+        """Return available currencies from the API.
 
         Returns:
-            List[Currency]: List of available currencies
+            List[Currency]: Parsed list of currency models.
         """
         r = await self._request("GET", "currencies/available", require_auth_header=False)
         return [Currency.from_api(c) for c in r["data"].get("results", [])]

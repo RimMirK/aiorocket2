@@ -39,6 +39,13 @@ class xRocketAPIError(Exception):
         status: HTTP status code (if known).
     """
 
+    Example:
+
+        try:
+            await client.create_invoice(...)
+        except xRocketAPIError as exc:
+            print(exc.status, exc.payload)
+
     def __init__(self, payload: Mapping[str, Any], status: Optional[int] = None) -> None:
         self.payload = dict(payload)
         self.status = status

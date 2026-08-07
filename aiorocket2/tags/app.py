@@ -19,8 +19,17 @@
 #  Documentation: https://docs.aiorocket2.rimmirk.dev
 #  Telegram: @RimMirK
 
-"""
-Tag App from the API
+"""App tag — methods that operate on application-level resources.
+
+This module exposes operations such as balance inspection, internal transfers
+and withdrawals. Methods return model instances from :mod:`aiorocket2.models`.
+
+Examples
+--------
+
+>>> async with xRocketClient(api_key="KEY") as client:
+>>>     info = await client.get_info()
+>>>     print(info.balances)
 """
 
 from typing import Any, Dict, List, Optional
@@ -52,17 +61,19 @@ class App:
         description: Optional[str] = None,
     ) -> Transfer:
         """
-        Make transfer of funds to another user
+        Make an internal transfer to a Telegram user.
 
         Args:
-            tg_user_id (int): Telegram user ID. If we dont have this user in DB, we will fail transaction with error: 400 - User not found
-            currency (str): Currency of transfer, info `xRocketClient.get_available_currencies()`
-            amount (float): Transfer amount. 9 decimal places, others cut off
-            transfer_id (str): Unique transfer ID in your system to prevent double spends
-            description (str): Transfer description
+            tg_user_id (int): Target Telegram user id. If unknown to the API the
+                request will fail with a 400 error.
+            currency (str): Currency code (see :meth:`Currencies.get_available_currencies`).
+            amount (float): Transfer amount (up to 9 decimals).
+            transfer_id (str): Idempotency/unique transfer id in your system to
+                prevent duplicate transfers.
+            description (str): Optional transfer description.
 
         Returns:
-            Transfer: 
+            Transfer: Model with transfer details.
         """
         payload: Dict[str, Any] = {
             "tgUserId": tg_user_id,
