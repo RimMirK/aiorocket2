@@ -1,20 +1,17 @@
-About me
+Links
 ========
 
 Here are some useful links and contacts.
 
-GitHub
+Lib's links
 ------
 
-- GitHub: https://github.com/RimMirK
 - Repository: https://github.com/RimMirK/aiorocket2
+- PyPI: https://pypi.org/project/aiorocket2 
 
-Telegram
+Author's links
 --------
 
+- GitHub: https://github.com/RimMirK
 - Telegram: https://t.me/RimMirK
-
-Email
------
-
 - Email: aiorocket2@RimMirK.dev

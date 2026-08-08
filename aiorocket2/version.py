@@ -19,12 +19,13 @@
 #  Documentation: https://docs.aiorocket2.rimmirk.dev
 #  Telegram: @RimMirK
 
-"""
-version of aiorocket2
+"""Package version information for aiorocket2.
+
+Expose the ``__version__`` constant used by the package and tooling.
 """
 
 __all__ = [
     '__version__'
 ]
 
-__version__ = "2.0.6"
+__version__ = "2.1"

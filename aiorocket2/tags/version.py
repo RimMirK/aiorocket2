@@ -19,20 +19,26 @@
 #  Documentation: https://docs.aiorocket2.rimmirk.dev
 #  Telegram: @RimMirK
 
-"""
-Tag Version from the API
+"""Version tag — API version information.
+
+This tag exposes a single helper to retrieve the upstream API version and can
+be used as a lightweight healthcheck.
 """
 
 class Version:
-    """
-    Tag version from the API
-    """
+    """Tag version from the API."""
     async def get_version(self) -> str:
-        """
-        Returns current version of API. You may use it as healthcheck
+        """Return the upstream API version string.
 
         Returns:
-            str: Version string, e.g., "1.3.1".
+            str: Version string, for example ``"1.3.1"``.
+
+        Raises:
+            xRocketAPIError: If the API request fails.
+
+        Example::
+
+            version = await client.get_version()
         """
         r = await self._request("GET", "version", require_auth_header=False, require_success=False)
         return str(r.get("version"))

@@ -214,6 +214,13 @@
 <li class="toctree-l2"><a class="reference internal" href="aiorocket2.tags.html">aiorocket2.tags</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../guides/methods.html">Methods guide — practical usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../guides/create_invoice.html">create_invoice — detailed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../guides/create_multi_cheque.html">create_multi_cheque — detailed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../guides/get_withdrawal_link.html">get_withdrawal_link — detailed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../resources.html">Resources and Links</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples.html">Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../about_me.html">About me</a></li>
 </ul>
@@ -262,10 +269,10 @@
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Base</span></code>(new_class_name, /, names, *[, module, ...])</p></td>
-<td><p></p></td>
+<td><p>Common base for string-backed enums used by the client.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#aiorocket2.enums.ChequeState" title="aiorocket2.enums.ChequeState"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ChequeState</span></code></a>(*values)</p></td>
-<td><p>Active - cheque created and has unclaimed activations.</p></td>
+<td><p>State of a multi-cheque (voucher).</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#aiorocket2.enums.Country" title="aiorocket2.enums.Country"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Country</span></code></a>(*values)</p></td>
 <td><p></p></td>
@@ -289,8 +296,8 @@
 <dt class="sig sig-object py" id="aiorocket2.enums.ChequeState">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">aiorocket2.enums.</span></span><span class="sig-name descname"><span class="pre">ChequeState</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/aiorocket2/enums.html#ChequeState"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aiorocket2.enums.ChequeState" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Base</span></code></p>
-<p>Active - cheque created and has unclaimed activations.
-Completed - cheque totally activated.</p>
+<p>State of a multi-cheque (voucher).</p>
+<p>Typical states include <code class="docutils literal notranslate"><span class="pre">ACTIVE</span></code>, <code class="docutils literal notranslate"><span class="pre">COMPLETED</span></code> and <code class="docutils literal notranslate"><span class="pre">DRAFT</span></code>.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aiorocket2.enums.ChequeState.ACTIVE">
 <span class="sig-name descname"><span class="pre">ACTIVE</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'active'</span></span><a class="headerlink" href="#aiorocket2.enums.ChequeState.ACTIVE" title="Link to this definition">¶</a></dt>
@@ -311,7 +318,7 @@ Completed - cheque totally activated.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aiorocket2.enums.ChequeState.UNKNOWN">
 <span class="sig-name descname"><span class="pre">UNKNOWN</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'UNKNOWN'</span></span><a class="headerlink" href="#aiorocket2.enums.ChequeState.UNKNOWN" title="Link to this definition">¶</a></dt>
-<dd><p>Returned when xRocket API does not sent value</p>
+<dd><p>Fallback used when the API returns an unknown state.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1920,7 +1927,7 @@ None are deleted.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aiorocket2.enums.Country.UNKNOWN">
 <span class="sig-name descname"><span class="pre">UNKNOWN</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'UNKNOWN'</span></span><a class="headerlink" href="#aiorocket2.enums.Country.UNKNOWN" title="Link to this definition">¶</a></dt>
-<dd><p>Returned when xRocket API does not sent value</p>
+<dd><p>Fallback value used when the API returns no known country.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -2469,7 +2476,7 @@ None are deleted.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aiorocket2.enums.InvoiceStatus.UNKNOWN">
 <span class="sig-name descname"><span class="pre">UNKNOWN</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'UNKNOWN'</span></span><a class="headerlink" href="#aiorocket2.enums.InvoiceStatus.UNKNOWN" title="Link to this definition">¶</a></dt>
-<dd><p>Returned when xRocket API does not sent value</p>
+<dd><p>Fallback value used when the API returns no known invoice status.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -2948,7 +2955,7 @@ None are deleted.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aiorocket2.enums.Network.UNKNOWN">
 <span class="sig-name descname"><span class="pre">UNKNOWN</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'UNKNOWN'</span></span><a class="headerlink" href="#aiorocket2.enums.Network.UNKNOWN" title="Link to this definition">¶</a></dt>
-<dd><p>Returned when xRocket API does not sent value</p>
+<dd><p>Fallback value used when the API returns no known network.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -3412,7 +3419,7 @@ None are deleted.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aiorocket2.enums.Status.UNKNOWN">
 <span class="sig-name descname"><span class="pre">UNKNOWN</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'UNKNOWN'</span></span><a class="headerlink" href="#aiorocket2.enums.Status.UNKNOWN" title="Link to this definition">¶</a></dt>
-<dd><p>Returned when xRocket API does not sent value</p>
+<dd><p>Fallback used when the API health endpoint returns an unknown status.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -3876,7 +3883,7 @@ None are deleted.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aiorocket2.enums.WithdrawalStatus.UNKNOWN">
 <span class="sig-name descname"><span class="pre">UNKNOWN</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'UNKNOWN'</span></span><a class="headerlink" href="#aiorocket2.enums.WithdrawalStatus.UNKNOWN" title="Link to this definition">¶</a></dt>
-<dd><p>Returned when xRocket API does not sent value</p>
+<dd><p>Fallback value used when the API returns no known status.</p>
 </dd></dl>
 
 <dl class="py method">

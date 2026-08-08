@@ -36,6 +36,7 @@ theme:
 
 nav:
   - Home: index.md
+  - Quickstart: quickstart.md
   - API Reference:
       - Overview: api/index.md
       - Client: api/client.md
@@ -43,7 +44,6 @@ nav:
       - Enums: api/enums.md
       - Exceptions: api/exceptions.md
       - Utilities: api/utils.md
-      - Tags: api/tags.md
   - Examples: examples.md
 
 plugins:

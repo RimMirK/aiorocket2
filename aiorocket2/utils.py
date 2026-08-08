@@ -19,8 +19,10 @@
 #  Documentation: https://docs.aiorocket2.rimmirk.dev
 #  Telegram: @RimMirK
 
-"""
-additional functions used by aiorocket2
+"""Utility helpers used across the package.
+
+The helpers are intentionally small and focused: id generation for idempotency
+and a simple exponential backoff helper used by network retry logic.
 """
 
 import asyncio
@@ -33,18 +35,29 @@ __all__ = [
 ]
 
 def generate_idempotency_id() -> str:
-    """
-    Generate a simple idempotency identifier based on the current timestamp.
+    """Generate a simple idempotency identifier based on the current timestamp.
 
-    The xRocket Pay API accepts `transferId` / `withdrawalId` for idempotency.
+    Returns:
+        str: A timestamp-based string suitable as a quick idempotency id.
+
+    Note:
+        This function is intentionally simple. For production systems consider a
+        stronger idempotency/nonce strategy (UUIDs or HMAC-based ids).
     """
     return str(time.time())
 
 gii = generate_idempotency_id
 
 async def backoff_sleep(attempt: int, base: float) -> None:
-    """
-    Sleep using exponential backoff for the given attempt number (0-based).
+    """Asynchronously sleep using exponential backoff.
+
+    Args:
+        attempt (int): 0-based attempt number. The delay grows as ``base * 2**attempt``.
+        base (float): Base delay in seconds for attempt 0.
+
+    Example::
+
+        await backoff_sleep(attempt=2, base=0.25)  # sleeps 1.0s
     """
     delay = base * (2 ** attempt)
     await asyncio.sleep(delay)

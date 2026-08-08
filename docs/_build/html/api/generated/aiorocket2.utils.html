@@ -214,6 +214,13 @@
 <li class="toctree-l2"><a class="reference internal" href="aiorocket2.tags.html">aiorocket2.tags</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../guides/methods.html">Methods guide — practical usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../guides/create_invoice.html">create_invoice — detailed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../guides/create_multi_cheque.html">create_multi_cheque — detailed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../guides/get_withdrawal_link.html">get_withdrawal_link — detailed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../resources.html">Resources and Links</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples.html">Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../about_me.html">About me</a></li>
 </ul>
@@ -256,13 +263,15 @@
         <article role="main" id="furo-main-content">
           <section id="module-aiorocket2.utils">
 <span id="aiorocket2-utils"></span><h1>aiorocket2.utils<a class="headerlink" href="#module-aiorocket2.utils" title="Link to this heading">¶</a></h1>
-<p>additional functions used by aiorocket2</p>
+<p>Utility helpers used across the package.</p>
+<p>The helpers are intentionally small and focused: id generation for idempotency
+and a simple exponential backoff helper used by network retry logic.</p>
 <p class="rubric">Functions</p>
 <div class="table-wrapper autosummary longtable docutils container">
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#aiorocket2.utils.backoff_sleep" title="aiorocket2.utils.backoff_sleep"><code class="xref py py-obj docutils literal notranslate"><span class="pre">backoff_sleep</span></code></a>(attempt, base)</p></td>
-<td><p>Sleep using exponential backoff for the given attempt number (0-based).</p></td>
+<td><p>Asynchronously sleep using exponential backoff.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#aiorocket2.utils.generate_idempotency_id" title="aiorocket2.utils.generate_idempotency_id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">generate_idempotency_id</span></code></a>()</p></td>
 <td><p>Generate a simple idempotency identifier based on the current timestamp.</p></td>
@@ -276,42 +285,60 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="aiorocket2.utils.backoff_sleep">
 <span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">aiorocket2.utils.</span></span><span class="sig-name descname"><span class="pre">backoff_sleep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attempt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/aiorocket2/utils.html#backoff_sleep"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aiorocket2.utils.backoff_sleep" title="Link to this definition">¶</a></dt>
-<dd><p>Sleep using exponential backoff for the given attempt number (0-based).</p>
+<dd><p>Asynchronously sleep using exponential backoff.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>attempt</strong> (<em>int</em>)</p></li>
-<li><p><strong>base</strong> (<em>float</em>)</p></li>
+<li><p><strong>attempt</strong> (<em>int</em>) – 0-based attempt number. The delay grows as <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">*</span> <span class="pre">2**attempt</span></code>.</p></li>
+<li><p><strong>base</strong> (<em>float</em>) – Base delay in seconds for attempt 0.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>None</p>
 </dd>
 </dl>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">backoff_sleep</span><span class="p">(</span><span class="n">attempt</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>  <span class="c1"># sleeps 1.0s</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="aiorocket2.utils.generate_idempotency_id">
 <span class="sig-prename descclassname"><span class="pre">aiorocket2.utils.</span></span><span class="sig-name descname"><span class="pre">generate_idempotency_id</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/aiorocket2/utils.html#generate_idempotency_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aiorocket2.utils.generate_idempotency_id" title="Link to this definition">¶</a></dt>
 <dd><p>Generate a simple idempotency identifier based on the current timestamp.</p>
-<p>The xRocket Pay API accepts <cite>transferId</cite> / <cite>withdrawalId</cite> for idempotency.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>str</p>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A timestamp-based string suitable as a quick idempotency id.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
 </dd>
 </dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This function is intentionally simple. For production systems consider a
+stronger idempotency/nonce strategy (UUIDs or HMAC-based ids).</p>
+</div>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="aiorocket2.utils.gii">
 <span class="sig-prename descclassname"><span class="pre">aiorocket2.utils.</span></span><span class="sig-name descname"><span class="pre">gii</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#aiorocket2.utils.gii" title="Link to this definition">¶</a></dt>
 <dd><p>Generate a simple idempotency identifier based on the current timestamp.</p>
-<p>The xRocket Pay API accepts <cite>transferId</cite> / <cite>withdrawalId</cite> for idempotency.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>str</p>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A timestamp-based string suitable as a quick idempotency id.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
 </dd>
 </dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This function is intentionally simple. For production systems consider a
+stronger idempotency/nonce strategy (UUIDs or HMAC-based ids).</p>
+</div>
 </dd></dl>
 
 </section>

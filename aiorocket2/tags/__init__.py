@@ -19,8 +19,23 @@
 #  Documentation: https://docs.aiorocket2.rimmirk.dev
 #  Telegram: @RimMirK
 
-"""
-The API is splitted by tags. Here is the same splitting
+"""Tag composition for aiorocket2.
+
+The upstream API groups endpoints by *tags* (for example ``app``,
+``tg-invoices``, ``multi-cheque``). Each tag is implemented as a mixin-like
+class in this package and then composed into the `Tags` helper. The main
+client :class:`aiorocket2.client.xRocketClient` inherits from ``Tags`` to
+expose all convenience methods on the client instance.
+
+Available tags
+--------------
+- ``Version`` — API version helpers
+- ``App`` — application-level operations (balance, transfer, withdrawals)
+- ``MultiCheque`` — multi-cheque (voucher) endpoints
+- ``TgInvoices`` — invoice creation and retrieval
+- ``WithdrawalLink`` — on-chain withdrawal link helper
+- ``Currencies`` — currency listing helper
+- ``Health`` — lightweight health check
 """
 
 from .version import Version

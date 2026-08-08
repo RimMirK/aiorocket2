@@ -19,8 +19,17 @@
 #  Documentation: https://docs.aiorocket2.rimmirk.dev
 #  Telegram: @RimMirK
 
-"""
-Tag App from the API
+"""App tag — methods that operate on application-level resources.
+
+This module exposes operations such as balance inspection, internal transfers
+and withdrawals. Methods return model instances from :mod:`aiorocket2.models`.
+
+Examples
+--------
+
+>>> async with xRocketClient(api_key="KEY") as client:
+>>>     info = await client.get_info()
+>>>     print(info.balances)
 """
 
 from typing import Any, Dict, List, Optional
@@ -34,11 +43,13 @@ class App:
     Tag App from the API
     """    
     async def get_info(self) -> Info:
-        """
-        Returns information about your application
+        """Return information about the current application.
 
         Returns:
-            Info: information about your application
+            Info: Application info including balances.
+
+        Raises:
+            xRocketAPIError: On API or network errors.
         """
         r = await self._request("GET", "app/info")
         return Info.from_api(r['data'])
@@ -52,17 +63,19 @@ class App:
         description: Optional[str] = None,
     ) -> Transfer:
         """
-        Make transfer of funds to another user
+        Make an internal transfer to a Telegram user.
 
         Args:
-            tg_user_id (int): Telegram user ID. If we dont have this user in DB, we will fail transaction with error: 400 - User not found
-            currency (str): Currency of transfer, info `xRocketClient.get_available_currencies()`
-            amount (float): Transfer amount. 9 decimal places, others cut off
-            transfer_id (str): Unique transfer ID in your system to prevent double spends
-            description (str): Transfer description
+            tg_user_id (int): Target Telegram user id. If unknown to the API the
+                request will fail with a 400 error.
+            currency (str): Currency code (see :meth:`Currencies.get_available_currencies`).
+            amount (float): Transfer amount (up to 9 decimals).
+            transfer_id (str): Idempotency/unique transfer id in your system to
+                prevent duplicate transfers.
+            description (str): Optional transfer description.
 
         Returns:
-            Transfer: 
+            Transfer: Model with transfer details.
         """
         payload: Dict[str, Any] = {
             "tgUserId": tg_user_id,
@@ -85,19 +98,21 @@ class App:
         withdrawal_id: str,
         comment: str,
     ) -> Withdrawal:
-        """
-        Make withdrawal of funds to external wallet
-        
+        """Create a withdrawal to an external address.
+
         Args:
             network (Network): Network code.
-            address (str): Withdrawal address. E.g. `EQB1cmpxb3R-YLA3HLDV01Rx6OHpMQA_7MOglhqL2CwJx_dz`
-            currency (str): Currency code
-            amount (float): Withdrawal amount. 9 decimal places, others cut off
-            withdrawal_id (str): Unique withdrawal ID in your system to prevent double spends. Must not be longer than 50
-            comment (str): Withdrawal comment. Must not be longer than 50
+            address (str): Withdrawal address.
+            currency (str): Currency code.
+            amount (float): Amount to withdraw (up to 9 decimals).
+            withdrawal_id (str): Unique idempotency identifier (<=50 chars).
+            comment (str): Optional comment (<=50 chars).
 
         Returns:
-            Withdrawal: 
+            Withdrawal: Created withdrawal record.
+
+        Raises:
+            xRocketAPIError: On validation or API errors.
         """
         payload: Dict[str, Any] = {
             "network": network,
@@ -114,14 +129,16 @@ class App:
     async def get_withdrawal(
         self, withdrawal_id: str
     ) -> Withdrawal:
-        """
-        Returns withdrawal info
-        
+        """Return withdrawal details by id.
+
         Args:
-            withdrawal_id (str): Unique withdrawal ID in your system.
-            
+            withdrawal_id (str): Unique withdrawal id used in your system.
+
         Returns:
-            Withdrawal:
+            Withdrawal: Withdrawal details.
+
+        Raises:
+            xRocketAPIError: If the withdrawal is not found or API returns error.
         """
         
         r = await self._request("GET", f"app/withdrawal/status/{withdrawal_id}")
@@ -130,29 +147,36 @@ class App:
     async def get_withdrawal_status(
         self, withdrawal_id: str
     ) -> WithdrawalStatus:
-        """
-        Returns withdrawal status
-        
+        """Return status for a withdrawal.
+
+        This is a thin helper around :meth:`get_withdrawal` that returns the
+        parsed :class:`WithdrawalStatus` enum.
+
         Args:
-            withdrawal_id (str): Unique withdrawal ID in your system.
-            
+            withdrawal_id (str): Unique withdrawal id.
+
         Returns:
-            WithdrawalStatus:
+            WithdrawalStatus: Current status.
+
+        Raises:
+            xRocketAPIError: If the API call fails.
         """
-        
+
         return (await self.get_withdrawal(withdrawal_id=withdrawal_id)).status
 
     async def get_withdrawal_fees(
         self, currency: Optional[str] = None
     ) -> List[WithdrawalCoin]:
-        """
-        Returns withdrawal fees
-        
+        """Return withdrawal fee information for supported coins.
+
         Args:
-            currency (str): Coin for get fees, optional
-            
+            currency (str): Optional currency code to filter fees by.
+
         Returns:
-            List[WithdrawalCoin]: 
+            List[WithdrawalCoin]: Fee metadata per coin.
+
+        Raises:
+            xRocketAPIError: If the API returns an error.
         """
         r = await self._request('GET', 'app/withdrawal/fees', params={'currency': currency} if currency else None)
         return [WithdrawalCoin.from_api(data) for data in r['data']]

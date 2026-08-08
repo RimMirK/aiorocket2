@@ -3,7 +3,7 @@
   <head><meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="next" title="About me" href="about_me.html"><link rel="prev" title="aiorocket2.tags" href="api/generated/aiorocket2.tags.html">
+<link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="next" title="About me" href="about_me.html"><link rel="prev" title="Resources and Links" href="resources.html">
         <link rel="prefetch" href="_static/logo+name-lt.png" as="image">
 
     <link rel="shortcut icon" href="_static/logo_round.png"><!-- Generated with Sphinx 9.1.0 and Furo 2025.12.19 -->
@@ -214,6 +214,13 @@
 <li class="toctree-l2"><a class="reference internal" href="api/generated/aiorocket2.tags.html">aiorocket2.tags</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guides/methods.html">Methods guide — practical usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guides/create_invoice.html">create_invoice — detailed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guides/create_multi_cheque.html">create_multi_cheque — detailed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guides/get_withdrawal_link.html">get_withdrawal_link — detailed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resources.html">Resources and Links</a></li>
 <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="about_me.html">About me</a></li>
 </ul>
@@ -262,9 +269,25 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">aiorocket2</span><span class="w"> </span><span class="kn">import</span> <span class="n">xRocketClient</span>
 
 <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
-    <span class="n">client</span> <span class="o">=</span> <span class="n">xRocketClient</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;YOUR_API_KEY&quot;</span><span class="p">)</span>
-    <span class="n">info</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">get_info</span><span class="p">()</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">info</span><span class="p">)</span>
+    <span class="k">async</span> <span class="k">with</span> <span class="n">xRocketClient</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;YOUR_API_KEY&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
+        <span class="n">info</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">get_info</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">info</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">info</span><span class="o">.</span><span class="n">balances</span><span class="p">)</span>
+
+<span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
+</pre></div>
+</div>
+</section>
+<section id="list-available-currencies">
+<h2>List available currencies<a class="headerlink" href="#list-available-currencies" title="Link to this heading">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">aiorocket2</span><span class="w"> </span><span class="kn">import</span> <span class="n">xRocketClient</span>
+
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+    <span class="k">async</span> <span class="k">with</span> <span class="n">xRocketClient</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;YOUR_API_KEY&quot;</span><span class="p">,</span> <span class="n">testnet</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
+        <span class="n">currencies</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">get_available_currencies</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">currency</span> <span class="ow">in</span> <span class="n">currencies</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">currency</span><span class="o">.</span><span class="n">currency</span><span class="p">,</span> <span class="n">currency</span><span class="o">.</span><span class="n">min_transfer</span><span class="p">)</span>
 
 <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
 </pre></div>
@@ -276,15 +299,74 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">aiorocket2</span><span class="w"> </span><span class="kn">import</span> <span class="n">xRocketClient</span>
 
 <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
-    <span class="n">client</span> <span class="o">=</span> <span class="n">xRocketClient</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;YOUR_API_KEY&quot;</span><span class="p">)</span>
-    <span class="n">invoice</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">create_invoice</span><span class="p">(</span>
-        <span class="n">amount</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-        <span class="n">min_payment</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-        <span class="n">num_payments</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-        <span class="n">currency</span><span class="o">=</span><span class="s2">&quot;USDT&quot;</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Demo invoice&quot;</span><span class="p">,</span>
-    <span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">invoice</span><span class="o">.</span><span class="n">link</span><span class="p">)</span>
+    <span class="k">async</span> <span class="k">with</span> <span class="n">xRocketClient</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;YOUR_API_KEY&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
+        <span class="n">invoice</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">create_invoice</span><span class="p">(</span>
+            <span class="n">currency</span><span class="o">=</span><span class="s2">&quot;TON&quot;</span><span class="p">,</span>
+            <span class="n">amount</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>
+            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Demo invoice&quot;</span><span class="p">,</span>
+            <span class="n">payload</span><span class="o">=</span><span class="s2">&quot;order-1234&quot;</span><span class="p">,</span>
+            <span class="n">expired_in</span><span class="o">=</span><span class="mi">3600</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Invoice URL:&quot;</span><span class="p">,</span> <span class="n">invoice</span><span class="o">.</span><span class="n">link</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Invoice ID:&quot;</span><span class="p">,</span> <span class="n">invoice</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+
+<span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
+</pre></div>
+</div>
+</section>
+<section id="create-a-multi-cheque">
+<h2>Create a multi-cheque<a class="headerlink" href="#create-a-multi-cheque" title="Link to this heading">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">aiorocket2</span><span class="w"> </span><span class="kn">import</span> <span class="n">xRocketClient</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">aiorocket2.enums</span><span class="w"> </span><span class="kn">import</span> <span class="n">Country</span>
+
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+    <span class="k">async</span> <span class="k">with</span> <span class="n">xRocketClient</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;YOUR_API_KEY&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
+        <span class="n">cheque</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">create_multi_cheque</span><span class="p">(</span>
+            <span class="n">currency</span><span class="o">=</span><span class="s2">&quot;TON&quot;</span><span class="p">,</span>
+            <span class="n">cheque_per_user</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span>
+            <span class="n">users_number</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+            <span class="n">ref_program</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Event reward&quot;</span><span class="p">,</span>
+            <span class="n">enabled_countries</span><span class="o">=</span><span class="p">[</span><span class="n">Country</span><span class="o">.</span><span class="n">US</span><span class="p">,</span> <span class="n">Country</span><span class="o">.</span><span class="n">GB</span><span class="p">],</span>
+        <span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cheque link:&quot;</span><span class="p">,</span> <span class="n">cheque</span><span class="o">.</span><span class="n">link</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Max activations:&quot;</span><span class="p">,</span> <span class="n">cheque</span><span class="o">.</span><span class="n">users</span><span class="p">)</span>
+
+<span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
+</pre></div>
+</div>
+</section>
+<section id="get-withdrawal-link">
+<h2>Get withdrawal link<a class="headerlink" href="#get-withdrawal-link" title="Link to this heading">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">aiorocket2</span><span class="w"> </span><span class="kn">import</span> <span class="n">xRocketClient</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">aiorocket2.enums</span><span class="w"> </span><span class="kn">import</span> <span class="n">Network</span>
+
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+    <span class="k">async</span> <span class="k">with</span> <span class="n">xRocketClient</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;YOUR_API_KEY&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
+        <span class="n">link</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">get_withdrawal_link</span><span class="p">(</span>
+            <span class="n">currency</span><span class="o">=</span><span class="s2">&quot;TON&quot;</span><span class="p">,</span>
+            <span class="n">network</span><span class="o">=</span><span class="n">Network</span><span class="o">.</span><span class="n">TON</span><span class="p">,</span>
+            <span class="n">address</span><span class="o">=</span><span class="s2">&quot;EQ...&quot;</span><span class="p">,</span>
+            <span class="n">amount</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+            <span class="n">comment</span><span class="o">=</span><span class="s2">&quot;Payout for user&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Withdrawal link:&quot;</span><span class="p">,</span> <span class="n">link</span><span class="p">)</span>
+
+<span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
+</pre></div>
+</div>
+</section>
+<section id="health-check">
+<h2>Health check<a class="headerlink" href="#health-check" title="Link to this heading">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">aiorocket2</span><span class="w"> </span><span class="kn">import</span> <span class="n">xRocketClient</span>
+
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+    <span class="k">async</span> <span class="k">with</span> <span class="n">xRocketClient</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;YOUR_API_KEY&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
+        <span class="n">status</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">check_health</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;API status:&quot;</span><span class="p">,</span> <span class="n">status</span><span class="p">)</span>
 
 <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
 </pre></div>
@@ -306,14 +388,14 @@
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="api/generated/aiorocket2.tags.html">
+          <a class="prev-page" href="resources.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">aiorocket2.tags</div>
+                <div class="title">Resources and Links</div>
                 
               </div>
             </a>
@@ -349,7 +431,11 @@
             <ul>
 <li><a class="reference internal" href="#">Examples</a><ul>
 <li><a class="reference internal" href="#basic-usage">Basic usage</a></li>
+<li><a class="reference internal" href="#list-available-currencies">List available currencies</a></li>
 <li><a class="reference internal" href="#create-an-invoice">Create an invoice</a></li>
+<li><a class="reference internal" href="#create-a-multi-cheque">Create a multi-cheque</a></li>
+<li><a class="reference internal" href="#get-withdrawal-link">Get withdrawal link</a></li>
+<li><a class="reference internal" href="#health-check">Health check</a></li>
 </ul>
 </li>
 </ul>

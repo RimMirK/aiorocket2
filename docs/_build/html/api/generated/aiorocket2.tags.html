@@ -3,7 +3,7 @@
   <head><meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="../../genindex.html"><link rel="search" title="Search" href="../../search.html"><link rel="next" title="Examples" href="../../examples.html"><link rel="prev" title="aiorocket2.utils" href="aiorocket2.utils.html">
+<link rel="index" title="Index" href="../../genindex.html"><link rel="search" title="Search" href="../../search.html"><link rel="next" title="Quickstart" href="../../quickstart.html"><link rel="prev" title="aiorocket2.utils" href="aiorocket2.utils.html">
         <link rel="prefetch" href="../../_static/logo+name-lt.png" as="image">
 
     <link rel="shortcut icon" href="../../_static/logo_round.png"><!-- Generated with Sphinx 9.1.0 and Furo 2025.12.19 -->
@@ -214,6 +214,13 @@
 <li class="toctree-l2 current current-page"><a class="current reference internal" href="#">aiorocket2.tags</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../guides/methods.html">Methods guide — practical usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../guides/create_invoice.html">create_invoice — detailed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../guides/create_multi_cheque.html">create_multi_cheque — detailed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../guides/get_withdrawal_link.html">get_withdrawal_link — detailed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../resources.html">Resources and Links</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples.html">Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../about_me.html">About me</a></li>
 </ul>
@@ -256,7 +263,23 @@
         <article role="main" id="furo-main-content">
           <section id="module-aiorocket2.tags">
 <span id="aiorocket2-tags"></span><h1>aiorocket2.tags<a class="headerlink" href="#module-aiorocket2.tags" title="Link to this heading">¶</a></h1>
-<p>The API is splitted by tags. Here is the same splitting</p>
+<p>Tag composition for aiorocket2.</p>
+<p>The upstream API groups endpoints by <em>tags</em> (for example <code class="docutils literal notranslate"><span class="pre">app</span></code>,
+<code class="docutils literal notranslate"><span class="pre">tg-invoices</span></code>, <code class="docutils literal notranslate"><span class="pre">multi-cheque</span></code>). Each tag is implemented as a mixin-like
+class in this package and then composed into the <cite>Tags</cite> helper. The main
+client <a class="reference internal" href="aiorocket2.client.html#aiorocket2.client.xRocketClient" title="aiorocket2.client.xRocketClient"><code class="xref py py-class docutils literal notranslate"><span class="pre">aiorocket2.client.xRocketClient</span></code></a> inherits from <code class="docutils literal notranslate"><span class="pre">Tags</span></code> to
+expose all convenience methods on the client instance.</p>
+<section id="available-tags">
+<h2>Available tags<a class="headerlink" href="#available-tags" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Version</span></code> — API version helpers</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">App</span></code> — application-level operations (balance, transfer, withdrawals)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MultiCheque</span></code> — multi-cheque (voucher) endpoints</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TgInvoices</span></code> — invoice creation and retrieval</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">WithdrawalLink</span></code> — on-chain withdrawal link helper</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Currencies</span></code> — currency listing helper</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Health</span></code> — lightweight health check</p></li>
+</ul>
 <p class="rubric">Classes</p>
 <div class="table-wrapper autosummary longtable docutils container">
 <table class="autosummary longtable docutils align-default">
@@ -267,6 +290,7 @@
 </tbody>
 </table>
 </div>
+</section>
 <dl class="py class">
 <dt class="sig sig-object py" id="aiorocket2.tags.Tags">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">aiorocket2.tags.</span></span><span class="sig-name descname"><span class="pre">Tags</span></span><a class="reference internal" href="../../_modules/aiorocket2/tags.html#Tags"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aiorocket2.tags.Tags" title="Link to this definition">¶</a></dt>
@@ -275,10 +299,16 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="aiorocket2.tags.Tags.check_health">
 <span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">check_health</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#aiorocket2.tags.Tags.check_health" title="Link to this definition">¶</a></dt>
-<dd><p>Return API Status</p>
+<dd><p>Return API status as a <a class="reference internal" href="aiorocket2.enums.html#aiorocket2.enums.Status" title="aiorocket2.enums.Status"><code class="xref py py-class docutils literal notranslate"><span class="pre">aiorocket2.enums.Status</span></code></a> enum.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="aiorocket2.enums.html#aiorocket2.enums.Status" title="aiorocket2.enums.Status">Status</a></p>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Service status reported by the API.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="aiorocket2.enums.html#aiorocket2.enums.Status" title="aiorocket2.enums.Status">Status</a></p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="aiorocket2.exceptions.html#aiorocket2.exceptions.xRocketAPIError" title="aiorocket2.exceptions.xRocketAPIError"><strong>xRocketAPIError</strong></a> – If the request fails.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -286,74 +316,129 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="aiorocket2.tags.Tags.create_invoice">
 <span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">create_invoice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">currency</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amount</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_payment</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_payments</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hidden_message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comments_enabled</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">callback_url</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">payload</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expired_in</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">platform_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aiorocket2.tags.Tags.create_invoice" title="Link to this definition">¶</a></dt>
-<dd><p>Create invoice</p>
+<dd><blockquote>
+<div><p>amount (float): Optional. Invoice amount. 9 decimal places, others cut off. Minimum 0. Maximum 1_000_000
+min_payment (float): Optional. Min payment only for multi invoice if invoice amount is None. Minimum 0. Maximum 1_000_000
+num_payments (int): Optional. Num payments for invoice. Minimum 0. Maximum 1_000_000
+description (str): Optional. Description for invoice. Maximum 1000
+hidden_message (str): Optional. Hidden message after invoice is paid. Maximum 2000
+comments_enabled (bool): Optional. Allow comments. Default False
+callback_url (str): Optional. Url for Return button after invoice is paid. Maximum 500
+payload (str): Optional. Any data. Invisible to user, will be returned in callback. Maximum 4000
+expired_in (int): Optional. Invoice expire time in seconds, max 1 day, 0 - none expired. Minimum 0. Maximum 86400. Default 0
+platform_id (str): Optional. Platform identifier</p>
+</div></blockquote>
+<p>Create invoice.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>currency</strong> (<em>str</em>) – Currency of transfer, info <cite>xRocketClient.get_available_currencies()</cite></p></li>
-<li><p><strong>amount</strong> (<em>float</em>) – Optional. Invoice amount. 9 decimal places, others cut off. Minimum 0. Maximum 1_000_000</p></li>
-<li><p><strong>min_payment</strong> (<em>float</em>) – Optional. Min payment only for multi invoice if invoice amount is None. Minimum 0. Maximum 1_000_000</p></li>
-<li><p><strong>num_payments</strong> (<em>int</em>) – Optional. Num payments for invoice. Minimum 0. Maximum 1_000_000</p></li>
-<li><p><strong>description</strong> (<em>str</em>) – Optional. Description for invoice. Maximum 1000</p></li>
-<li><p><strong>hidden_message</strong> (<em>str</em>) – Optional. Hidden message after invoice is paid. Maximum 2000</p></li>
-<li><p><strong>comments_enabled</strong> (<em>bool</em>) – Optional. Allow comments. Default False</p></li>
-<li><p><strong>callback_url</strong> (<em>str</em>) – Optional. Url for Return button after invoice is paid. Maximum 500</p></li>
-<li><p><strong>payload</strong> (<em>str</em>) – Optional. Any data. Invisible to user, will be returned in callback. Maximum 4000</p></li>
-<li><p><strong>expired_in</strong> (<em>int</em>) – Optional. Invoice expire time in seconds, max 1 day, 0 - none expired. Minimum 0. Maximum 86400. Default 0</p></li>
-<li><p><strong>platform_id</strong> (<em>str</em>) – Optional. Platform identifier</p></li>
+<li><p><strong>currency</strong> (<em>str</em>) – Currency code, for example <code class="docutils literal notranslate"><span class="pre">&quot;TON&quot;</span></code>. Use
+<code class="docutils literal notranslate"><span class="pre">xRocketClient.get_available_currencies()</span></code> to list valid currencies.</p></li>
+<li><p><strong>amount</strong> (<em>float</em>) – Optional fixed invoice amount. Use decimal precision up to
+9 fractional places; values are truncated by the API.</p></li>
+<li><p><strong>min_payment</strong> (<em>float</em>) – Optional minimum payment for multi-pay invoices.</p></li>
+<li><p><strong>num_payments</strong> (<em>int</em>) – Number of allowed partial payments (default <code class="docutils literal notranslate"><span class="pre">1</span></code>).</p></li>
+<li><p><strong>description</strong> (<em>str</em>) – Visible description for the payer (max 1000 chars).</p></li>
+<li><p><strong>hidden_message</strong> (<em>str</em>) – Message shown to the payer after successful payment.</p></li>
+<li><p><strong>comments_enabled</strong> (<em>bool</em>) – Allow comments on the invoice.</p></li>
+<li><p><strong>callback_url</strong> (<em>str</em>) – Return/callback URL (optional).</p></li>
+<li><p><strong>payload</strong> (<em>str</em>) – Opaque string returned in callbacks — useful for your internal IDs.</p></li>
+<li><p><strong>expired_in</strong> (<em>int</em>) – Expiry in seconds (<code class="docutils literal notranslate"><span class="pre">0</span></code> — never expire).</p></li>
+<li><p><strong>platform_id</strong> (<em>str</em>) – Optional platform identifier.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="aiorocket2.models.html#aiorocket2.models.Invoice" title="aiorocket2.models.Invoice">Invoice</a></p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Parsed invoice model returned by the API.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="aiorocket2.models.html#aiorocket2.models.Invoice" title="aiorocket2.models.Invoice">Invoice</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="aiorocket2.exceptions.html#aiorocket2.exceptions.xRocketAPIError" title="aiorocket2.exceptions.xRocketAPIError"><strong>xRocketAPIError</strong></a> – When API returns non-success or for network errors.</p>
 </dd>
 </dl>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>Prefer passing enum members where available; for currency codes the
+current API accepts strings, but using a canonical source reduces typos.</p></li>
+<li><p>For accounting-sensitive flows consider using <code class="docutils literal notranslate"><span class="pre">decimal.Decimal</span></code> to
+construct amounts before converting to <code class="docutils literal notranslate"><span class="pre">float</span></code>.</p></li>
+</ul>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">async</span> <span class="k">with</span> <span class="n">xRocketClient</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;KEY&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">inv</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">create_invoice</span><span class="p">(</span><span class="n">currency</span><span class="o">=</span><span class="s2">&quot;TON&quot;</span><span class="p">,</span> <span class="n">amount</span><span class="o">=</span><span class="mf">0.005</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Tip&quot;</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">inv</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">inv</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="aiorocket2.tags.Tags.create_multi_cheque">
 <span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">create_multi_cheque</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">currency</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cheque_per_user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">users_number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_program</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">send_notifications</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enable_captcha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">telegram_resources_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">for_premium</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linked_wallet</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">disabled_languages</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enabled_countries</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aiorocket2.tags.Tags.create_multi_cheque" title="Link to this definition">¶</a></dt>
-<dd><p>Create multi-cheque</p>
+<dd><p>Create a multi-cheque (voucher) for multiple activations.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>currency</strong> (<em>str</em>) – Currency of transfer, info <cite>xRocketClient.get_available_currencies()</cite></p></li>
-<li><p><strong>cheque_per_user</strong> (<em>float</em>) – Cheque amount for one user. 9 decimal places, others cut off</p></li>
-<li><p><strong>users_number</strong> (<em>int</em>) – Number of users to save multicheque. 0 decimal places. Minimum 1</p></li>
-<li><p><strong>ref_program</strong> (<em>int</em>) – Referral program percentage (%). 0 decimal places. Minimum 0. Maximum 100</p></li>
-<li><p><strong>password</strong> (<em>str</em>) – Optional. Password for cheque. Max length 100</p></li>
-<li><p><strong>description</strong> (<em>str</em>) – Optional. Description for cheque. Max length 1000</p></li>
-<li><p><strong>send_notifications</strong> (<em>bool</em>) – Optional. Send notifications about activations. Default True</p></li>
-<li><p><strong>enable_captcha</strong> (<em>bool</em>) – Optional. Enable captcha. Default True</p></li>
-<li><p><strong>telegram_resources_ids</strong> (<em>List</em><em> of </em><em>int</em><em> or </em><em>str</em>) – IDs of telegram resources (groups, channels, private groups)</p></li>
-<li><p><strong>for_premium</strong> (<em>bool</em>) – Optional. Only users with Telegram Premium can activate this cheque. Default False</p></li>
-<li><p><strong>linked_wallet</strong> (<em>bool</em>) – Optional. Only users with linked wallet can activate this cheque. Default False</p></li>
-<li><p><strong>disabled_languages</strong> (<em>List</em><em> of </em><em>str</em>) – Optional. Disable languages</p></li>
-<li><p><strong>enabled_countries</strong> (<em>List</em><em> of </em><a class="reference internal" href="aiorocket2.enums.html#aiorocket2.enums.Country" title="aiorocket2.enums.Country"><em>Country</em></a>) – Optional. Enabled countries</p></li>
+<li><p><strong>currency</strong> (<em>str</em>) – Currency code such as <code class="docutils literal notranslate"><span class="pre">&quot;TON&quot;</span></code>. Use
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">xRocketClient.get_available_currencies()</span></code> to list valid currencies.</p></li>
+<li><p><strong>cheque_per_user</strong> (<em>float</em>) – Amount reserved per activation (up to 9 decimals).</p></li>
+<li><p><strong>users_number</strong> (<em>int</em>) – Number of activations (integer, minimum 1).</p></li>
+<li><p><strong>ref_program</strong> (<em>int</em>) – Referral program percentage (0-100).</p></li>
+<li><p><strong>password</strong> (<em>str</em>) – Optional password for the cheque (max length 100).</p></li>
+<li><p><strong>description</strong> (<em>str</em>) – Optional description for the cheque (max length 1000).</p></li>
+<li><p><strong>send_notifications</strong> (<em>bool</em>) – Whether to send activation notifications.</p></li>
+<li><p><strong>enable_captcha</strong> (<em>bool</em>) – Enable captcha for activation flow.</p></li>
+<li><p><strong>telegram_resources_ids</strong> (<em>List</em><em>[</em><em>Union</em><em>[</em><em>int</em><em>, </em><em>str</em><em>]</em><em>]</em>) – Telegram resource ids (group/channel ids).</p></li>
+<li><p><strong>for_premium</strong> (<em>bool</em>) – Restrict activation to Telegram Premium users.</p></li>
+<li><p><strong>linked_wallet</strong> (<em>bool</em>) – Require linked wallet for activation.</p></li>
+<li><p><strong>disabled_languages</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – Languages to disable.</p></li>
+<li><p><strong>enabled_countries</strong> (<em>List</em><em>[</em><a class="reference internal" href="aiorocket2.enums.html#aiorocket2.enums.Country" title="aiorocket2.enums.Country"><em>Country</em></a><em>]</em>) – Pass members of the <code class="docutils literal notranslate"><span class="pre">Country</span></code> enum
+(for example <code class="docutils literal notranslate"><span class="pre">[Country.US,</span> <span class="pre">Country.GB]</span></code>). The client converts enums
+to their API string values internally.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="aiorocket2.models.html#aiorocket2.models.Cheque" title="aiorocket2.models.Cheque">Cheque</a></p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Model representing created cheque.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="aiorocket2.models.html#aiorocket2.models.Cheque" title="aiorocket2.models.Cheque">Cheque</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="aiorocket2.exceptions.html#aiorocket2.exceptions.xRocketAPIError" title="aiorocket2.exceptions.xRocketAPIError"><strong>xRocketAPIError</strong></a> – On API or validation errors.</p>
 </dd>
 </dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">aiorocket2.enums</span><span class="w"> </span><span class="kn">import</span> <span class="n">Country</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">async</span> <span class="k">with</span> <span class="n">xRocketClient</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;KEY&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">chk</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">create_multi_cheque</span><span class="p">(</span><span class="n">currency</span><span class="o">=</span><span class="s2">&quot;TON&quot;</span><span class="p">,</span> <span class="n">cheque_per_user</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">users_number</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">ref_program</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">enabled_countries</span><span class="o">=</span><span class="p">[</span><span class="n">Country</span><span class="o">.</span><span class="n">US</span><span class="p">])</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">chk</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">chk</span><span class="o">.</span><span class="n">inviteUrl</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="aiorocket2.tags.Tags.create_withdrawal">
 <span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">create_withdrawal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">network</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">address</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">currency</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amount</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">withdrawal_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comment</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aiorocket2.tags.Tags.create_withdrawal" title="Link to this definition">¶</a></dt>
-<dd><p>Make withdrawal of funds to external wallet</p>
+<dd><p>Create a withdrawal to an external address.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>network</strong> (<a class="reference internal" href="aiorocket2.enums.html#aiorocket2.enums.Network" title="aiorocket2.enums.Network"><em>Network</em></a>) – Network code.</p></li>
-<li><p><strong>address</strong> (<em>str</em>) – Withdrawal address. E.g. <cite>EQB1cmpxb3R-YLA3HLDV01Rx6OHpMQA_7MOglhqL2CwJx_dz</cite></p></li>
-<li><p><strong>currency</strong> (<em>str</em>) – Currency code</p></li>
-<li><p><strong>amount</strong> (<em>float</em>) – Withdrawal amount. 9 decimal places, others cut off</p></li>
-<li><p><strong>withdrawal_id</strong> (<em>str</em>) – Unique withdrawal ID in your system to prevent double spends. Must not be longer than 50</p></li>
-<li><p><strong>comment</strong> (<em>str</em>) – Withdrawal comment. Must not be longer than 50</p></li>
+<li><p><strong>address</strong> (<em>str</em>) – Withdrawal address.</p></li>
+<li><p><strong>currency</strong> (<em>str</em>) – Currency code.</p></li>
+<li><p><strong>amount</strong> (<em>float</em>) – Amount to withdraw (up to 9 decimals).</p></li>
+<li><p><strong>withdrawal_id</strong> (<em>str</em>) – Unique idempotency identifier (&lt;=50 chars).</p></li>
+<li><p><strong>comment</strong> (<em>str</em>) – Optional comment (&lt;=50 chars).</p></li>
 </ul>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="aiorocket2.models.html#aiorocket2.models.Withdrawal" title="aiorocket2.models.Withdrawal">Withdrawal</a></p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Created withdrawal record.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="aiorocket2.models.html#aiorocket2.models.Withdrawal" title="aiorocket2.models.Withdrawal">Withdrawal</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="aiorocket2.exceptions.html#aiorocket2.exceptions.xRocketAPIError" title="aiorocket2.exceptions.xRocketAPIError"><strong>xRocketAPIError</strong></a> – On validation or API errors.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -361,16 +446,19 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="aiorocket2.tags.Tags.delete_invoice">
 <span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">delete_invoice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">invoice_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aiorocket2.tags.Tags.delete_invoice" title="Link to this definition">¶</a></dt>
-<dd><p>Delete invoice</p>
+<dd><p>Delete an invoice.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>invoice_id</strong> (<em>int</em>) – Invoice ID</p>
+<dd class="field-odd"><p><strong>invoice_id</strong> (<em>int</em>) – Invoice identifier.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>on success otherwise raises xRocketAPIError</p>
+<dd class="field-even"><p>On successful deletion.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>True</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="aiorocket2.exceptions.html#aiorocket2.exceptions.xRocketAPIError" title="aiorocket2.exceptions.xRocketAPIError"><strong>xRocketAPIError</strong></a> – If deletion fails.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -378,16 +466,19 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="aiorocket2.tags.Tags.delete_multi_cheque">
 <span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">delete_multi_cheque</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cheque_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aiorocket2.tags.Tags.delete_multi_cheque" title="Link to this definition">¶</a></dt>
-<dd><p>Delete multi-cheque</p>
+<dd><p>Delete a multi-cheque by id.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>cheque_id</strong> (<em>str</em>) – Cheque ID</p>
+<dd class="field-odd"><p><strong>cheque_id</strong> (<em>str</em>) – Cheque identifier.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>on success, otherwise raises xRocketAPIError</p>
+<dd class="field-even"><p>On success.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>True</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="aiorocket2.exceptions.html#aiorocket2.exceptions.xRocketAPIError" title="aiorocket2.exceptions.xRocketAPIError"><strong>xRocketAPIError</strong></a> – If deletion fails.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -395,24 +486,30 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="aiorocket2.tags.Tags.edit_multi_cheque">
 <span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">edit_multi_cheque</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cheque_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">send_notifications</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enable_captcha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">telegram_resources_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">for_premium</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linked_wallet</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">disabled_languages</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enabled_countries</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aiorocket2.tags.Tags.edit_multi_cheque" title="Link to this definition">¶</a></dt>
-<dd><p>Edit multi-cheque</p>
+<dd><p>Update properties of an existing multi-cheque.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>cheque_id</strong> (<em>int</em>)</p></li>
-<li><p><strong>password</strong> (<em>str</em>) – (str): Optional. Password for cheque. Max lenght 100</p></li>
-<li><p><strong>description</strong> (<em>str</em>) – Optional. Description for cheque. Max lenght 1000</p></li>
-<li><p><strong>send_notifications</strong> (<em>bool</em>) – Optional. Send notifications about activations. Default True</p></li>
-<li><p><strong>enable_captcha</strong> (<em>bool</em>) – Optional. Enable captcha. Default True</p></li>
-<li><p><strong>telegram_resources_ids</strong> (<em>List</em><em> of </em><em>int</em><em> or </em><em>str</em>) – IDs of telegram resources (groups, channels, private groups)</p></li>
-<li><p><strong>for_premium</strong> (<em>bool</em>) – Optional. Only users with Telegram Premium can activate this cheque. Default False</p></li>
-<li><p><strong>linked_wallet</strong> (<em>bool</em>) – Optional. Only users with linked wallet can activate this cheque. Default False</p></li>
-<li><p><strong>disabled_languages</strong> (<em>List</em><em> of </em><em>str</em>) – Optional. Disable languages</p></li>
-<li><p><strong>enabled_countries</strong> (<em>List</em><em> of </em><a class="reference internal" href="aiorocket2.enums.html#aiorocket2.enums.Country" title="aiorocket2.enums.Country"><em>Country</em></a>) – Optional. Enabled countries</p></li>
+<li><p><strong>cheque_id</strong> (<em>int</em>) – Cheque identifier.</p></li>
+<li><p><strong>password</strong> (<em>str</em>) – Optional password (max 100 chars).</p></li>
+<li><p><strong>description</strong> (<em>str</em>) – Optional description (max 1000 chars).</p></li>
+<li><p><strong>send_notifications</strong> (<em>bool</em>) – Whether to send activation notifications.</p></li>
+<li><p><strong>enable_captcha</strong> (<em>bool</em>) – Enable captcha for activation.</p></li>
+<li><p><strong>telegram_resources_ids</strong> (<em>List</em><em>[</em><em>Union</em><em>[</em><em>int</em><em>,</em><em>str</em><em>]</em><em>]</em>) – IDs of telegram resources.</p></li>
+<li><p><strong>for_premium</strong> (<em>bool</em>) – Restrict activation to Telegram Premium users.</p></li>
+<li><p><strong>linked_wallet</strong> (<em>bool</em>) – Require linked wallet for activation.</p></li>
+<li><p><strong>disabled_languages</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – Languages to disable.</p></li>
+<li><p><strong>enabled_countries</strong> (<em>List</em><em>[</em><a class="reference internal" href="aiorocket2.enums.html#aiorocket2.enums.Country" title="aiorocket2.enums.Country"><em>Country</em></a><em>]</em>) – Allowed countries.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="aiorocket2.models.html#aiorocket2.models.Cheque" title="aiorocket2.models.Cheque">Cheque</a></p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Updated cheque model.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="aiorocket2.models.html#aiorocket2.models.Cheque" title="aiorocket2.models.Cheque">Cheque</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="aiorocket2.exceptions.html#aiorocket2.exceptions.xRocketAPIError" title="aiorocket2.exceptions.xRocketAPIError"><strong>xRocketAPIError</strong></a> – On validation or API errors.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -420,13 +517,16 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="aiorocket2.tags.Tags.get_available_currencies">
 <span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">get_available_currencies</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#aiorocket2.tags.Tags.get_available_currencies" title="Link to this definition">¶</a></dt>
-<dd><p>Returns available currencies</p>
+<dd><p>Return available currencies from the API.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>List of available currencies</p>
+<dd class="field-odd"><p>Parsed list of currency models.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>List[<a class="reference internal" href="aiorocket2.models.html#aiorocket2.models.Currency" title="aiorocket2.models.Currency">Currency</a>]</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="aiorocket2.exceptions.html#aiorocket2.exceptions.xRocketAPIError" title="aiorocket2.exceptions.xRocketAPIError"><strong>xRocketAPIError</strong></a> – If the request fails.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -434,13 +534,16 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="aiorocket2.tags.Tags.get_info">
 <span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">get_info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#aiorocket2.tags.Tags.get_info" title="Link to this definition">¶</a></dt>
-<dd><p>Returns information about your application</p>
+<dd><p>Return information about the current application.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>information about your application</p>
+<dd class="field-odd"><p>Application info including balances.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="aiorocket2.models.html#aiorocket2.models.Info" title="aiorocket2.models.Info">Info</a></p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="aiorocket2.exceptions.html#aiorocket2.exceptions.xRocketAPIError" title="aiorocket2.exceptions.xRocketAPIError"><strong>xRocketAPIError</strong></a> – On API or network errors.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -448,13 +551,19 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="aiorocket2.tags.Tags.get_invoice">
 <span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">get_invoice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">invoice_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aiorocket2.tags.Tags.get_invoice" title="Link to this definition">¶</a></dt>
-<dd><p>Get invoice</p>
+<dd><p>Return a single invoice by id.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>invoice_id</strong> (<em>str</em>) – Invoice ID</p>
+<dd class="field-odd"><p><strong>invoice_id</strong> (<em>int</em>) – Invoice identifier.</p>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="aiorocket2.models.html#aiorocket2.models.Invoice" title="aiorocket2.models.Invoice">Invoice</a></p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Parsed invoice model.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="aiorocket2.models.html#aiorocket2.models.Invoice" title="aiorocket2.models.Invoice">Invoice</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="aiorocket2.exceptions.html#aiorocket2.exceptions.xRocketAPIError" title="aiorocket2.exceptions.xRocketAPIError"><strong>xRocketAPIError</strong></a> – If invoice is not found or API error occurs.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -462,16 +571,22 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="aiorocket2.tags.Tags.get_invoices">
 <span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">get_invoices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aiorocket2.tags.Tags.get_invoices" title="Link to this definition">¶</a></dt>
-<dd><p>Get list of invoices</p>
+<dd><p>Return paginated list of invoices.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>limit</strong> (<em>int</em>) – Minimum 1. Maximum 1000. Default 100</p></li>
-<li><p><strong>offset</strong> (<em>int</em>) – Minimum 0. Default 0</p></li>
+<li><p><strong>limit</strong> (<em>int</em>) – Number of items to return (1-1000). Default 100.</p></li>
+<li><p><strong>offset</strong> (<em>int</em>) – Result offset (&gt;=0). Default 0.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="aiorocket2.models.html#aiorocket2.models.PaginatedInvoice" title="aiorocket2.models.PaginatedInvoice">PaginatedInvoice</a></p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Paginated result with <cite>results</cite> list of <code class="xref py py-class docutils literal notranslate"><span class="pre">Invoice</span></code>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="aiorocket2.models.html#aiorocket2.models.PaginatedInvoice" title="aiorocket2.models.PaginatedInvoice">PaginatedInvoice</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="aiorocket2.exceptions.html#aiorocket2.exceptions.xRocketAPIError" title="aiorocket2.exceptions.xRocketAPIError"><strong>xRocketAPIError</strong></a> – If the API returns an error.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -479,13 +594,19 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="aiorocket2.tags.Tags.get_multi_cheque">
 <span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">get_multi_cheque</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cheque_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aiorocket2.tags.Tags.get_multi_cheque" title="Link to this definition">¶</a></dt>
-<dd><p>Get multi-cheque info</p>
+<dd><p>Return details for a single multi-cheque.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>cheque_id</strong> (<em>str</em>) – Cheque ID</p>
+<dd class="field-odd"><p><strong>cheque_id</strong> (<em>int</em>) – Cheque identifier.</p>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="aiorocket2.models.html#aiorocket2.models.Cheque" title="aiorocket2.models.Cheque">Cheque</a></p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Parsed cheque model.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="aiorocket2.models.html#aiorocket2.models.Cheque" title="aiorocket2.models.Cheque">Cheque</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="aiorocket2.exceptions.html#aiorocket2.exceptions.xRocketAPIError" title="aiorocket2.exceptions.xRocketAPIError"><strong>xRocketAPIError</strong></a> – If the cheque is not found or API reports an error.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -493,16 +614,22 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="aiorocket2.tags.Tags.get_multi_cheques">
 <span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">get_multi_cheques</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aiorocket2.tags.Tags.get_multi_cheques" title="Link to this definition">¶</a></dt>
-<dd><p>Get list of multi-cheques</p>
+<dd><p>Return paginated list of multi-cheques.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>limit</strong> (<em>int</em>) – Minimum 1. Maximum 1000. Default 100</p></li>
-<li><p><strong>offset</strong> (<em>int</em>) – Minimum 0. Default 0</p></li>
+<li><p><strong>limit</strong> (<em>int</em>) – Number of items to return (1-1000). Default 100.</p></li>
+<li><p><strong>offset</strong> (<em>int</em>) – Result offset (&gt;=0). Default 0.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="aiorocket2.models.html#aiorocket2.models.PaginatedCheque" title="aiorocket2.models.PaginatedCheque">PaginatedCheque</a></p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Paginated result with <cite>results</cite> containing <code class="xref py py-class docutils literal notranslate"><span class="pre">Cheque</span></code>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="aiorocket2.models.html#aiorocket2.models.PaginatedCheque" title="aiorocket2.models.PaginatedCheque">PaginatedCheque</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="aiorocket2.exceptions.html#aiorocket2.exceptions.xRocketAPIError" title="aiorocket2.exceptions.xRocketAPIError"><strong>xRocketAPIError</strong></a> – If the API returns an error.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -510,27 +637,40 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="aiorocket2.tags.Tags.get_version">
 <span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">get_version</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#aiorocket2.tags.Tags.get_version" title="Link to this definition">¶</a></dt>
-<dd><p>Returns current version of API. You may use it as healthcheck</p>
+<dd><p>Return the upstream API version string.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Version string, e.g., “1.3.1”.</p>
+<dd class="field-odd"><p>Version string, for example <code class="docutils literal notranslate"><span class="pre">&quot;1.3.1&quot;</span></code>.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>str</p>
 </dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="aiorocket2.exceptions.html#aiorocket2.exceptions.xRocketAPIError" title="aiorocket2.exceptions.xRocketAPIError"><strong>xRocketAPIError</strong></a> – If the API request fails.</p>
+</dd>
 </dl>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">version</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">get_version</span><span class="p">()</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="aiorocket2.tags.Tags.get_withdrawal">
 <span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">get_withdrawal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">withdrawal_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aiorocket2.tags.Tags.get_withdrawal" title="Link to this definition">¶</a></dt>
-<dd><p>Returns withdrawal info</p>
+<dd><p>Return withdrawal details by id.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>withdrawal_id</strong> (<em>str</em>) – Unique withdrawal ID in your system.</p>
+<dd class="field-odd"><p><strong>withdrawal_id</strong> (<em>str</em>) – Unique withdrawal id used in your system.</p>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="aiorocket2.models.html#aiorocket2.models.Withdrawal" title="aiorocket2.models.Withdrawal">Withdrawal</a></p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Withdrawal details.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="aiorocket2.models.html#aiorocket2.models.Withdrawal" title="aiorocket2.models.Withdrawal">Withdrawal</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="aiorocket2.exceptions.html#aiorocket2.exceptions.xRocketAPIError" title="aiorocket2.exceptions.xRocketAPIError"><strong>xRocketAPIError</strong></a> – If the withdrawal is not found or API returns error.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -538,13 +678,19 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="aiorocket2.tags.Tags.get_withdrawal_fees">
 <span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">get_withdrawal_fees</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">currency</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aiorocket2.tags.Tags.get_withdrawal_fees" title="Link to this definition">¶</a></dt>
-<dd><p>Returns withdrawal fees</p>
+<dd><p>Return withdrawal fee information for supported coins.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>currency</strong> (<em>str</em>) – Coin for get fees, optional</p>
+<dd class="field-odd"><p><strong>currency</strong> (<em>str</em>) – Optional currency code to filter fees by.</p>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>List[<a class="reference internal" href="aiorocket2.models.html#aiorocket2.models.WithdrawalCoin" title="aiorocket2.models.WithdrawalCoin">WithdrawalCoin</a>]</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Fee metadata per coin.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[<a class="reference internal" href="aiorocket2.models.html#aiorocket2.models.WithdrawalCoin" title="aiorocket2.models.WithdrawalCoin">WithdrawalCoin</a>]</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="aiorocket2.exceptions.html#aiorocket2.exceptions.xRocketAPIError" title="aiorocket2.exceptions.xRocketAPIError"><strong>xRocketAPIError</strong></a> – If the API returns an error.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -552,37 +698,55 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="aiorocket2.tags.Tags.get_withdrawal_link">
 <span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">get_withdrawal_link</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">currency</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">network</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">address</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amount</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comment</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">platform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aiorocket2.tags.Tags.get_withdrawal_link" title="Link to this definition">¶</a></dt>
-<dd><p>Get withdrawal link</p>
+<dd><p>Get a withdrawal link for on-chain withdrawals.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>currency</strong> (<em>str</em>) – Currency code (<cite>xRocketClient.get_available_currencies()</cite>)</p></li>
-<li><p><strong>network</strong> (<a class="reference internal" href="aiorocket2.enums.html#aiorocket2.enums.Network" title="aiorocket2.enums.Network"><em>Network</em></a>) – Network code</p></li>
-<li><p><strong>address</strong> (<em>str</em>) – Target withdrawal address</p></li>
-<li><p><strong>amount</strong> (<em>float</em>) – Optional. Withdrawal amount. Default 0</p></li>
-<li><p><strong>comment</strong> (<em>str</em>) – Optional. Withdrawal comment</p></li>
-<li><p><strong>platform</strong> (<em>str</em>) – Optional. Platform identifier (optional, use only if provided by xRocket)</p></li>
+<li><p><strong>currency</strong> (<em>str</em>) – Currency code (use <code class="xref py py-meth docutils literal notranslate"><span class="pre">xRocketClient.get_available_currencies()</span></code>).</p></li>
+<li><p><strong>network</strong> (<a class="reference internal" href="aiorocket2.enums.html#aiorocket2.enums.Network" title="aiorocket2.enums.Network"><em>Network</em></a>) – <code class="docutils literal notranslate"><span class="pre">Network</span></code> enum member (e.g. <code class="docutils literal notranslate"><span class="pre">Network.TON</span></code>).</p></li>
+<li><p><strong>address</strong> (<em>str</em>) – Target on-chain address.</p></li>
+<li><p><strong>amount</strong> (<em>float</em>) – Optional withdrawal amount (default <code class="docutils literal notranslate"><span class="pre">0</span></code>).</p></li>
+<li><p><strong>comment</strong> (<em>str</em>) – Optional comment attached to withdrawal.</p></li>
+<li><p><strong>platform</strong> (<em>str</em>) – Optional platform identifier.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Telegram app link</p>
+<dd class="field-even"><p>Telegram application link for withdrawal.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>str</p>
+<dd class="field-odd"><p>Optional[str]</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="aiorocket2.exceptions.html#aiorocket2.exceptions.xRocketAPIError" title="aiorocket2.exceptions.xRocketAPIError"><strong>xRocketAPIError</strong></a> – If the API returns an error or no link is available.</p>
 </dd>
 </dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">aiorocket2.enums</span><span class="w"> </span><span class="kn">import</span> <span class="n">Network</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">async</span> <span class="k">with</span> <span class="n">xRocketClient</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;KEY&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">link</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">get_withdrawal_link</span><span class="p">(</span><span class="n">currency</span><span class="o">=</span><span class="s2">&quot;TON&quot;</span><span class="p">,</span> <span class="n">network</span><span class="o">=</span><span class="n">Network</span><span class="o">.</span><span class="n">TON</span><span class="p">,</span> <span class="n">address</span><span class="o">=</span><span class="s2">&quot;EQ...&quot;</span><span class="p">,</span> <span class="n">amount</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">link</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="aiorocket2.tags.Tags.get_withdrawal_status">
 <span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">get_withdrawal_status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">withdrawal_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aiorocket2.tags.Tags.get_withdrawal_status" title="Link to this definition">¶</a></dt>
-<dd><p>Returns withdrawal status</p>
+<dd><p>Return status for a withdrawal.</p>
+<p>This is a thin helper around <a class="reference internal" href="#aiorocket2.tags.Tags.get_withdrawal" title="aiorocket2.tags.Tags.get_withdrawal"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_withdrawal()</span></code></a> that returns the
+parsed <code class="xref py py-class docutils literal notranslate"><span class="pre">WithdrawalStatus</span></code> enum.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>withdrawal_id</strong> (<em>str</em>) – Unique withdrawal ID in your system.</p>
+<dd class="field-odd"><p><strong>withdrawal_id</strong> (<em>str</em>) – Unique withdrawal id.</p>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="aiorocket2.enums.html#aiorocket2.enums.WithdrawalStatus" title="aiorocket2.enums.WithdrawalStatus">WithdrawalStatus</a></p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Current status.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="aiorocket2.enums.html#aiorocket2.enums.WithdrawalStatus" title="aiorocket2.enums.WithdrawalStatus">WithdrawalStatus</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="aiorocket2.exceptions.html#aiorocket2.exceptions.xRocketAPIError" title="aiorocket2.exceptions.xRocketAPIError"><strong>xRocketAPIError</strong></a> – If the API call fails.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -590,19 +754,24 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="aiorocket2.tags.Tags.send_transfer">
 <span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">send_transfer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tg_user_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">currency</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amount</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transfer_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aiorocket2.tags.Tags.send_transfer" title="Link to this definition">¶</a></dt>
-<dd><p>Make transfer of funds to another user</p>
+<dd><p>Make an internal transfer to a Telegram user.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>tg_user_id</strong> (<em>int</em>) – Telegram user ID. If we dont have this user in DB, we will fail transaction with error: 400 - User not found</p></li>
-<li><p><strong>currency</strong> (<em>str</em>) – Currency of transfer, info <cite>xRocketClient.get_available_currencies()</cite></p></li>
-<li><p><strong>amount</strong> (<em>float</em>) – Transfer amount. 9 decimal places, others cut off</p></li>
-<li><p><strong>transfer_id</strong> (<em>str</em>) – Unique transfer ID in your system to prevent double spends</p></li>
-<li><p><strong>description</strong> (<em>str</em>) – Transfer description</p></li>
+<li><p><strong>tg_user_id</strong> (<em>int</em>) – Target Telegram user id. If unknown to the API the
+request will fail with a 400 error.</p></li>
+<li><p><strong>currency</strong> (<em>str</em>) – Currency code (see <code class="xref py py-meth docutils literal notranslate"><span class="pre">Currencies.get_available_currencies()</span></code>).</p></li>
+<li><p><strong>amount</strong> (<em>float</em>) – Transfer amount (up to 9 decimals).</p></li>
+<li><p><strong>transfer_id</strong> (<em>str</em>) – Idempotency/unique transfer id in your system to
+prevent duplicate transfers.</p></li>
+<li><p><strong>description</strong> (<em>str</em>) – Optional transfer description.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="aiorocket2.models.html#aiorocket2.models.Transfer" title="aiorocket2.models.Transfer">Transfer</a></p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Model with transfer details.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="aiorocket2.models.html#aiorocket2.models.Transfer" title="aiorocket2.models.Transfer">Transfer</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -616,12 +785,12 @@
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="../../examples.html">
+          <a class="next-page" href="../../quickstart.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Examples</div>
+                <div class="title">Quickstart</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
@@ -667,6 +836,7 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">aiorocket2.tags</a><ul>
+<li><a class="reference internal" href="#available-tags">Available tags</a></li>
 <li><a class="reference internal" href="#aiorocket2.tags.Tags"><code class="docutils literal notranslate"><span class="pre">Tags</span></code></a><ul>
 <li><a class="reference internal" href="#aiorocket2.tags.Tags.check_health"><code class="docutils literal notranslate"><span class="pre">Tags.check_health()</span></code></a></li>
 <li><a class="reference internal" href="#aiorocket2.tags.Tags.create_invoice"><code class="docutils literal notranslate"><span class="pre">Tags.create_invoice()</span></code></a></li>

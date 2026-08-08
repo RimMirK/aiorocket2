@@ -18,24 +18,26 @@
 #  Repository: https://github.com/RimMirK/aiorocket2
 #  Documentation: https://docs.aiorocket2.rimmirk.dev
 #  Telegram: @RimMirK
-"""
-Tag health from the API
+"""Health tag — quick API health checks.
+
+Simple helper to check upstream service status. This is useful for lightweight
+monitoring or readiness checks that do not require authentication.
 """
 
 from ..enums import Status
 
 
 class Health:
-    """
-    Tag health from the API
-    """
+    """Tag health from the API."""
 
     async def check_health(self) -> Status:
-        """
-        Return API Status
-        
+        """Return API status as a :class:`aiorocket2.enums.Status` enum.
+
         Returns:
-            Status: 
+            Status: Service status reported by the API.
+
+        Raises:
+            xRocketAPIError: If the request fails.
         """
         r = await self._request("GET", "health", require_success=False)
         return Status(r.get('status') or "UNKNOWN")

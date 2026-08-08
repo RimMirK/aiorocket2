@@ -46,10 +46,6 @@ class TgInvoices:
         platform_id: str = None,
     ) -> Invoice:
         """
-        Create invoice
-        
-        Args:
-            currency (str): Currency of transfer, info `xRocketClient.get_available_currencies()`
             amount (float): Optional. Invoice amount. 9 decimal places, others cut off. Minimum 0. Maximum 1_000_000
             min_payment (float): Optional. Min payment only for multi invoice if invoice amount is None. Minimum 0. Maximum 1_000_000
             num_payments (int): Optional. Num payments for invoice. Minimum 0. Maximum 1_000_000
@@ -61,8 +57,39 @@ class TgInvoices:
             expired_in (int): Optional. Invoice expire time in seconds, max 1 day, 0 - none expired. Minimum 0. Maximum 86400. Default 0
             platform_id (str): Optional. Platform identifier
         
+        Create invoice.
+
+        Args:
+            currency (str): Currency code, for example ``"TON"``. Use
+                ``xRocketClient.get_available_currencies()`` to list valid currencies.
+            amount (float): Optional fixed invoice amount. Use decimal precision up to
+                9 fractional places; values are truncated by the API.
+            min_payment (float): Optional minimum payment for multi-pay invoices.
+            num_payments (int): Number of allowed partial payments (default ``1``).
+            description (str): Visible description for the payer (max 1000 chars).
+            hidden_message (str): Message shown to the payer after successful payment.
+            comments_enabled (bool): Allow comments on the invoice.
+            callback_url (str): Return/callback URL (optional).
+            payload (str): Opaque string returned in callbacks — useful for your internal IDs.
+            expired_in (int): Expiry in seconds (``0`` — never expire).
+            platform_id (str): Optional platform identifier.
+
         Returns:
-            Invoice:
+            Invoice: Parsed invoice model returned by the API.
+
+        Raises:
+            xRocketAPIError: When API returns non-success or for network errors.
+
+        Notes:
+            - Prefer passing enum members where available; for currency codes the
+              current API accepts strings, but using a canonical source reduces typos.
+            - For accounting-sensitive flows consider using ``decimal.Decimal`` to
+              construct amounts before converting to ``float``.
+
+        Example:
+            >>> async with xRocketClient(api_key="KEY") as client:
+            ...     inv = await client.create_invoice(currency="TON", amount=0.005, description="Tip")
+            ...     print(inv.id, inv.url)
         """
         api_payload = {
             "amount": amount,
@@ -85,15 +112,17 @@ class TgInvoices:
         limit: int = 100,
         offset: int = 0
     ) -> PaginatedInvoice:
-        """
-        Get list of invoices
-        
+        """Return paginated list of invoices.
+
         Args:
-            limit (int): Minimum 1. Maximum 1000. Default 100
-            offset (int): Minimum 0. Default 0
-            
+            limit (int): Number of items to return (1-1000). Default 100.
+            offset (int): Result offset (>=0). Default 0.
+
         Returns:
-            PaginatedInvoice:
+            PaginatedInvoice: Paginated result with `results` list of :class:`Invoice`.
+
+        Raises:
+            xRocketAPIError: If the API returns an error.
         """
         r = await self._request('GET', 'tg-invoices', params={"limit": limit, "offset": offset})
         return PaginatedInvoice.from_api(r['data'])
@@ -102,14 +131,16 @@ class TgInvoices:
         self,
         invoice_id: int
     ) -> Invoice:
-        """
-        Get invoice
+        """Return a single invoice by id.
 
         Args:
-            invoice_id (str): Invoice ID
+            invoice_id (int): Invoice identifier.
 
         Returns:
-            Invoice:
+            Invoice: Parsed invoice model.
+
+        Raises:
+            xRocketAPIError: If invoice is not found or API error occurs.
         """
         r = await self._request("GET", f"tg-invoices/{invoice_id}")
         return Invoice.from_api(r["data"])
@@ -118,14 +149,16 @@ class TgInvoices:
         self,
         invoice_id: int
     ) -> True:
-        """
-        Delete invoice
+        """Delete an invoice.
 
         Args:
-            invoice_id (int): Invoice ID
-        
+            invoice_id (int): Invoice identifier.
+
         Returns:
-            True: on success otherwise raises xRocketAPIError
+            True: On successful deletion.
+
+        Raises:
+            xRocketAPIError: If deletion fails.
         """
         r = await self._request("DELETE", f"tg-invoices/{invoice_id}")
         return r['success'] is True
