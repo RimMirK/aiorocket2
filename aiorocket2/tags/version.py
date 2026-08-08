@@ -26,14 +26,15 @@ be used as a lightweight healthcheck.
 """
 
 class Version:
-    """
-    Tag version from the API
-    """
+    """Tag version from the API."""
     async def get_version(self) -> str:
         """Return the upstream API version string.
 
         Returns:
             str: Version string, for example ``"1.3.1"``.
+
+        Raises:
+            xRocketAPIError: If the API request fails.
 
         Example::
 

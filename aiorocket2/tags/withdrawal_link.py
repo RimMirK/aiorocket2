@@ -19,8 +19,11 @@
 #  Documentation: https://docs.aiorocket2.rimmirk.dev
 #  Telegram: @RimMirK
 
-"""
-Tag withdrawal-link from the API
+"""Withdrawal-link tag — generate on-chain withdrawal links.
+
+A lightweight helper for building Telegram withdrawal links with optional
+comments, amount limits and platform tags. This endpoint is typically used
+when on-chain withdrawals need to be initiated from bot flows.
 """
 
 from typing import Optional
@@ -29,9 +32,7 @@ from ..exceptions import xRocketAPIError
 
 
 class WithdrawalLink:
-    """
-    Tag Withdrawal-link from the API
-    """
+    """Tag withdrawal-link from the API."""
     async def get_withdrawal_link(
         self,
         currency: str,

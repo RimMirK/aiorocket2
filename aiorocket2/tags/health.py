@@ -28,15 +28,16 @@ from ..enums import Status
 
 
 class Health:
-    """
-    Tag health from the API
-    """
+    """Tag health from the API."""
 
     async def check_health(self) -> Status:
         """Return API status as a :class:`aiorocket2.enums.Status` enum.
 
         Returns:
             Status: Service status reported by the API.
+
+        Raises:
+            xRocketAPIError: If the request fails.
         """
         r = await self._request("GET", "health", require_success=False)
         return Status(r.get('status') or "UNKNOWN")

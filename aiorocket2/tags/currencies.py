@@ -37,15 +37,16 @@ from ..models import Currency
 
 
 class Currencies:
-    """
-    Tag currencies from the API
-    """
+    """Tag currencies from the API."""
     
     async def get_available_currencies(self) -> List[Currency]:
         """Return available currencies from the API.
 
         Returns:
             List[Currency]: Parsed list of currency models.
+
+        Raises:
+            xRocketAPIError: If the request fails.
         """
         r = await self._request("GET", "currencies/available", require_auth_header=False)
         return [Currency.from_api(c) for c in r["data"].get("results", [])]
