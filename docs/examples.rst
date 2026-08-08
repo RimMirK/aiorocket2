@@ -56,7 +56,7 @@ Create an invoice
    asyncio.run(main())
 
 Create a multi-cheque
---------------------
+---------------------
 
 .. code-block:: python
 

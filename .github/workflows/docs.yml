@@ -2,6 +2,8 @@ name: Build and deploy documentation
 
 on:
   push:
+    branches: [main, docs/1.1]
+  pull_request:
     branches: [main]
   workflow_dispatch:
 
