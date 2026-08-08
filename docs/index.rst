@@ -1,6 +1,30 @@
 aiorocket2 documentation
 =========================
 
+.. image:: https://img.shields.io/pypi/v/aiorocket2?color=blue&logo=python&style=flat-square
+   :target: https://pypi.org/project/aiorocket2/
+   :alt: PyPI
+
+.. image:: https://img.shields.io/pypi/pyversions/aiorocket2?style=flat-square
+   :target: https://www.python.org/
+   :alt: Python Version
+
+.. image:: https://img.shields.io/badge/license-GPLv3-blue?style=flat-square
+   :target: https://www.gnu.org/licenses/gpl-3.0.en.html
+   :alt: License
+
+.. image:: https://img.shields.io/badge/docs-online-brightgreen?style=flat-square
+   :target: https://docs.aiorocket2.rimmirk.dev
+   :alt: Documentation
+
+.. image:: https://img.shields.io/github/issues/RimMirK/aiorocket2?style=flat-square
+   :target: https://github.com/RimMirK/aiorocket2/issues
+   :alt: Issues
+
+.. image:: https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg
+   :target: https://github.com/vshymanskyy/StandWithUkraine/blob/main/docs/README.md
+   :alt: StandWithUkraine
+
 Async Python client for the xRocket Pay API.
 
 This documentation is primarily an API reference for the Python package.
@@ -34,8 +58,8 @@ Quick navigation
 
       Common usage patterns and invoice creation examples.
 
-   .. grid-item-card:: About me
-      :link: about_me.html
+   .. grid-item-card:: Links
+      :link: links.html
 
       Links to GitHub, Telegram and other contact channels.
 
@@ -46,13 +70,9 @@ Contents
    :maxdepth: 2
    :caption: Documentation
 
-   api/index
    quickstart
-   guides/methods
-   guides/create_invoice
-   guides/create_multi_cheque
-   guides/get_withdrawal_link
+   examples
+   api/index
    faq
    resources
-   examples
-   about_me
+   links

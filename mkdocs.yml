@@ -44,9 +44,6 @@ nav:
       - Enums: api/enums.md
       - Exceptions: api/exceptions.md
       - Utilities: api/utils.md
-      - Tags: api/tags.md
-  - Guides:
-      - Methods: guides/methods.md
   - Examples: examples.md
 
 plugins:

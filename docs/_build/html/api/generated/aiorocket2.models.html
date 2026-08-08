@@ -214,6 +214,13 @@
 <li class="toctree-l2"><a class="reference internal" href="aiorocket2.tags.html">aiorocket2.tags</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../guides/methods.html">Methods guide — practical usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../guides/create_invoice.html">create_invoice — detailed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../guides/create_multi_cheque.html">create_multi_cheque — detailed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../guides/get_withdrawal_link.html">get_withdrawal_link — detailed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../resources.html">Resources and Links</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples.html">Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../about_me.html">About me</a></li>
 </ul>
@@ -256,7 +263,21 @@
         <article role="main" id="furo-main-content">
           <section id="module-aiorocket2.models">
 <span id="aiorocket2-models"></span><h1>aiorocket2.models<a class="headerlink" href="#module-aiorocket2.models" title="Link to this heading">¶</a></h1>
-<p>Modules (dataclases) used by aiorocket2</p>
+<p>Data models used by aiorocket2.</p>
+<p>This module defines lightweight dataclasses that mirror objects returned by the
+xRocket Pay API. Each model implements <code class="xref py py-meth docutils literal notranslate"><span class="pre">from_api()</span></code> to build an instance
+from the JSON response, and <code class="xref py py-meth docutils literal notranslate"><span class="pre">as_dict()</span></code> to convert back to plain Python
+structures suitable for serialization.</p>
+<section id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Use <code class="xref py py-func docutils literal notranslate"><span class="pre">to_dict()</span></code> or <code class="xref py py-meth docutils literal notranslate"><span class="pre">Base.as_dict()</span></code> to prepare payloads for downstream</dt><dd><p>code (<code class="docutils literal notranslate"><span class="pre">keep_enums</span></code> and <code class="docutils literal notranslate"><span class="pre">keep_datetime</span></code> flags control how enums/datetimes are
+serialized).</p>
+</dd>
+</dl>
+</li>
+</ul>
 <p class="rubric">Functions</p>
 <div class="table-wrapper autosummary longtable docutils container">
 <table class="autosummary longtable docutils align-default">
@@ -272,46 +293,46 @@
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#aiorocket2.models.Balance" title="aiorocket2.models.Balance"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Balance</span></code></a>(currency, balance)</p></td>
-<td><p>Represents a balance entity returned by the xRocket Pay API.</p></td>
+<td><p>Account balance for a specific currency.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Base</span></code>()</p></td>
-<td><p>Base class for all models</p></td>
+<td><p>Base class for all models.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#aiorocket2.models.Cheque" title="aiorocket2.models.Cheque"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Cheque</span></code></a>(id, currency, total, per_user, users, ...)</p></td>
-<td><p>Represents a multi-cheque entity returned by the xRocket Pay API.</p></td>
+<td><p>Multi-cheque (voucher) representation with activation rules.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#aiorocket2.models.Currency" title="aiorocket2.models.Currency"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Currency</span></code></a>(currency, name, min_transfer, ...)</p></td>
 <td><p>Represents a Currency entity returned by the xRocket Pay API.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">DateTimeStr</span></code>(value)</p></td>
-<td><p>Time object, to comfortable get time from the api</p></td>
+<td><p>Small helper that exposes parsed datetime/timestamp from API strings.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#aiorocket2.models.Info" title="aiorocket2.models.Info"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Info</span></code></a>(name, fee_percents, balances)</p></td>
-<td><p>Represents a info entity returned by the xRocket Pay API.</p></td>
+<td><p>Application information returned by the API.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#aiorocket2.models.Invoice" title="aiorocket2.models.Invoice"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Invoice</span></code></a>(id, amount, min_payment, ...)</p></td>
 <td><p>Represents a Invoice entity returned by the xRocket Pay API.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#aiorocket2.models.PaginatedCheque" title="aiorocket2.models.PaginatedCheque"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PaginatedCheque</span></code></a>(total, limit, offset, results)</p></td>
-<td><p>Represents a PaginatedCheque entity returned by the xRocket Pay API.</p></td>
+<td><p>Paginated result container for multi-cheques.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#aiorocket2.models.PaginatedInvoice" title="aiorocket2.models.PaginatedInvoice"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PaginatedInvoice</span></code></a>(total, limit, offset, results)</p></td>
 <td><p>Represents a PaginatedInvoice entity returned by the xRocket Pay API.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#aiorocket2.models.TgResource" title="aiorocket2.models.TgResource"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TgResource</span></code></a>(telegram_id, name, username)</p></td>
-<td><p>Represents a TgResourse entity returned by the xRocket Pay API.</p></td>
+<td><p>Telegram resource (group/channel) referenced by a cheque.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#aiorocket2.models.Transfer" title="aiorocket2.models.Transfer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Transfer</span></code></a>(id, tg_user_id, currency, amount, ...)</p></td>
-<td><p>Represents a transfer entity returned by the xRocket Pay API.</p></td>
+<td><p>Internal transfer record.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#aiorocket2.models.Withdrawal" title="aiorocket2.models.Withdrawal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Withdrawal</span></code></a>(network, address, currency, ...)</p></td>
-<td><p>Represents a Withdrawal entity returned by the xRocket Pay API.</p></td>
+<td><p>On-chain or off-chain withdrawal record.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#aiorocket2.models.WithdrawalCoin" title="aiorocket2.models.WithdrawalCoin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WithdrawalCoin</span></code></a>(code, min_withdrawal, fees)</p></td>
-<td><p>Represents a WithdrawalCoin entity returned by the xRocket Pay API.</p></td>
+<td><p>Metadata about a withdrawable coin, including fees.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#aiorocket2.models.WithdrawalCoinFees" title="aiorocket2.models.WithdrawalCoinFees"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WithdrawalCoinFees</span></code></a>(network_code, fee, currency)</p></td>
-<td><p>Represents a WithdrawalCoinFees entity returned by the xRocket Pay API.</p></td>
+<td><p>Fee schedule for a specific network for a coin.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#aiorocket2.models.WithdrawalFee" title="aiorocket2.models.WithdrawalFee"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WithdrawalFee</span></code></a>(currency, networks)</p></td>
 <td><p>Represents a WithdrawalFee entity returned by the xRocket Pay API.</p></td>
@@ -319,11 +340,12 @@
 </tbody>
 </table>
 </div>
+</section>
 <dl class="py class">
 <dt class="sig sig-object py" id="aiorocket2.models.Balance">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">aiorocket2.models.</span></span><span class="sig-name descname"><span class="pre">Balance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">currency</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">balance</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/aiorocket2/models.html#Balance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aiorocket2.models.Balance" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Base</span></code></p>
-<p>Represents a balance entity returned by the xRocket Pay API.</p>
+<p>Account balance for a specific currency.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -375,7 +397,7 @@
 <dt class="sig sig-object py" id="aiorocket2.models.Cheque">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">aiorocket2.models.</span></span><span class="sig-name descname"><span class="pre">Cheque</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">currency</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">per_user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">users</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">send_notifications</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_program_percents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_reward_per_user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">captcha_enabled</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">link</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">disabled_languages</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enabled_countries</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">for_premium</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">for_new_users_only</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linked_wallet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tg_resources</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">activations</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_rewards</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/aiorocket2/models.html#Cheque"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aiorocket2.models.Cheque" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Base</span></code></p>
-<p>Represents a multi-cheque entity returned by the xRocket Pay API.</p>
+<p>Multi-cheque (voucher) representation with activation rules.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -646,7 +668,7 @@
 <dt class="sig sig-object py" id="aiorocket2.models.Info">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">aiorocket2.models.</span></span><span class="sig-name descname"><span class="pre">Info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fee_percents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">balances</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/aiorocket2/models.html#Info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aiorocket2.models.Info" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Base</span></code></p>
-<p>Represents a info entity returned by the xRocket Pay API.</p>
+<p>Application information returned by the API.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -656,6 +678,39 @@
 </ul>
 </dd>
 </dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aiorocket2.models.Info.name">
+<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#aiorocket2.models.Info.name" title="Link to this definition">¶</a></dt>
+<dd><p>Application name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aiorocket2.models.Info.fee_percents">
+<span class="sig-name descname"><span class="pre">fee_percents</span></span><a class="headerlink" href="#aiorocket2.models.Info.fee_percents" title="Link to this definition">¶</a></dt>
+<dd><p>Default fee percentage for incoming payments.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="aiorocket2.models.Info.balances">
+<span class="sig-name descname"><span class="pre">balances</span></span><a class="headerlink" href="#aiorocket2.models.Info.balances" title="Link to this definition">¶</a></dt>
+<dd><p>List of <a class="reference internal" href="#aiorocket2.models.Balance" title="aiorocket2.models.Balance"><code class="xref py py-class docutils literal notranslate"><span class="pre">Balance</span></code></a> entries for each currency.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[<a class="reference internal" href="#aiorocket2.models.Balance" title="aiorocket2.models.Balance">aiorocket2.models.Balance</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="aiorocket2.models.Info.as_dict">
 <span class="sig-name descname"><span class="pre">as_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">keep_enums</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_datetime</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aiorocket2.models.Info.as_dict" title="Link to this definition">¶</a></dt>
@@ -670,13 +725,13 @@
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="aiorocket2.models.Info.balances">
-<span class="sig-name descname"><span class="pre">balances</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#aiorocket2.models.Balance" title="aiorocket2.models.Balance"><span class="pre">Balance</span></a><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#aiorocket2.models.Info.balances" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">balances</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#aiorocket2.models.Balance" title="aiorocket2.models.Balance"><span class="pre">Balance</span></a><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#id0" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="aiorocket2.models.Info.fee_percents">
-<span class="sig-name descname"><span class="pre">fee_percents</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><a class="headerlink" href="#aiorocket2.models.Info.fee_percents" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id1">
+<span class="sig-name descname"><span class="pre">fee_percents</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><a class="headerlink" href="#id1" title="Link to this definition">¶</a></dt>
 <dd><p>Fee for incoming transactions</p>
 </dd></dl>
 
@@ -695,8 +750,8 @@
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="aiorocket2.models.Info.name">
-<span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#aiorocket2.models.Info.name" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id2">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#id2" title="Link to this definition">¶</a></dt>
 <dd><p>Name of current app</p>
 </dd></dl>
 
@@ -855,7 +910,7 @@
 <dt class="sig sig-object py" id="aiorocket2.models.PaginatedCheque">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">aiorocket2.models.</span></span><span class="sig-name descname"><span class="pre">PaginatedCheque</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">total</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">results</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/aiorocket2/models.html#PaginatedCheque"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aiorocket2.models.PaginatedCheque" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Base</span></code></p>
-<p>Represents a PaginatedCheque entity returned by the xRocket Pay API.</p>
+<p>Paginated result container for multi-cheques.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -985,7 +1040,7 @@
 <dt class="sig sig-object py" id="aiorocket2.models.TgResource">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">aiorocket2.models.</span></span><span class="sig-name descname"><span class="pre">TgResource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">telegram_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">username</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/aiorocket2/models.html#TgResource"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aiorocket2.models.TgResource" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Base</span></code></p>
-<p>Represents a TgResourse entity returned by the xRocket Pay API.</p>
+<p>Telegram resource (group/channel) referenced by a cheque.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -1043,7 +1098,7 @@
 <dt class="sig sig-object py" id="aiorocket2.models.Transfer">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">aiorocket2.models.</span></span><span class="sig-name descname"><span class="pre">Transfer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tg_user_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">currency</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amount</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/aiorocket2/models.html#Transfer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aiorocket2.models.Transfer" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Base</span></code></p>
-<p>Represents a transfer entity returned by the xRocket Pay API.</p>
+<p>Internal transfer record.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -1109,7 +1164,8 @@
 <dl class="py attribute">
 <dt class="sig sig-object py" id="aiorocket2.models.Transfer.tg_user_id">
 <span class="sig-name descname"><span class="pre">tg_user_id</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#aiorocket2.models.Transfer.tg_user_id" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Telegram user id related to the transfer.</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -1117,7 +1173,7 @@
 <dt class="sig sig-object py" id="aiorocket2.models.Withdrawal">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">aiorocket2.models.</span></span><span class="sig-name descname"><span class="pre">Withdrawal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">network</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">address</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">currency</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amount</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">withdrawal_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comment</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tx_hash</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tx_link</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/aiorocket2/models.html#Withdrawal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aiorocket2.models.Withdrawal" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Base</span></code></p>
-<p>Represents a Withdrawal entity returned by the xRocket Pay API.</p>
+<p>On-chain or off-chain withdrawal record.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -1220,7 +1276,7 @@
 <dt class="sig sig-object py" id="aiorocket2.models.WithdrawalCoin">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">aiorocket2.models.</span></span><span class="sig-name descname"><span class="pre">WithdrawalCoin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_withdrawal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fees</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/aiorocket2/models.html#WithdrawalCoin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aiorocket2.models.WithdrawalCoin" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Base</span></code></p>
-<p>Represents a WithdrawalCoin entity returned by the xRocket Pay API.</p>
+<p>Metadata about a withdrawable coin, including fees.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -1280,7 +1336,7 @@
 <dt class="sig sig-object py" id="aiorocket2.models.WithdrawalCoinFees">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">aiorocket2.models.</span></span><span class="sig-name descname"><span class="pre">WithdrawalCoinFees</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">network_code</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fee</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">currency</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/aiorocket2/models.html#WithdrawalCoinFees"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aiorocket2.models.WithdrawalCoinFees" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Base</span></code></p>
-<p>Represents a WithdrawalCoinFees entity returned by the xRocket Pay API.</p>
+<p>Fee schedule for a specific network for a coin.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -1448,6 +1504,7 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">aiorocket2.models</a><ul>
+<li><a class="reference internal" href="#notes">Notes</a></li>
 <li><a class="reference internal" href="#aiorocket2.models.Balance"><code class="docutils literal notranslate"><span class="pre">Balance</span></code></a><ul>
 <li><a class="reference internal" href="#aiorocket2.models.Balance.as_dict"><code class="docutils literal notranslate"><span class="pre">Balance.as_dict()</span></code></a></li>
 <li><a class="reference internal" href="#aiorocket2.models.Balance.balance"><code class="docutils literal notranslate"><span class="pre">Balance.balance</span></code></a></li>
@@ -1494,11 +1551,14 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#aiorocket2.models.Info"><code class="docutils literal notranslate"><span class="pre">Info</span></code></a><ul>
-<li><a class="reference internal" href="#aiorocket2.models.Info.as_dict"><code class="docutils literal notranslate"><span class="pre">Info.as_dict()</span></code></a></li>
-<li><a class="reference internal" href="#aiorocket2.models.Info.balances"><code class="docutils literal notranslate"><span class="pre">Info.balances</span></code></a></li>
-<li><a class="reference internal" href="#aiorocket2.models.Info.fee_percents"><code class="docutils literal notranslate"><span class="pre">Info.fee_percents</span></code></a></li>
-<li><a class="reference internal" href="#aiorocket2.models.Info.from_api"><code class="docutils literal notranslate"><span class="pre">Info.from_api()</span></code></a></li>
 <li><a class="reference internal" href="#aiorocket2.models.Info.name"><code class="docutils literal notranslate"><span class="pre">Info.name</span></code></a></li>
+<li><a class="reference internal" href="#aiorocket2.models.Info.fee_percents"><code class="docutils literal notranslate"><span class="pre">Info.fee_percents</span></code></a></li>
+<li><a class="reference internal" href="#aiorocket2.models.Info.balances"><code class="docutils literal notranslate"><span class="pre">Info.balances</span></code></a></li>
+<li><a class="reference internal" href="#aiorocket2.models.Info.as_dict"><code class="docutils literal notranslate"><span class="pre">Info.as_dict()</span></code></a></li>
+<li><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">Info.balances</span></code></a></li>
+<li><a class="reference internal" href="#id1"><code class="docutils literal notranslate"><span class="pre">Info.fee_percents</span></code></a></li>
+<li><a class="reference internal" href="#aiorocket2.models.Info.from_api"><code class="docutils literal notranslate"><span class="pre">Info.from_api()</span></code></a></li>
+<li><a class="reference internal" href="#id2"><code class="docutils literal notranslate"><span class="pre">Info.name</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#aiorocket2.models.Invoice"><code class="docutils literal notranslate"><span class="pre">Invoice</span></code></a><ul>

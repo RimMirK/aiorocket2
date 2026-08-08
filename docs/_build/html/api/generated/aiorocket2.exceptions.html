@@ -214,6 +214,13 @@
 <li class="toctree-l2"><a class="reference internal" href="aiorocket2.tags.html">aiorocket2.tags</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../guides/methods.html">Methods guide — practical usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../guides/create_invoice.html">create_invoice — detailed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../guides/create_multi_cheque.html">create_multi_cheque — detailed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../guides/get_withdrawal_link.html">get_withdrawal_link — detailed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../resources.html">Resources and Links</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples.html">Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../about_me.html">About me</a></li>
 </ul>
@@ -301,6 +308,13 @@
 <dd><p>HTTP status code (if known).</p>
 </dd></dl>
 
+<p class="rubric">Example</p>
+<dl class="simple">
+<dt>try:</dt><dd><p>await client.create_invoice(…)</p>
+</dd>
+<dt>except xRocketAPIError as exc:</dt><dd><p>print(exc.status, exc.payload)</p>
+</dd>
+</dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="aiorocket2.exceptions.xRocketAPIError.add_note">
 <span class="sig-name descname"><span class="pre">add_note</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">note</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aiorocket2.exceptions.xRocketAPIError.add_note" title="Link to this definition">¶</a></dt>

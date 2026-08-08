@@ -10,4 +10,3 @@ API reference
    aiorocket2.enums
    aiorocket2.exceptions
    aiorocket2.utils
-   aiorocket2.tags

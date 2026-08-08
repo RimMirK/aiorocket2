@@ -11,7 +11,6 @@ pages = {
     "api/enums.md": "::: aiorocket2.enums\n",
     "api/exceptions.md": "::: aiorocket2.exceptions\n",
     "api/utils.md": "::: aiorocket2.utils\n",
-    "api/tags.md": "::: aiorocket2.tags\n",
 }
 
 for path, content in pages.items():
